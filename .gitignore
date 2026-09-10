@@ -7,3 +7,7 @@ node_modules/
 .DS_Store
 service-account*.json
 *-key.json
+
+# Stray files from local test servers
+serve.pid
+serve.log
