@@ -1,0 +1,16 @@
+{
+  "name": "brandwide-analytics-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Brandwide reporting dashboard for GA4, Google Search Console and Mouseflow, hosted on Netlify.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "netlify dev",
+    "check": "node --check netlify/functions/ga4.mjs && node --check netlify/functions/gsc.mjs && node --check netlify/functions/mouseflow.mjs && node --check netlify/functions/health.mjs",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {}
+}

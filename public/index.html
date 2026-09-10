@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brandwide Analytics</title>
+<meta name="description" content="Brandwide reporting dashboard — Google Analytics 4, Search Console and Mouseflow in one view.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/brandwide-all-in-one.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <img src="/assets/brandwide-all-in-one.png" alt="Brandwide — All-in-one Franchise Software">
+      <div class="sidebar__label">Analytics</div>
+    </div>
+
+    <nav class="nav" role="tablist" aria-label="Dashboard sections">
+      <div class="nav__group-title">Reports</div>
+
+      <button class="nav__item" role="tab" id="tab-overview" data-view="overview" aria-selected="true" aria-controls="view-overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        Overview
+      </button>
+
+      <button class="nav__item" role="tab" id="tab-acquisition" data-view="acquisition" aria-selected="false" aria-controls="view-acquisition" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        Acquisition
+      </button>
+
+      <button class="nav__item" role="tab" id="tab-search" data-view="search" aria-selected="false" aria-controls="view-search" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Search Console
+      </button>
+
+      <button class="nav__item" role="tab" id="tab-behavior" data-view="behavior" aria-selected="false" aria-controls="view-behavior" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l7 16 2-7 7-2z"/></svg>
+        Behaviour
+      </button>
+
+      <div class="nav__group-title">Configuration</div>
+
+      <button class="nav__item" role="tab" id="tab-setup" data-view="setup" aria-selected="false" aria-controls="view-setup" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Data sources
+      </button>
+    </nav>
+
+    <div class="sidebar__footer">
+      Brandwide Analytics<br>
+      <span id="build-stamp">Last refreshed —</span>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <div class="topbar__heading">
+        <h1 class="topbar__title" id="view-title">Overview</h1>
+        <p class="topbar__subtitle" id="view-subtitle">Traffic, search and on-site behaviour at a glance</p>
+      </div>
+
+      <div class="controls">
+        <div class="field">
+          <label class="field__label" for="range-select">Date range</label>
+          <select id="range-select" aria-label="Date range">
+            <option value="7d">Last 7 days</option>
+            <option value="28d" selected>Last 28 days</option>
+            <option value="90d">Last 90 days</option>
+            <option value="180d">Last 6 months</option>
+            <option value="365d">Last 12 months</option>
+            <option value="mtd">Month to date</option>
+            <option value="custom">Custom range…</option>
+          </select>
+        </div>
+
+        <div class="field" id="custom-start-field" hidden>
+          <label class="field__label" for="custom-start">From</label>
+          <input type="date" id="custom-start">
+        </div>
+
+        <div class="field" id="custom-end-field" hidden>
+          <label class="field__label" for="custom-end">To</label>
+          <input type="date" id="custom-end">
+        </div>
+
+        <div class="field">
+          <span class="field__label">&nbsp;</span>
+          <button class="btn btn--primary" id="refresh-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            Refresh
+          </button>
+        </div>
+
+        <div class="field">
+          <span class="field__label">&nbsp;</span>
+          <button class="btn" id="print-btn" type="button" title="Save the current view as a PDF">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+            PDF
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="status-strip">
+      <span class="pill" id="status-ga4"><span class="pill__dot"></span> GA4</span>
+      <span class="pill" id="status-gsc"><span class="pill__dot"></span> Search Console</span>
+      <span class="pill" id="status-mouseflow"><span class="pill__dot"></span> Mouseflow</span>
+      <span class="status-strip__note" id="range-note">—</span>
+    </div>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="view" id="view-overview" role="tabpanel" aria-labelledby="tab-overview">
+      <div id="overview-errors"></div>
+
+      <h2 class="section-title">Audience</h2>
+      <div class="grid grid--kpi" id="overview-kpis"></div>
+
+      <h2 class="section-title">Trend</h2>
+      <div class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">Traffic over time</h3>
+            <p class="card__subtitle" id="trend-subtitle">Compared with the previous period</p>
+          </div>
+          <div class="card__actions">
+            <select id="trend-metric" aria-label="Trend metric">
+              <option value="users">Users</option>
+              <option value="sessions">Sessions</option>
+              <option value="pageViews">Page views</option>
+              <option value="conversions">Conversions</option>
+            </select>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="chart-wrap"><canvas id="chart-trend"></canvas></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Search performance</h2>
+      <div class="grid grid--kpi" id="overview-search-kpis"></div>
+
+      <div class="grid grid--halves" style="margin-top:14px">
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Organic clicks</h3><p class="card__subtitle">Google Search Console</p></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-gsc-clicks-mini"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Impressions</h3><p class="card__subtitle">Google Search Console</p></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-gsc-impressions-mini"></canvas></div></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Top content</h2>
+      <div class="grid grid--halves">
+        <div class="card">
+          <div class="card__head">
+            <div><h3 class="card__title">Most viewed pages</h3><p class="card__subtitle">Google Analytics 4</p></div>
+            <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="ga4-pages" type="button">Export CSV</button></div>
+          </div>
+          <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-top-pages"></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head">
+            <div><h3 class="card__title">Top search queries</h3><p class="card__subtitle">Google Search Console</p></div>
+            <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="gsc-queries" type="button">Export CSV</button></div>
+          </div>
+          <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-top-queries"></table></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="view" id="view-acquisition" role="tabpanel" aria-labelledby="tab-acquisition" hidden>
+      <div id="acquisition-errors"></div>
+
+      <h2 class="section-title">Where visitors come from</h2>
+      <div class="grid grid--halves">
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Sessions by channel</h3><p class="card__subtitle">Default channel grouping</p></div></div>
+          <div class="card__body"><div class="chart-wrap"><canvas id="chart-channels"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Sessions by device</h3><p class="card__subtitle">Share of total sessions</p></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--donut"><canvas id="chart-devices"></canvas></div></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Channel detail</h2>
+      <div class="card">
+        <div class="card__head">
+          <div><h3 class="card__title">Channel performance</h3></div>
+          <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="ga4-channels" type="button">Export CSV</button></div>
+        </div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-channels"></table></div></div>
+      </div>
+
+      <h2 class="section-title">Geography</h2>
+      <div class="card">
+        <div class="card__head">
+          <div><h3 class="card__title">Top countries</h3></div>
+          <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="ga4-countries" type="button">Export CSV</button></div>
+        </div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-countries"></table></div></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="view" id="view-search" role="tabpanel" aria-labelledby="tab-search" hidden>
+      <div id="search-errors"></div>
+
+      <h2 class="section-title">Search Console summary</h2>
+      <div class="grid grid--kpi" id="search-kpis"></div>
+
+      <h2 class="section-title">Trends</h2>
+      <div class="grid grid--halves">
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Clicks</h3></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-gsc-clicks"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Impressions</h3></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-gsc-impressions"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Click-through rate</h3></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-gsc-ctr"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Average position</h3><p class="card__subtitle">Lower is better</p></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-gsc-position"></canvas></div></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Queries</h2>
+      <div class="card">
+        <div class="card__head">
+          <div><h3 class="card__title">Top queries</h3></div>
+          <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="gsc-queries" type="button">Export CSV</button></div>
+        </div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-queries"></table></div></div>
+      </div>
+
+      <h2 class="section-title">Landing pages</h2>
+      <div class="card">
+        <div class="card__head">
+          <div><h3 class="card__title">Top pages in search</h3></div>
+          <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="gsc-pages" type="button">Export CSV</button></div>
+        </div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-gsc-pages"></table></div></div>
+      </div>
+
+      <h2 class="section-title">Devices &amp; countries</h2>
+      <div class="grid grid--halves">
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">By device</h3></div></div>
+          <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-gsc-devices"></table></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">By country</h3></div></div>
+          <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-gsc-countries"></table></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="view" id="view-behavior" role="tabpanel" aria-labelledby="tab-behavior" hidden>
+      <div id="behavior-errors"></div>
+
+      <h2 class="section-title">Session recordings</h2>
+      <div class="grid grid--kpi" id="behavior-kpis"></div>
+
+      <div class="grid grid--halves" style="margin-top:14px">
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Recordings captured</h3><p class="card__subtitle">Mouseflow</p></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-mf-trend"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Recordings by device</h3></div></div>
+          <div class="card__body"><div class="chart-wrap chart-wrap--donut"><canvas id="chart-mf-devices"></canvas></div></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Entry pages</h2>
+      <div class="card">
+        <div class="card__head">
+          <div><h3 class="card__title">Where sessions start</h3></div>
+          <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="mf-entry" type="button">Export CSV</button></div>
+        </div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-mf-entry"></table></div></div>
+      </div>
+
+      <h2 class="section-title">Recent recordings</h2>
+      <div class="card">
+        <div class="card__head">
+          <div><h3 class="card__title">Latest sessions</h3><p class="card__subtitle" id="mf-heatmap-link"></p></div>
+          <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="mf-recordings" type="button">Export CSV</button></div>
+        </div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-mf-recordings"></table></div></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="view" id="view-setup" role="tabpanel" aria-labelledby="tab-setup" hidden>
+      <h2 class="section-title">Connection status</h2>
+      <div class="card">
+        <div class="card__head"><div><h3 class="card__title">Data sources</h3><p class="card__subtitle">Read live from the deployed environment variables</p></div></div>
+        <div class="card__body" id="health-panel"><div class="empty">Checking…</div></div>
+      </div>
+
+      <h2 class="section-title">How to connect each source</h2>
+      <div class="grid grid--thirds">
+
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Google Analytics 4</h3></div></div>
+          <div class="card__body">
+            <div class="setup-step">
+              <h3>1. Create a service account</h3>
+              <p>In Google Cloud Console, create a project, enable the <strong>Google Analytics Data API</strong>, then create a service account and download its JSON key.</p>
+            </div>
+            <div class="setup-step">
+              <h3>2. Grant it access</h3>
+              <p>In GA4 → Admin → Property access management, add the service account email as a <strong>Viewer</strong>.</p>
+            </div>
+            <div class="setup-step">
+              <h3>3. Set the variables</h3>
+              <ul>
+                <li><code>GOOGLE_CLIENT_EMAIL</code></li>
+                <li><code>GOOGLE_PRIVATE_KEY</code></li>
+                <li><code>GA4_PROPERTY_ID</code> — the numeric ID</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Search Console</h3></div></div>
+          <div class="card__body">
+            <div class="setup-step">
+              <h3>1. Enable the API</h3>
+              <p>Enable the <strong>Google Search Console API</strong> in the same Cloud project. The same service account is reused.</p>
+            </div>
+            <div class="setup-step">
+              <h3>2. Add the user</h3>
+              <p>In Search Console → Settings → Users and permissions, add the service account email with <strong>Full</strong> or <strong>Restricted</strong> access.</p>
+            </div>
+            <div class="setup-step">
+              <h3>3. Set the variable</h3>
+              <ul>
+                <li><code>GSC_SITE_URL</code> — either <code>sc-domain:brandwide.com</code> or the exact URL-prefix property</li>
+              </ul>
+              <p>Search Console finalises data about 2–3 days behind, so the most recent days may look light.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__head"><div><h3 class="card__title">Mouseflow</h3></div></div>
+          <div class="card__body">
+            <div class="setup-step">
+              <h3>1. Create an API key</h3>
+              <p>In Mouseflow, open <strong>Settings → API Keys</strong> and generate a key. Note the region shown there (US or EU).</p>
+            </div>
+            <div class="setup-step">
+              <h3>2. Set the variables</h3>
+              <ul>
+                <li><code>MOUSEFLOW_USERNAME</code> — your login email</li>
+                <li><code>MOUSEFLOW_API_KEY</code></li>
+                <li><code>MOUSEFLOW_REGION</code> — <code>us</code> or <code>eu</code></li>
+                <li><code>MOUSEFLOW_WEBSITE_ID</code> — optional</li>
+              </ul>
+            </div>
+            <div class="setup-step">
+              <h3>3. What you get</h3>
+              <p>Mouseflow's API serves recordings and heatmaps rather than aggregate metrics, so this panel reports recording volume, device split, entry pages and friction scores, and deep-links into Mouseflow for playback.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Notes</h2>
+      <div class="card">
+        <div class="card__body">
+          <p style="margin-top:0">Every variable is set in Netlify under <strong>Site configuration → Environment variables</strong>. Credentials are only ever read inside the serverless functions — they are never sent to the browser.</p>
+          <p style="margin-bottom:0">Any source without credentials renders clearly-labelled sample data so the dashboard stays explorable while connections are being arranged.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

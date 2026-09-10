@@ -1,0 +1,54 @@
+# Brandwide Analytics Dashboard — Netlify configuration
+
+[build]
+  publish   = "public"
+  functions = "netlify/functions"
+  command   = "echo 'Static site — no build step required.'"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Friendly API paths -> serverless functions
+[[redirects]]
+  from = "/api/ga4"
+  to   = "/.netlify/functions/ga4"
+  status = 200
+
+[[redirects]]
+  from = "/api/gsc"
+  to   = "/.netlify/functions/gsc"
+  status = 200
+
+[[redirects]]
+  from = "/api/mouseflow"
+  to   = "/.netlify/functions/mouseflow"
+  status = 200
+
+[[redirects]]
+  from = "/api/health"
+  to   = "/.netlify/functions/health"
+  status = 200
+
+# SPA-style fallback for the single-page dashboard
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Permissions-Policy     = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
