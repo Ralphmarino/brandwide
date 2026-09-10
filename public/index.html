@@ -9,7 +9,11 @@
 <link rel="icon" href="/assets/brandwide-all-in-one.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Loaded non-render-blocking: if the font is slow or blocked, the page paints
+     immediately in the system-font fallback rather than stalling. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
@@ -396,7 +400,10 @@
   </main>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Chart.js v4.4.1 (MIT) is vendored rather than loaded from a CDN, so the
+     dashboard renders identically offline, on a locked-down conference network,
+     or if the CDN is unreachable. -->
+<script src="/js/vendor/chart.umd.js"></script>
 <script type="module" src="/js/app.js"></script>
 </body>
 </html>
