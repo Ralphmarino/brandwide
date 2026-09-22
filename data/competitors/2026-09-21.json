@@ -13,6 +13,12 @@
       "orgTop3": 16,
       "orgTraffic": 473,
       "orgValueUsd": 3628.92,
+      "domainRating": 50,
+      "ahrefsRank": 725064,
+      "backlinks": 18682,
+      "referringDomains": 2762,
+      "backlinksAllTime": 70174,
+      "referringDomainsAllTime": 8314,
       "keywordsCaptured": 24
     },
     {
@@ -23,6 +29,12 @@
       "orgTop3": 24,
       "orgTraffic": 760,
       "orgValueUsd": 4860.35,
+      "domainRating": 22,
+      "ahrefsRank": 7593531,
+      "backlinks": 1914,
+      "referringDomains": 941,
+      "backlinksAllTime": 48499,
+      "referringDomainsAllTime": 2423,
       "keywordsCaptured": 32
     },
     {
@@ -33,6 +45,12 @@
       "orgTop3": 148,
       "orgTraffic": 5091,
       "orgValueUsd": 14049.57,
+      "domainRating": 57,
+      "ahrefsRank": 380726,
+      "backlinks": 58942,
+      "referringDomains": 3052,
+      "backlinksAllTime": 5204573,
+      "referringDomainsAllTime": 7492,
       "keywordsCaptured": 40
     },
     {
@@ -43,6 +61,12 @@
       "orgTop3": 13,
       "orgTraffic": 2217,
       "orgValueUsd": 4221.5,
+      "domainRating": 28,
+      "ahrefsRank": 4905637,
+      "backlinks": 2309,
+      "referringDomains": 929,
+      "backlinksAllTime": 258284,
+      "referringDomainsAllTime": 1830,
       "keywordsCaptured": 16
     }
   ],

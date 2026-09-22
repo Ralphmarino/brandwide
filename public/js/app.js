@@ -11,7 +11,7 @@ import {
 } from './api.js';
 import { buildCtrModel } from './shared/ctr.js';
 import { rankOpportunities, pathOf } from './shared/opportunity.js';
-import { analyseCompetitors } from './shared/competitors.js';
+import { analyseCompetitors, competitorContextForPage } from './shared/competitors.js';
 import { applyChartDefaults, lineChart, barChart, donutChart, destroyAll, PALETTE } from './charts.js';
 import {
   num, compact, axisNum, percent, decimal, duration, shortDate, longDate, dateTime,
@@ -814,6 +814,46 @@ function renderRankings() {
   );
 }
 
+/**
+ * States plainly whether competitive losses are an authority problem.
+ * A rival outranking us from a weaker link profile means the gap is content,
+ * and more links will not close it — a different and much cheaper fix.
+ */
+function authorityVerdict(data) {
+  const self = data.domains.find((domain) => domain.domain === data.self);
+  if (!self?.domainRating) return '';
+
+  const weaker = data.headToHead.filter((rival) => {
+    const domain = data.domains.find((d) => d.domain === rival.domain);
+    return domain?.domainRating < self.domainRating && rival.losses > 0;
+  });
+
+  if (!weaker.length) return '';
+
+  const names = weaker.map((rival) => {
+    const domain = data.domains.find((d) => d.domain === rival.domain);
+    return `<strong>${rival.label}</strong> (DR ${domain.domainRating}, ${num(domain.referringDomains)} referring domains) ` +
+      `outranks us on ${rival.losses} shared keyword${rival.losses === 1 ? '' : 's'}`;
+  });
+
+  return `
+    <div class="card" style="margin-top:14px;border-left:3px solid var(--brand-orange)">
+      <div class="card__head"><div><h3 class="card__title">This is not an authority problem</h3></div></div>
+      <div class="card__body">
+        <p style="margin:0;color:var(--ink-muted)">
+          At DR ${decimal(self.domainRating, 0)} with ${num(self.referringDomains)} referring domains,
+          this site has a stronger link profile than the competitors beating it on several searches.
+          ${names.join('; ')} — with a weaker profile than ours.
+        </p>
+        <p style="margin:10px 0 0;color:var(--ink-muted)">
+          Link building would not close those gaps. Depth of coverage, how directly each page
+          answers the query, and whether a page exists for the search at all are what separate
+          the results — which is what the Page analysis report works through.
+        </p>
+      </div>
+    </div>`;
+}
+
 /* ------------------------------------------------------------- Competitors */
 
 const OUTCOME_LABEL = {
@@ -879,6 +919,14 @@ function renderCompetitors() {
       </div>
     </div>
 
+    <h2 class="section-title">Authority</h2>
+    <div class="card">
+      <div class="card__head"><div><h3 class="card__title">Domain Rating and backlink profile</h3>
+        <p class="card__subtitle">Live links and referring domains, Ahrefs, ${longDate(data.date)}</p></div></div>
+      <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-comp-authority"></table></div></div>
+    </div>
+    ${authorityVerdict(data)}
+
     <h2 class="section-title">Contested keywords</h2>
     <div class="card">
       <div class="card__head">
@@ -909,6 +957,35 @@ function renderCompetitors() {
         </p>
       </div>
     </div>`;
+
+  const maxDr = 100;
+  const maxRefDomains = Math.max(...data.domains.map((d) => d.referringDomains || 0), 0);
+  renderTable(
+    'table-comp-authority',
+    [
+      {
+        label: 'Domain',
+        render: (row) => `<div class="cell-primary">${row.label}${row.self ? ' <span class="flag flag--easy">us</span>' : ''}</div>`,
+      },
+      {
+        label: 'Domain Rating',
+        align: 'right',
+        render: (row) => barCell(row.domainRating, maxDr, decimal(row.domainRating, 0)),
+      },
+      { label: 'Referring domains', align: 'right', render: (row) => barCell(row.referringDomains, maxRefDomains, num(row.referringDomains)) },
+      { label: 'Live backlinks', align: 'right', render: (row) => num(row.backlinks) },
+      {
+        label: 'Traffic per ref. domain',
+        align: 'right',
+        render: (row) => {
+          // Exposes who converts authority into visibility most efficiently.
+          const ratio = row.referringDomains ? row.orgTraffic / row.referringDomains : 0;
+          return `<span${row.self ? ' style="font-weight:700"' : ''}>${decimal(ratio, 2)}</span>`;
+        },
+      },
+    ],
+    data.domains
+  );
 
   const maxTraffic = Math.max(...data.domains.map((domain) => domain.orgTraffic || 0), 0);
   renderTable(
@@ -1001,6 +1078,7 @@ const FLAG_LABELS = {
   ai: 'AI Overview gap',
   deep: 'Ranking deep',
   engagement: 'Low engagement',
+  rival: 'Outranked',
 };
 
 function flagBadges(page) {
@@ -1025,6 +1103,17 @@ function opportunityList() {
       keywords: latest?.keywords || [],
       ga4Pages: state.ga4?.topPages || [],
       ctrModel,
+    }).map((page) => {
+      // Annotate with competitive pressure so the priority list reflects it.
+      const rivalry = state.competitors
+        ? competitorContextForPage(analyseCompetitors(state.competitors), page.keywords)
+        : null;
+      if (!rivalry?.losing?.length) return { ...page, rivalry: null };
+      return {
+        ...page,
+        rivalry,
+        flags: [...page.flags, 'rival'],
+      };
     }),
   };
 }
@@ -1154,6 +1243,9 @@ async function runPageAudit(target) {
       aiCited: page.aiCited,
       views: page.views,
       engagement: page.engagement,
+      competitors: state.competitors
+        ? competitorContextForPage(analyseCompetitors(state.competitors), page.keywords)
+        : null,
     } : {});
   } catch (error) {
     panel.innerHTML = `

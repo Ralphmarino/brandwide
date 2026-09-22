@@ -26,7 +26,10 @@ snapshot cadence becomes a constraint.
   "self": "meetbrandwide.com",        // which domain is us
   "domains": [                         // one per tracked domain
     { "domain": "...", "label": "...", "self": true,
-      "orgKeywords": 25, "orgTop3": 16, "orgTraffic": 473, "orgValueUsd": 3628.92 }
+      "orgKeywords": 25, "orgTop3": 16, "orgTraffic": 473, "orgValueUsd": 3628.92,
+      "domainRating": 50, "ahrefsRank": 725064,
+      "backlinks": 18682, "referringDomains": 2762,
+      "backlinksAllTime": 70174, "referringDomainsAllTime": 8314 }
   ],
   "keywords": [
     { "keyword": "franchise software", "volume": 600, "keywordDifficulty": 48,

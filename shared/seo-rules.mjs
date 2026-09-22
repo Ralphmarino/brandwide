@@ -283,6 +283,45 @@ export function buildRecommendations(signals, context = {}) {
     }
   }
 
+  /* --- Competitive position ---------------------------------------------- */
+
+  const rivalry = context.competitors;
+  if (rivalry?.losing?.length) {
+    const top = rivalry.losing.slice(0, 4);
+    const list = top
+      .map((row) => `"${row.keyword}" — ${row.rival} at #${row.rivalPosition}, us at #${row.ourPosition}`)
+      .join('; ');
+
+    // Losing to a weaker link profile is a content problem, and saying so
+    // redirects the work away from link building, which would not fix it.
+    const weaker = rivalry.losing.filter((row) => row.weakerAuthority);
+    const authorityNote = weaker.length
+      ? ` ${weaker.length === rivalry.losing.length ? 'Every one of these rivals has' : `${weaker.length} of these rivals have`} ` +
+        `a weaker link profile than this site (${weaker[0].rival} sits at DR ${weaker[0].rivalDomainRating} ` +
+        `against our ${rivalry.self?.domainRating}), so the gap is content and relevance, not authority. ` +
+        'More links will not close it.'
+      : '';
+
+    add(
+      'competitor-outranks', 'high', 'Competitive',
+      `Outranked on ${rivalry.losing.length} keyword${rivalry.losing.length === 1 ? '' : 's'} this page targets`,
+      `A competitor holds a higher position than this page on searches it is built for.${authorityNote}`,
+      list,
+      `Compare this page against ${top[0].rival}'s ranking page (${top[0].rivalUrl}) — depth of coverage, how directly the opening answers the query, and specificity. Close the difference that matters rather than matching length.`
+    );
+  }
+
+  if (rivalry?.aiLost?.length) {
+    const top = rivalry.aiLost.slice(0, 4);
+    add(
+      'competitor-ai-overview', 'high', 'Competitive',
+      `A competitor is cited in the AI Overview where this page is not`,
+      'On these searches a rival is the source Google draws its answer from, so they take the visibility above the organic results.',
+      top.map((row) => `"${row.keyword}" — ${row.rivals.join(', ')}`).join('; '),
+      'Answer each of these questions in one self-contained, quotable paragraph near the top of the page, phrased as the question is asked.'
+    );
+  }
+
   /* --- Accessibility and media ------------------------------------------- */
 
   if (signals.imagesMissingAlt > 0) {
@@ -313,4 +352,6 @@ export function buildRecommendations(signals, context = {}) {
 }
 
 export const SEVERITIES = ['critical', 'high', 'medium', 'low'];
-export const CATEGORIES = ['Meta data', 'Content', 'Schema', 'Generative search', 'Technical'];
+export const CATEGORIES = [
+  'Meta data', 'Content', 'Schema', 'Generative search', 'Competitive', 'Technical',
+];

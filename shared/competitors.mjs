@@ -130,3 +130,65 @@ export function analyseCompetitors(snapshot) {
     gaps,
   };
 }
+
+/**
+ * Competitive context for one page, keyed on the keywords that page targets.
+ *
+ * The authority comparison matters more than it looks: losing to a rival with
+ * a weaker link profile means the gap is content and relevance, not domain
+ * strength — which is a different, cheaper piece of work, and worth stating
+ * rather than leaving the reader to assume they need links.
+ */
+export function competitorContextForPage(analysis, pageKeywords) {
+  if (!analysis || !pageKeywords?.length) return null;
+
+  const wanted = new Set(
+    pageKeywords.map((k) => String(k.keyword || '').trim().toLowerCase())
+  );
+  const rows = analysis.rows.filter((row) => wanted.has(row.keyword.toLowerCase()));
+  if (!rows.length) return null;
+
+  const self = analysis.domains.find((domain) => domain.domain === analysis.self);
+
+  const losing = rows
+    .filter((row) => row.outcome === 'behind')
+    .map((row) => {
+      const rival = row.bestRival;
+      const rivalDomain = analysis.domains.find((d) => d.domain === rival.domain);
+      return {
+        keyword: row.keyword,
+        volume: row.volume,
+        ourPosition: row.mine.position,
+        rival: rival.label,
+        rivalPosition: rival.rank.position,
+        rivalUrl: rival.rank.url,
+        rivalDomainRating: rivalDomain?.domainRating ?? null,
+        rivalReferringDomains: rivalDomain?.referringDomains ?? null,
+        // The interesting case: they rank higher with less authority.
+        weakerAuthority:
+          rivalDomain?.domainRating != null &&
+          self?.domainRating != null &&
+          rivalDomain.domainRating < self.domainRating,
+      };
+    })
+    .sort((a, b) => (b.volume || 0) - (a.volume || 0));
+
+  const aiLost = rows
+    .filter((row) => !row.myAiOverview && row.rivalAiOverview.length)
+    .map((row) => ({
+      keyword: row.keyword,
+      volume: row.volume,
+      rivals: row.rivalAiOverview.map((rival) => rival.label),
+    }))
+    .sort((a, b) => (b.volume || 0) - (a.volume || 0));
+
+  return {
+    self,
+    matched: rows.length,
+    losing,
+    aiLost,
+    winning: rows.filter((row) => row.outcome === 'ahead').length,
+    // True when every loss on this page is to a lower-authority rival.
+    allLossesToWeaker: losing.length > 0 && losing.every((row) => row.weakerAuthority),
+  };
+}
