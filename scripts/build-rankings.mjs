@@ -22,6 +22,10 @@ import { looksLikeHeader, mapColumns, normaliseRows, summarise } from './lib/awr
 
 const INPUT_DIR = 'data/rankings';
 const OUTPUT_FILE = 'public/data/rankings.json';
+// Logic shared by the serverless functions and the browser. Copied rather than
+// duplicated, so the scoring rules have exactly one definition.
+const SHARED_DIR = 'shared';
+const SHARED_OUT = 'public/js/shared';
 
 const DATE_IN_NAME = /(\d{4})[-_]?(\d{1,2})[-_]?(\d{1,2})/;
 
@@ -100,7 +104,32 @@ async function readSnapshot(dir, filename) {
   };
 }
 
+/**
+ * Publishes shared/*.mjs to public/js/shared as .js.
+ *
+ * The extension matters: some static hosts serve .mjs as
+ * application/octet-stream, and browsers refuse a module script with the wrong
+ * MIME type — which would take down the whole dashboard, not just this import.
+ * Relative specifiers between the shared modules are rewritten to match.
+ */
+async function copyShared() {
+  await mkdir(SHARED_OUT, { recursive: true });
+  const files = (await readdir(SHARED_DIR)).filter((name) => name.endsWith('.mjs'));
+
+  for (const name of files) {
+    const source = await readFile(join(SHARED_DIR, name), 'utf8');
+    const rewritten = source.replace(
+      /(\bfrom\s*['"])(\.\.?\/[^'"]+)\.mjs(['"])/g,
+      '$1$2.js$3'
+    );
+    await writeFile(join(SHARED_OUT, name.replace(/\.mjs$/, '.js')), rewritten);
+  }
+  console.log(`[shared] published ${files.length} module(s) to ${SHARED_OUT} as .js`);
+}
+
 async function main() {
+  await copyShared();
+
   let filenames = [];
   try {
     filenames = (await readdir(INPUT_DIR))

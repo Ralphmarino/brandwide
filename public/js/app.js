@@ -7,7 +7,10 @@
  */
 import {
   resolveRange, fetchGa4, fetchGsc, fetchMouseflow, fetchHealth, fetchRankings,
+  fetchPageAudit,
 } from './api.js';
+import { buildCtrModel } from './shared/ctr.js';
+import { rankOpportunities, pathOf } from './shared/opportunity.js';
 import { applyChartDefaults, lineChart, barChart, donutChart, destroyAll, PALETTE } from './charts.js';
 import {
   num, compact, axisNum, percent, decimal, duration, shortDate, longDate, dateTime,
@@ -18,6 +21,7 @@ const VIEW_META = {
   overview: { title: 'Overview', subtitle: 'Traffic, search and on-site behaviour at a glance' },
   acquisition: { title: 'Acquisition', subtitle: 'How visitors find brandwide.com' },
   search: { title: 'Search Console', subtitle: 'Organic visibility, queries and landing pages' },
+  pages: { title: 'Page analysis', subtitle: 'Which pages to improve first, and exactly what to change' },
   rankings: { title: 'Rankings', subtitle: 'True tracked positions and AI Overview citations, from AWR Cloud' },
   behavior: { title: 'Behaviour', subtitle: 'Session recordings and on-page friction from Mouseflow' },
   setup: { title: 'Data sources', subtitle: 'Connection status and setup instructions' },
@@ -807,6 +811,244 @@ function renderRankings() {
   );
 }
 
+/* ---------------------------------------------------------- Page analysis */
+
+const FLAG_LABELS = {
+  ctr: 'CTR below par',
+  striking: 'Striking distance',
+  ai: 'AI Overview gap',
+  deep: 'Ranking deep',
+  engagement: 'Low engagement',
+};
+
+function flagBadges(page) {
+  const badges = page.flags.map(
+    (flag) => `<span class="flag flag--${flag}">${FLAG_LABELS[flag] || flag}</span>`
+  );
+  if (page.easy) badges.unshift('<span class="flag flag--easy">Quick win</span>');
+  return badges.join('') || '<span class="cell-secondary">—</span>';
+}
+
+/** Builds the opportunity ranking from whatever data is currently loaded. */
+function opportunityList() {
+  const latest = state.rankings?.snapshots?.[state.rankings.snapshots.length - 1];
+  const queries = state.gsc?.queries || [];
+  const ctrModel = buildCtrModel(queries);
+
+  return {
+    ctrModel,
+    pages: rankOpportunities({
+      gscPages: state.gsc?.pages || [],
+      gscQueries: queries,
+      keywords: latest?.keywords || [],
+      ga4Pages: state.ga4?.topPages || [],
+      ctrModel,
+    }),
+  };
+}
+
+function renderPages() {
+  const container = $id('pages-body');
+  if (!container) return;
+  renderErrors('pages-errors', ['ga4', 'gsc']);
+
+  const { ctrModel, pages } = opportunityList();
+
+  if (!pages.length) {
+    container.innerHTML = `
+      <div class="card"><div class="card__body">
+        <div class="empty">No page data yet. Connect Search Console, or add a ranking
+        export, and this report will populate.</div>
+      </div></div>`;
+    return;
+  }
+
+  const totalUpside = pages.reduce((sum, page) => sum + page.ctrGapClicks, 0);
+  const quickWins = pages.filter((page) => page.easy).length;
+  const aiGapPages = pages.filter((page) => page.aiGaps.length).length;
+
+  container.innerHTML = `
+    <h2 class="section-title">Where the upside is</h2>
+    <div class="grid grid--kpi">
+      ${kpiCard({ label: 'Pages analysed', value: num(pages.length), noCompare: true, compareText: 'with search data' })}
+      ${kpiCard({ label: 'Clicks available', value: num(totalUpside), noCompare: true, compareText: 'from CTR gaps alone' })}
+      ${kpiCard({ label: 'Quick wins', value: num(quickWins), noCompare: true, compareText: 'small change, real gain' })}
+      ${kpiCard({ label: 'AI Overview gaps', value: num(aiGapPages), noCompare: true, compareText: 'pages not being cited' })}
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card__head"><div><h3 class="card__title">How this is calculated</h3></div></div>
+      <div class="card__body">
+        <p style="margin:0;color:var(--ink-muted)">
+          Pages are ranked by estimated clicks available, combining three measurable gaps:
+          click-through below what this site typically achieves at that position,
+          keywords sitting just outside the top 3, and searches where an AI Overview
+          appears without citing the page. The expected click-through rate is measured
+          from this site's own Search Console data
+          ${ctrModel.bucketsMeasured
+            ? `(${ctrModel.bucketsMeasured} position band${ctrModel.bucketsMeasured === 1 ? '' : 's'} measured)`
+            : '(using benchmark rates until more data accumulates)'}
+          rather than a published industry average. These are estimates for
+          prioritisation, not forecasts.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Priority order</h2>
+    <div class="card">
+      <div class="card__head">
+        <div><h3 class="card__title">Pages to work on first</h3>
+          <p class="card__subtitle">Select a page to run a live on-page audit</p></div>
+        <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="pages" type="button">Export CSV</button></div>
+      </div>
+      <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-pages"></table></div></div>
+    </div>
+
+    <div id="page-audit-panel"></div>`;
+
+  const maxUpside = Math.max(...pages.map((page) => page.totalUpside), 0);
+
+  renderTable(
+    'table-pages',
+    [
+      {
+        label: 'Page',
+        render: (row) =>
+          `<button class="page-row-btn" data-audit="${row.url || row.path}" title="${row.path}">${tidyPath(row.path, 44)}</button>
+           <div style="margin-top:4px">${flagBadges(row)}</div>`,
+      },
+      {
+        label: 'Clicks available',
+        align: 'right',
+        render: (row) => barCell(row.totalUpside, maxUpside, num(row.totalUpside)),
+      },
+      { label: 'Clicks', align: 'right', render: (row) => num(row.clicks) },
+      { label: 'Impressions', align: 'right', render: (row) => num(row.impressions) },
+      {
+        label: 'CTR',
+        align: 'right',
+        render: (row) => {
+          if (row.actualCtr === null) return '—';
+          const short = row.expectedCtr && row.actualCtr < row.expectedCtr * 0.7;
+          return `<span${short ? ' style="color:var(--negative);font-weight:700"' : ''}>${percent(row.actualCtr, 1)}</span>
+            <div class="cell-secondary">par ${percent(row.expectedCtr, 1)}</div>`;
+        },
+      },
+      { label: 'Position', align: 'right', render: (row) => (row.position ? decimal(row.position) : '—') },
+    ],
+    pages.slice(0, 25)
+  );
+}
+
+/** Runs the live audit for one page and renders it beneath the table. */
+async function runPageAudit(target) {
+  const panel = $id('page-audit-panel');
+  if (!panel) return;
+
+  const { pages } = opportunityList();
+  const page =
+    pages.find((row) => row.url === target) || pages.find((row) => row.path === pathOf(target));
+
+  panel.innerHTML = `
+    <h2 class="section-title">On-page audit</h2>
+    <div class="card"><div class="card__body">
+      <div class="empty">Fetching ${target} and checking meta data, headings, schema and content…</div>
+    </div></div>`;
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  let audit;
+  try {
+    audit = await fetchPageAudit(target, page ? {
+      clicks: page.clicks,
+      impressions: page.impressions,
+      ctr: page.actualCtr,
+      position: page.position,
+      expectedCtr: page.expectedCtr,
+      actualCtr: page.actualCtr,
+      ctrGapClicks: page.ctrGapClicks,
+      keywords: page.keywords,
+      strikingDistance: page.strikingDistance,
+      aiGaps: page.aiGaps,
+      aiCited: page.aiCited,
+      views: page.views,
+      engagement: page.engagement,
+    } : {});
+  } catch (error) {
+    panel.innerHTML = `
+      <h2 class="section-title">On-page audit</h2>
+      <div class="error-box"><strong>Could not audit this page</strong>${error.message}</div>`;
+    return;
+  }
+
+  const s = audit.signals;
+  const counts = audit.recommendations.reduce((tally, rec) => {
+    tally[rec.severity] = (tally[rec.severity] || 0) + 1;
+    return tally;
+  }, {});
+
+  const fact = (label, value, note, tone = '') => `
+    <div class="fact ${tone}">
+      <div class="fact__label">${label}</div>
+      <div class="fact__value">${value}</div>
+      ${note ? `<div class="fact__note">${note}</div>` : ''}
+    </div>`;
+
+  const titleTone = !s.title ? 'fact--bad' : s.titleLength > 60 || s.titleLength < 30 ? 'fact--warn' : 'fact--good';
+  const descTone = !s.description ? 'fact--bad' : s.descriptionLength > 160 || s.descriptionLength < 70 ? 'fact--warn' : 'fact--good';
+
+  panel.innerHTML = `
+    <h2 class="section-title">On-page audit</h2>
+
+    <div class="card">
+      <div class="card__head">
+        <div><h3 class="card__title">${tidyPath(audit.url, 60)}</h3>
+          <p class="card__subtitle">
+            Fetched in ${audit.fetchMs} ms${audit.redirected ? ' · redirected' : ''} ·
+            ${counts.critical || 0} critical, ${counts.high || 0} high,
+            ${counts.medium || 0} medium, ${counts.low || 0} low
+          </p></div>
+        <div class="card__actions">
+          <a class="btn btn--ghost btn--sm" href="${audit.url}" target="_blank" rel="noopener noreferrer">Open page</a>
+        </div>
+      </div>
+      <div class="card__body">
+        <div class="facts">
+          ${fact('Title', s.title ? `${s.titleLength} chars` : 'Missing', s.title ? `“${s.title}”` : 'No &lt;title&gt; found', titleTone)}
+          ${fact('Meta description', s.description ? `${s.descriptionLength} chars` : 'Missing', s.description ? `“${s.description}”` : 'None found', descTone)}
+          ${fact('Word count', num(s.wordCount), s.wordCount < 300 ? 'Thin for a ranking page' : 'Reasonable depth', s.wordCount < 300 ? 'fact--warn' : '')}
+          ${fact('Headings', `${s.h1.length} H1 · ${s.h2.length} H2`, s.h1[0] ? `“${s.h1[0]}”` : 'No H1', s.h1.length === 1 ? 'fact--good' : 'fact--warn')}
+          ${fact('Schema', s.schema.types.length ? s.schema.types.join(', ') : 'None', s.schema.invalidBlocks ? `${s.schema.invalidBlocks} invalid block(s)` : `${s.schema.blockCount} block(s)`, s.schema.blockCount ? (s.schema.invalidBlocks ? 'fact--bad' : 'fact--good') : 'fact--warn')}
+          ${fact('FAQ', s.schema.hasFaq ? 'Marked up' : s.hasFaqHeading ? 'Content only' : 'None', s.schema.hasFaq ? 'FAQPage schema present' : s.hasFaqHeading ? 'Questions on page, no schema' : 'No FAQ section', s.schema.hasFaq ? 'fact--good' : s.hasFaqHeading ? 'fact--warn' : '')}
+          ${fact('Internal links', num(s.internalLinks), `${s.externalLinks} external`, s.internalLinks < 3 ? 'fact--warn' : '')}
+          ${fact('Images', num(s.imageCount), s.imagesMissingAlt ? `${s.imagesMissingAlt} missing alt` : 'All have alt text', s.imagesMissingAlt ? 'fact--warn' : '')}
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Recommendations</h2>
+    <div class="card">
+      <div class="card__body card__body--flush">
+        ${audit.recommendations.length
+          ? audit.recommendations.map((rec) => `
+            <div class="rec">
+              <div>
+                <span class="sev sev--${rec.severity}">${rec.severity}</span>
+                <div class="rec__category" style="margin-top:6px">${rec.category}</div>
+              </div>
+              <div>
+                <p class="rec__title">${rec.title}</p>
+                <p class="rec__detail">${rec.detail}</p>
+                <div class="rec__meta">Observed: ${rec.evidence}</div>
+                <div class="rec__action"><strong>Do this:</strong> ${rec.action}</div>
+              </div>
+            </div>`).join('')
+          : '<div class="empty">No issues found — this page is in good shape.</div>'}
+      </div>
+    </div>`;
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 /* ------------------------------------------------------------------ Setup */
 
 async function renderSetup() {
@@ -890,6 +1132,7 @@ function renderActiveView() {
   else if (state.view === 'acquisition') renderAcquisition();
   else if (state.view === 'search') renderSearch();
   else if (state.view === 'rankings') renderRankings();
+  else if (state.view === 'pages') renderPages();
   else if (state.view === 'behavior') renderBehavior();
   else if (state.view === 'setup') renderSetup();
 }
@@ -1065,6 +1308,41 @@ const EXPORTS = {
       ],
     };
   },
+  pages: () => ({
+    filename: 'brandwide-page-priorities',
+    rows: opportunityList().pages.map((page) => ({
+      path: page.path,
+      clicks: page.clicks,
+      impressions: page.impressions,
+      ctr: page.actualCtr,
+      expectedCtr: page.expectedCtr,
+      position: page.position,
+      ctrGapClicks: Math.round(page.ctrGapClicks),
+      strikingUpside: Math.round(page.strikingUpside),
+      aiUpside: Math.round(page.aiUpside),
+      totalUpside: Math.round(page.totalUpside),
+      strikingKeywords: page.strikingDistance.length,
+      aiOverviewGaps: page.aiGaps.length,
+      quickWin: page.easy ? 'Yes' : 'No',
+      flags: page.flags.join(' | '),
+    })),
+    columns: [
+      { key: 'path', label: 'Page' },
+      { key: 'totalUpside', label: 'Estimated clicks available' },
+      { key: 'ctrGapClicks', label: 'From CTR gap' },
+      { key: 'strikingUpside', label: 'From striking distance' },
+      { key: 'aiUpside', label: 'From AI Overview gaps' },
+      { key: 'clicks', label: 'Clicks' },
+      { key: 'impressions', label: 'Impressions' },
+      { key: 'ctr', label: 'CTR' },
+      { key: 'expectedCtr', label: 'Expected CTR' },
+      { key: 'position', label: 'Position' },
+      { key: 'strikingKeywords', label: 'Striking-distance keywords' },
+      { key: 'aiOverviewGaps', label: 'AI Overview gaps' },
+      { key: 'quickWin', label: 'Quick win' },
+      { key: 'flags', label: 'Flags' },
+    ],
+  }),
   'mf-entry': () => ({
     filename: 'brandwide-mouseflow-entry-pages',
     rows: state.mouseflow?.entryPages || [],
@@ -1127,6 +1405,12 @@ function bindEvents() {
   });
 
   document.addEventListener('click', (event) => {
+    const auditButton = event.target.closest('[data-audit]');
+    if (auditButton) {
+      runPageAudit(auditButton.dataset.audit);
+      return;
+    }
+
     const button = event.target.closest('[data-export]');
     if (!button) return;
     const builder = EXPORTS[button.dataset.export];

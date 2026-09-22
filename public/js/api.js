@@ -140,3 +140,22 @@ export async function fetchRankings(signal) {
   }
   return response.json();
 }
+
+/** Runs the live on-page audit for a single URL. */
+export async function fetchPageAudit(url, context, signal) {
+  const response = await fetch('/api/page-audit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({ url, context }),
+    signal,
+  });
+
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new ApiError(payload?.error || `Audit failed (HTTP ${response.status}).`, {
+      code: payload?.code,
+      status: response.status,
+    });
+  }
+  return payload;
+}
