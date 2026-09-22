@@ -99,7 +99,34 @@ export function delta(current, previous, { inverse = false } = {}) {
   return {
     change,
     direction: flat ? 'flat' : improving ? 'up' : 'down',
-    label: `${change >= 0 ? '+' : '−'}${(Math.abs(change) * 100).toFixed(1)}%`,
+    label: flat
+      ? 'No change'
+      : `${change >= 0 ? '+' : '−'}${(Math.abs(change) * 100).toFixed(1)}%`,
+  };
+}
+
+/**
+ * Delta for rank-style metrics, where a percentage is meaningless — moving
+ * from position 1 to 2 is not "+100%". Reports the move in whole positions,
+ * and treats a smaller number as the improvement.
+ */
+export function positionDelta(current, previous) {
+  const now = Number(current);
+  const before = Number(previous);
+  if (!Number.isFinite(now) || !Number.isFinite(before) || !before) {
+    return { change: null, direction: 'flat', label: 'no prior data' };
+  }
+
+  const moved = before - now;
+  const places = Math.abs(moved);
+  if (places < 0.05) return { change: 0, direction: 'flat', label: 'No change' };
+
+  return {
+    change: moved,
+    direction: moved > 0 ? 'up' : 'down',
+    label: `${places % 1 === 0 ? places : places.toFixed(1)} ${
+      places === 1 ? 'place' : 'places'
+    }`,
   };
 }
 

@@ -5,17 +5,20 @@
  * so a failure in one panel never blanks the others, and re-renders the active
  * view on tab switch rather than redrawing everything on every change.
  */
-import { resolveRange, fetchGa4, fetchGsc, fetchMouseflow, fetchHealth } from './api.js';
+import {
+  resolveRange, fetchGa4, fetchGsc, fetchMouseflow, fetchHealth, fetchRankings,
+} from './api.js';
 import { applyChartDefaults, lineChart, barChart, donutChart, destroyAll, PALETTE } from './charts.js';
 import {
   num, compact, axisNum, percent, decimal, duration, shortDate, longDate, dateTime,
-  delta, tidyPath, countryName, titleCase, downloadCsv,
+  delta, positionDelta, tidyPath, countryName, titleCase, downloadCsv,
 } from './format.js';
 
 const VIEW_META = {
   overview: { title: 'Overview', subtitle: 'Traffic, search and on-site behaviour at a glance' },
   acquisition: { title: 'Acquisition', subtitle: 'How visitors find brandwide.com' },
   search: { title: 'Search Console', subtitle: 'Organic visibility, queries and landing pages' },
+  rankings: { title: 'Rankings', subtitle: 'True tracked positions and AI Overview presence, from AWR Cloud' },
   behavior: { title: 'Behaviour', subtitle: 'Session recordings and on-page friction from Mouseflow' },
   setup: { title: 'Data sources', subtitle: 'Connection status and setup instructions' },
 };
@@ -31,6 +34,7 @@ const state = {
   mouseflow: null,
   errors: {},
   trendMetric: 'users',
+  rankings: null,
   loading: false,
   inflight: null,
 };
@@ -79,8 +83,11 @@ function barCell(value, max, formatted) {
     </div>`;
 }
 
-function deltaBadge(current, previous, options) {
-  const result = delta(current, previous, options);
+function deltaBadge(current, previous, options = {}) {
+  // Rank metrics move in places, not percentages.
+  const result = options.asPositions
+    ? positionDelta(current, previous)
+    : delta(current, previous, options);
   if (result.change === null) {
     return `<span class="delta delta--flat">—</span>`;
   }
@@ -88,10 +95,10 @@ function deltaBadge(current, previous, options) {
   return `<span class="delta delta--${result.direction}"><span class="delta__caret">${caret}</span>${result.label}</span>`;
 }
 
-function kpiCard({ label, value, current, previous, inverse, compareText, noCompare }) {
+function kpiCard({ label, value, current, previous, inverse, compareText, noCompare, asPositions }) {
   // Some sources (Mouseflow) have no prior-period figure to compare against;
   // there the footer carries a plain descriptor instead of an empty badge.
-  const badge = noCompare ? '' : deltaBadge(current, previous, { inverse });
+  const badge = noCompare ? '' : deltaBadge(current, previous, { inverse, asPositions });
   return `
     <article class="kpi">
       <div class="kpi__label">${label}</div>
@@ -357,7 +364,7 @@ function renderSearch() {
       current: totals.position,
       previous: previous.position,
       inverse: true,
-      compareText: 'vs prev. period (lower is better)',
+      compareText: 'impression-weighted — see Rankings',
     }),
   ].join('');
 
@@ -521,6 +528,174 @@ function renderBehavior() {
   }
 }
 
+/* --------------------------------------------------------------- Rankings */
+
+/** Empty state: this panel is driven by files, so say how to add one. */
+function rankingsEmptyState() {
+  return `
+    <div class="card">
+      <div class="card__head"><div>
+        <h3 class="card__title">No ranking exports yet</h3>
+        <p class="card__subtitle">This panel is built from AWR Cloud exports committed to the repository</p>
+      </div></div>
+      <div class="card__body">
+        <div class="setup-step">
+          <h3>1. Export from AWR Cloud</h3>
+          <p>Run your ranking report and export it as <strong>CSV</strong>. Include position,
+             previous position, landing page, search volume and SERP features / AI Overview
+             columns if your plan offers them.</p>
+        </div>
+        <div class="setup-step">
+          <h3>2. Name it by date</h3>
+          <p>Use the date of the snapshot, for example <code>2026-09-22.csv</code>.
+             The filename is what orders the history.</p>
+        </div>
+        <div class="setup-step">
+          <h3>3. Commit it to <code>data/rankings/</code></h3>
+          <p>Drag the file into that folder on GitHub and commit. Netlify rebuilds
+             automatically and this panel fills in — no redeploy needed by hand.</p>
+        </div>
+        <p class="cell-secondary" style="margin-bottom:0">Every export you add builds
+           the history further, so positions can be trended over time.</p>
+      </div>
+    </div>`;
+}
+
+function positionCell(position) {
+  if (position === null || position === undefined) {
+    return `<span class="score" style="background:var(--surface-sunken);color:var(--ink-faint)">—</span>`;
+  }
+  const band = position <= 3 ? 'low' : position <= 10 ? 'mid' : 'high';
+  // Reuses the friction bands inverted: top positions are the good outcome.
+  return `<span class="score score--${band}">${decimal(position, 0)}</span>`;
+}
+
+function changeCell(change) {
+  if (change === null || change === undefined || change === 0) {
+    return `<span class="delta delta--flat">—</span>`;
+  }
+  // Positive change means the position number fell, i.e. an improvement.
+  const direction = change > 0 ? 'up' : 'down';
+  const caret = change > 0 ? '▲' : '▼';
+  return `<span class="delta delta--${direction}"><span class="delta__caret">${caret}</span>${Math.abs(change)}</span>`;
+}
+
+function renderRankings() {
+  const container = $id('rankings-body');
+  if (!container) return;
+
+  renderErrors('rankings-errors', ['rankings']);
+
+  const data = state.rankings;
+  if (!data || !data.snapshotCount) {
+    container.innerHTML = rankingsEmptyState();
+    return;
+  }
+
+  const latest = data.snapshots[data.snapshots.length - 1];
+  const previous = data.snapshots.length > 1 ? data.snapshots[data.snapshots.length - 2] : null;
+  const totals = latest.totals;
+  const before = previous?.totals || {};
+
+  container.innerHTML = `
+    <h2 class="section-title">Tracked positions · ${longDate(latest.date)}</h2>
+    <div class="grid grid--kpi" id="rankings-kpis"></div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card__head"><div>
+        <h3 class="card__title">Why this differs from Search Console</h3>
+      </div></div>
+      <div class="card__body" style="padding-top:12px">
+        <p style="margin:0;color:var(--ink-muted)">
+          Search Console's average position is impression-weighted across every query and
+          page, so a term at #1 and one at #48 average to roughly #25, and an AI Overview
+          citation counts the same as a blue link. These figures come from your AWR Cloud
+          tracked keyword set, where each position is the real ranking for that term.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Movement over time</h2>
+    <div class="grid grid--halves">
+      <div class="card">
+        <div class="card__head"><div><h3 class="card__title">Keywords in top 3 and top 10</h3>
+          <p class="card__subtitle">Counts, not averages — unaffected by newly tracked terms</p></div></div>
+        <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-rank-bands"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card__head"><div><h3 class="card__title">AI Overview appearances</h3>
+          <p class="card__subtitle">Tracked keywords where you appear in the AI Overview</p></div></div>
+        <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-rank-aio"></canvas></div></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Keywords</h2>
+    <div class="card">
+      <div class="card__head">
+        <div><h3 class="card__title">Tracked keyword positions</h3>
+          <p class="card__subtitle">${latest.file}${previous ? ` · change vs ${longDate(previous.date)}` : ''}</p></div>
+        <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="rankings" type="button">Export CSV</button></div>
+      </div>
+      <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-rankings"></table></div></div>
+    </div>`;
+
+  $id('rankings-kpis').innerHTML = [
+    kpiCard({ label: 'In top 3', value: num(totals.top3), current: totals.top3, previous: before.top3, compareText: previous ? 'vs last export' : 'tracked keywords' }),
+    kpiCard({ label: 'In top 10', value: num(totals.top10), current: totals.top10, previous: before.top10, compareText: previous ? 'vs last export' : 'tracked keywords' }),
+    kpiCard({ label: 'AI Overviews', value: num(totals.aiOverviews), current: totals.aiOverviews, previous: before.aiOverviews, compareText: previous ? 'vs last export' : 'appearances' }),
+    kpiCard({ label: 'Median position', value: decimal(totals.medianPosition, 1), current: totals.medianPosition, previous: before.medianPosition, asPositions: true, compareText: 'of ranked keywords' }),
+    kpiCard({ label: 'Tracked', value: num(totals.trackedKeywords), noCompare: true, compareText: `${totals.rankedKeywords} ranked, ${totals.unrankedKeywords} not` }),
+    kpiCard({ label: 'Improved', value: num(totals.improved), noCompare: true, compareText: `${totals.declined} declined` }),
+  ].join('');
+
+  const labels = data.history.map((point) => shortDate(point.date));
+  lineChart('chart-rank-bands', labels, [
+    { label: 'Top 3', data: data.history.map((point) => point.top3) },
+    { label: 'Top 10', data: data.history.map((point) => point.top10), color: PALETTE[1] },
+  ], { valueFormatter: (value) => num(value) });
+
+  lineChart('chart-rank-aio', labels, [
+    { label: 'AI Overviews', data: data.history.map((point) => point.aiOverviews), color: PALETTE[3] },
+  ], { valueFormatter: (value) => num(value) });
+
+  // Ranked keywords first, best position first; unranked fall to the bottom.
+  const rows = [...latest.keywords].sort((a, b) => {
+    if (a.position === null) return 1;
+    if (b.position === null) return -1;
+    return a.position - b.position;
+  });
+
+  renderTable(
+    'table-rankings',
+    [
+      {
+        label: 'Keyword',
+        render: (row) => `<div class="cell-primary" title="${row.keyword}">${row.keyword}</div>
+          ${row.url ? `<div class="cell-secondary">${tidyPath(row.url, 44)}</div>` : ''}`,
+      },
+      { label: 'Position', align: 'right', render: (row) => positionCell(row.position) },
+      { label: 'Change', align: 'right', render: (row) => changeCell(row.change) },
+      {
+        label: 'AI Overview',
+        align: 'right',
+        render: (row) =>
+          row.aiOverview
+            ? `<span class="score score--low">Yes</span>`
+            : `<span class="cell-secondary">—</span>`,
+      },
+      { label: 'Volume', align: 'right', render: (row) => (row.searchVolume ? num(row.searchVolume) : '—') },
+      {
+        label: 'SERP features',
+        render: (row) =>
+          row.features?.length
+            ? `<span class="cell-secondary">${row.features.join(', ')}</span>`
+            : `<span class="cell-secondary">—</span>`,
+      },
+    ],
+    rows
+  );
+}
+
 /* ------------------------------------------------------------------ Setup */
 
 async function renderSetup() {
@@ -574,6 +749,7 @@ function renderActiveView() {
   if (state.view === 'overview') renderOverview();
   else if (state.view === 'acquisition') renderAcquisition();
   else if (state.view === 'search') renderSearch();
+  else if (state.view === 'rankings') renderRankings();
   else if (state.view === 'behavior') renderBehavior();
   else if (state.view === 'setup') renderSetup();
 }
@@ -621,11 +797,13 @@ async function loadAll() {
     fetchGa4(state.range, controller.signal),
     fetchGsc(gscRange, controller.signal),
     fetchMouseflow(state.range, controller.signal),
+    // Rank data is a build-time file, so it ignores the date range.
+    fetchRankings(controller.signal),
   ]);
 
   if (controller.signal.aborted) return;
 
-  const [ga4Result, gscResult, mouseflowResult] = results;
+  const [ga4Result, gscResult, mouseflowResult, rankingsResult] = results;
 
   if (ga4Result.status === 'fulfilled') state.ga4 = ga4Result.value;
   else if (ga4Result.reason?.name !== 'AbortError') state.errors.ga4 = ga4Result.reason?.message;
@@ -636,6 +814,11 @@ async function loadAll() {
   if (mouseflowResult.status === 'fulfilled') state.mouseflow = mouseflowResult.value;
   else if (mouseflowResult.reason?.name !== 'AbortError') {
     state.errors.mouseflow = mouseflowResult.reason?.message;
+  }
+
+  if (rankingsResult.status === 'fulfilled') state.rankings = rankingsResult.value;
+  else if (rankingsResult.reason?.name !== 'AbortError') {
+    state.errors.rankings = rankingsResult.reason?.message;
   }
 
   state.loading = false;
@@ -701,6 +884,27 @@ const EXPORTS = {
       { key: 'position', label: 'Position' },
     ],
   }),
+  rankings: () => {
+    const latest = state.rankings?.snapshots?.[state.rankings.snapshots.length - 1];
+    return {
+      filename: 'brandwide-rankings',
+      rows: (latest?.keywords || []).map((row) => ({
+        ...row,
+        features: row.features?.join(' | ') || '',
+        aiOverview: row.aiOverview ? 'Yes' : 'No',
+      })),
+      columns: [
+        { key: 'keyword', label: 'Keyword' },
+        { key: 'position', label: 'Position' },
+        { key: 'previousPosition', label: 'Previous position' },
+        { key: 'change', label: 'Change' },
+        { key: 'aiOverview', label: 'AI Overview' },
+        { key: 'searchVolume', label: 'Search volume' },
+        { key: 'url', label: 'URL' },
+        { key: 'features', label: 'SERP features' },
+      ],
+    };
+  },
   'mf-entry': () => ({
     filename: 'brandwide-mouseflow-entry-pages',
     rows: state.mouseflow?.entryPages || [],

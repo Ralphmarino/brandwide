@@ -3,7 +3,8 @@
 [build]
   publish   = "public"
   functions = "netlify/functions"
-  command   = "echo 'Static site — no build step required.'"
+  # Compiles any AWR exports in data/rankings/ into public/data/rankings.json.
+  command   = "node scripts/build-rankings.mjs"
 
 [functions]
   node_bundler = "esbuild"

@@ -8,7 +8,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "npm run build && netlify dev",
+    "build": "node scripts/build-rankings.mjs",
     "check": "node --check netlify/functions/ga4.mjs && node --check netlify/functions/gsc.mjs && node --check netlify/functions/mouseflow.mjs && node --check netlify/functions/health.mjs",
     "deploy": "netlify deploy --prod"
   },

@@ -119,3 +119,24 @@ export const fetchMouseflow = (range, signal) =>
   request('/api/mouseflow', { ...range, limit: 200 }, signal);
 
 export const fetchHealth = (signal) => request('/api/health', {}, signal);
+
+/**
+ * Rank-tracking data, compiled from AWR Cloud exports at build time.
+ * A 404 means no export has been committed yet, which is a normal empty
+ * state rather than an error.
+ */
+export async function fetchRankings(signal) {
+  const response = await fetch('/data/rankings.json', {
+    headers: { Accept: 'application/json' },
+    cache: 'no-cache',
+    signal,
+  });
+  if (response.status === 404) return { snapshotCount: 0, snapshots: [], history: [] };
+  if (!response.ok) {
+    throw new ApiError(`Could not load ranking data (HTTP ${response.status}).`, {
+      code: 'RANKINGS_UNAVAILABLE',
+      status: response.status,
+    });
+  }
+  return response.json();
+}

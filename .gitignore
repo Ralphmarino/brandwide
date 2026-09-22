@@ -11,3 +11,6 @@ service-account*.json
 # Stray files from local test servers
 serve.pid
 serve.log
+
+# Generated from data/rankings/ at build time
+public/data/rankings.json
