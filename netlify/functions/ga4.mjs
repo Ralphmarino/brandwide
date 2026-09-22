@@ -2,7 +2,8 @@
  * GET|POST /api/ga4
  *
  * Fetches a full dashboard payload from the Google Analytics Data API (v1beta)
- * in a single batchRunReports call, plus one call for the comparison period.
+ * using batchRunReports, split into chunks of five (the API's per-batch limit)
+ * and issued in parallel.
  *
  * Params: startDate, endDate, compareStartDate, compareEndDate (YYYY-MM-DD),
  *         limit (rows per breakdown table).
@@ -14,6 +15,9 @@ import { demoGa4 } from '../lib/demo-data.mjs';
 
 const SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
 const API = 'https://analyticsdata.googleapis.com/v1beta';
+
+/** batchRunReports rejects anything larger; exceeding it fails the whole call. */
+const MAX_REPORTS_PER_BATCH = 5;
 
 const SUMMARY_METRICS = [
   'totalUsers',
@@ -103,10 +107,7 @@ export default async (req) => {
     const dateRanges = [{ startDate, endDate }];
     const url = `${API}/properties/${propertyId}:batchRunReports`;
 
-    const payload = await googleFetch(url, {
-      scope: SCOPE,
-      body: {
-        requests: [
+    const reportRequests = [
           // 0 — headline totals for the selected period
           { dateRanges, metrics: metrics(SUMMARY_METRICS) },
           // 1 — headline totals for the comparison period
@@ -166,11 +167,22 @@ export default async (req) => {
             dimensions: dimensions(['country']),
             metrics: metrics(['sessions']),
             orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
-            limit,
-          },
-        ],
+        limit,
       },
-    });
+    ];
+
+    // The Data API rejects a batch of more than five reports, so send them in
+    // chunks. Promise.all preserves input order, and the chunks are in order,
+    // so the flattened reports line up with reportRequests exactly.
+    const batches = [];
+    for (let i = 0; i < reportRequests.length; i += MAX_REPORTS_PER_BATCH) {
+      batches.push(reportRequests.slice(i, i + MAX_REPORTS_PER_BATCH));
+    }
+
+    const responses = await Promise.all(
+      batches.map((requests) => googleFetch(url, { scope: SCOPE, body: { requests } }))
+    );
+    const allReports = responses.flatMap((response) => response.reports || []);
 
     const [
       summary,
@@ -180,7 +192,7 @@ export default async (req) => {
       pageReport,
       deviceReport,
       countryReport,
-    ] = payload.reports || [];
+    ] = allReports;
 
     const trendMetric = metricReader(trend);
     const trendDimension = dimensionReader(trend);
