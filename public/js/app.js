@@ -239,7 +239,7 @@ function renderOverview() {
       kpiCard({ label: 'Clicks', value: num(totals.clicks), current: totals.clicks, previous: previous.clicks }),
       kpiCard({ label: 'Impressions', value: compact(totals.impressions), current: totals.impressions, previous: previous.impressions }),
       kpiCard({ label: 'Average CTR', value: percent(totals.ctr, 2), current: totals.ctr, previous: previous.ctr }),
-      kpiCard({ label: 'Average position', value: decimal(totals.position), current: totals.position, previous: previous.position, inverse: true }),
+      positionKpi(),
     ].join('');
 
     const labels = (gsc.timeseries || []).map((point) => shortDate(point.date));
@@ -252,6 +252,7 @@ function renderOverview() {
     ], { valueFormatter: (value, isAxis) => (isAxis ? axisNum(value) : num(value)) });
 
     const queries = gsc.queries || [];
+    const tracked = trackedByKeyword();
     const maxClicks = Math.max(...queries.map((query) => query.clicks), 0);
     renderTable(
       'table-top-queries',
@@ -259,7 +260,7 @@ function renderOverview() {
         { label: 'Query', render: (row) => `<div class="cell-primary" title="${row.query}">${row.query}</div>` },
         { label: 'Clicks', align: 'right', render: (row) => barCell(row.clicks, maxClicks, num(row.clicks)) },
         { label: 'CTR', align: 'right', render: (row) => percent(row.ctr, 1) },
-        { label: 'Pos.', align: 'right', render: (row) => decimal(row.position) },
+        { label: 'Position', align: 'right', render: (row) => truePositionCell(row.query, tracked) },
       ],
       queries.slice(0, 10)
     );
@@ -358,14 +359,7 @@ function renderSearch() {
     kpiCard({ label: 'Total clicks', value: num(totals.clicks), current: totals.clicks, previous: previous.clicks }),
     kpiCard({ label: 'Total impressions', value: num(totals.impressions), current: totals.impressions, previous: previous.impressions }),
     kpiCard({ label: 'Average CTR', value: percent(totals.ctr, 2), current: totals.ctr, previous: previous.ctr }),
-    kpiCard({
-      label: 'Average position',
-      value: decimal(totals.position),
-      current: totals.position,
-      previous: previous.position,
-      inverse: true,
-      compareText: 'impression-weighted — see Rankings',
-    }),
+    positionKpi(),
   ].join('');
 
   const points = gsc.timeseries || [];
@@ -383,11 +377,34 @@ function renderSearch() {
     { label: 'CTR', data: points.map((point) => Number(((point.ctr || 0) * 100).toFixed(2))), color: PALETTE[2] },
   ], { valueFormatter: (value) => `${decimal(value, 2)}%`, beginAtZero: false });
 
-  lineChart('chart-gsc-position', labels, [
-    { label: 'Position', data: points.map((point) => Number((point.position || 0).toFixed(1))), color: PALETTE[3] },
-  ], { valueFormatter: (value) => decimal(value), beginAtZero: false, reverse: true });
+  // Where AWR data exists this slot shows real tracked positions instead of
+  // Search Console's impression-weighted average.
+  const rankingHistory = state.rankings?.history || [];
+  const positionCard = $id('chart-gsc-position')?.closest('.card');
+
+  if (rankingHistory.length) {
+    const heading = positionCard?.querySelector('.card__title');
+    const subtitle = positionCard?.querySelector('.card__subtitle');
+    if (heading) heading.textContent = 'Tracked keywords in top 3';
+    if (subtitle) subtitle.textContent = 'From AWR tracked keywords, weekly';
+
+    lineChart(
+      'chart-gsc-position',
+      rankingHistory.map((point) => shortDate(point.date)),
+      [{ label: 'Top 3', data: rankingHistory.map((point) => point.top3), color: PALETTE[3] }],
+      { valueFormatter: (value) => num(value) }
+    );
+  } else {
+    const subtitle = positionCard?.querySelector('.card__subtitle');
+    if (subtitle) subtitle.textContent = 'Impression-weighted average — lower is better';
+
+    lineChart('chart-gsc-position', labels, [
+      { label: 'Position', data: points.map((point) => Number((point.position || 0).toFixed(1))), color: PALETTE[3] },
+    ], { valueFormatter: (value) => decimal(value), beginAtZero: false, reverse: true });
+  }
 
   const queries = gsc.queries || [];
+  const tracked = trackedByKeyword();
   const maxQueryClicks = Math.max(...queries.map((row) => row.clicks), 0);
   const searchColumns = (labelText, key) => [
     {
@@ -401,7 +418,11 @@ function renderSearch() {
     { label: 'Clicks', align: 'right', render: (row) => barCell(row.clicks, maxQueryClicks, num(row.clicks)) },
     { label: 'Impressions', align: 'right', render: (row) => num(row.impressions) },
     { label: 'CTR', align: 'right', render: (row) => percent(row.ctr, 1) },
-    { label: 'Position', align: 'right', render: (row) => decimal(row.position) },
+    {
+      label: 'True position',
+      align: 'right',
+      render: (row) => truePositionCell(row[key], tracked),
+    },
   ];
 
   renderTable('table-queries', searchColumns('Query', 'query'), queries);
@@ -419,7 +440,6 @@ function renderSearch() {
       { label: 'Clicks', align: 'right', render: (row) => barCell(row.clicks, maxPageClicks, num(row.clicks)) },
       { label: 'Impressions', align: 'right', render: (row) => num(row.impressions) },
       { label: 'CTR', align: 'right', render: (row) => percent(row.ctr, 1) },
-      { label: 'Position', align: 'right', render: (row) => decimal(row.position) },
     ],
     pages
   );
@@ -526,6 +546,73 @@ function renderBehavior() {
       ? `${mf.website?.name || 'Mouseflow'} · <a href="${mf.heatmapUrl}" target="_blank" rel="noopener noreferrer">Open heatmaps in Mouseflow</a>`
       : mf.website?.name || '';
   }
+}
+
+/**
+ * The position scorecard for the Search Console panels.
+ *
+ * Search Console's average position is impression-weighted across every query
+ * and page, so it is replaced by a tracked-keyword count wherever AWR data
+ * exists. Without that data it falls back to the Search Console figure, plainly
+ * labelled for what it is.
+ */
+function positionKpi() {
+  const snapshots = state.rankings?.snapshots || [];
+  if (!snapshots.length) {
+    const totals = state.gsc?.totals || {};
+    const previous = state.gsc?.previousTotals || {};
+    return kpiCard({
+      label: 'Avg. position (GSC)',
+      value: decimal(totals.position),
+      current: totals.position,
+      previous: previous.position,
+      inverse: true,
+      compareText: 'impression-weighted average',
+    });
+  }
+
+  const latest = snapshots[snapshots.length - 1].totals;
+  const prior = snapshots.length > 1 ? snapshots[snapshots.length - 2].totals : {};
+  return kpiCard({
+    label: 'Tracked in top 3',
+    value: num(latest.top3),
+    current: latest.top3,
+    previous: prior.top3,
+    compareText: 'AWR tracked keywords',
+  });
+}
+
+/**
+ * Tracked positions keyed by normalised keyword, from the newest AWR snapshot.
+ * Lets the Search Console tables show a real ranking in place of an average.
+ */
+function trackedByKeyword() {
+  const latest = state.rankings?.snapshots?.[state.rankings.snapshots.length - 1];
+  const index = new Map();
+  for (const row of latest?.keywords || []) {
+    index.set(row.keyword.trim().toLowerCase().replace(/\s+/g, ' '), row);
+  }
+  return index;
+}
+
+/**
+ * Renders a true position for a Search Console query.
+ * Falls back to "not tracked" rather than Search Console's own figure, which
+ * averages across pages and across the whole date range.
+ */
+function truePositionCell(query, index) {
+  const match = index.get(String(query || '').trim().toLowerCase().replace(/\s+/g, ' '));
+  if (!match) {
+    return `<span class="cell-secondary" title="Not in the AWR tracked keyword set">not tracked</span>`;
+  }
+  if (match.position === null) {
+    return `<span class="cell-secondary" title="Tracked, but not ranking in the tracked depth">unranked</span>`;
+  }
+  const band = match.position <= 3 ? 'low' : match.position <= 10 ? 'mid' : 'high';
+  const aio = match.aiCited
+    ? ` <span class="cell-secondary" title="Cited at position ${match.aiCitationRank} in the AI Overview">AIO #${match.aiCitationRank}</span>`
+    : '';
+  return `<span class="score score--${band}">${decimal(match.position, 0)}</span>${aio}`;
 }
 
 /* --------------------------------------------------------------- Rankings */
@@ -892,17 +979,34 @@ const EXPORTS = {
       { key: 'sessions', label: 'Sessions' },
     ],
   }),
-  'gsc-queries': () => ({
-    filename: 'brandwide-search-queries',
-    rows: state.gsc?.queries || [],
-    columns: [
-      { key: 'query', label: 'Query' },
-      { key: 'clicks', label: 'Clicks' },
-      { key: 'impressions', label: 'Impressions' },
-      { key: 'ctr', label: 'CTR' },
-      { key: 'position', label: 'Position' },
-    ],
-  }),
+  'gsc-queries': () => {
+    // Export the tracked position alongside the Search Console counts, which
+    // is what the table shows.
+    const tracked = trackedByKeyword();
+    return {
+      filename: 'brandwide-search-queries',
+      rows: (state.gsc?.queries || []).map((row) => {
+        const match = tracked.get(
+          String(row.query || '').trim().toLowerCase().replace(/\s+/g, ' ')
+        );
+        return {
+          ...row,
+          trackedPosition: match?.position ?? '',
+          aiCitationRank: match?.aiCitationRank ?? '',
+          gscAveragePosition: row.position,
+        };
+      }),
+      columns: [
+        { key: 'query', label: 'Query' },
+        { key: 'clicks', label: 'Clicks' },
+        { key: 'impressions', label: 'Impressions' },
+        { key: 'ctr', label: 'CTR' },
+        { key: 'trackedPosition', label: 'True position (AWR)' },
+        { key: 'aiCitationRank', label: 'AI Overview citation rank' },
+        { key: 'gscAveragePosition', label: 'GSC average position' },
+      ],
+    };
+  },
   'gsc-pages': () => ({
     filename: 'brandwide-search-pages',
     rows: state.gsc?.pages || [],
@@ -911,7 +1015,6 @@ const EXPORTS = {
       { key: 'clicks', label: 'Clicks' },
       { key: 'impressions', label: 'Impressions' },
       { key: 'ctr', label: 'CTR' },
-      { key: 'position', label: 'Position' },
     ],
   }),
   rankings: () => {
