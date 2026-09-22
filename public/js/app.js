@@ -18,7 +18,7 @@ const VIEW_META = {
   overview: { title: 'Overview', subtitle: 'Traffic, search and on-site behaviour at a glance' },
   acquisition: { title: 'Acquisition', subtitle: 'How visitors find brandwide.com' },
   search: { title: 'Search Console', subtitle: 'Organic visibility, queries and landing pages' },
-  rankings: { title: 'Rankings', subtitle: 'True tracked positions and AI Overview presence, from AWR Cloud' },
+  rankings: { title: 'Rankings', subtitle: 'True tracked positions and AI Overview citations, from AWR Cloud' },
   behavior: { title: 'Behaviour', subtitle: 'Session recordings and on-page friction from Mouseflow' },
   setup: { title: 'Data sources', subtitle: 'Connection status and setup instructions' },
 };
@@ -684,20 +684,10 @@ function renderRankings() {
   const totals = latest.totals;
   const before = previous?.totals || {};
 
-  // Build-time notices (duplicate uploads, composition shifts) belong in front
-  // of the reader, not buried in a deploy log.
-  const notices = (data.warnings || []).length
-    ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
-         <strong>Data notes (${data.warnings.length})</strong>
-         <ul style="margin:6px 0 0;padding-left:18px">
-           ${data.warnings.map((w) => `<li style="margin-bottom:3px">${w}</li>`).join('')}
-         </ul>
-       </div>`
-    : '';
-
+  // Data-quality notices live on the Data sources tab, not here — this report
+  // is shown to clients.
   container.innerHTML = `
     <h2 class="section-title">Tracked positions · ${longDate(latest.date)}</h2>
-    ${notices}
     <div class="grid grid--kpi" id="rankings-kpis"></div>
 
     <div class="card" style="margin-top:14px">
@@ -739,7 +729,7 @@ function renderRankings() {
     <div class="card">
       <div class="card__head">
         <div><h3 class="card__title">Tracked keyword positions</h3>
-          <p class="card__subtitle">${longDate(latest.date)}${previous ? ` · change vs ${longDate(previous.date)}` : ''} · ${latest.file}</p></div>
+          <p class="card__subtitle">${longDate(latest.date)}${previous ? ` · change vs ${longDate(previous.date)}` : ''}</p></div>
         <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="rankings" type="button">Export CSV</button></div>
       </div>
       <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-rankings"></table></div></div>
@@ -780,8 +770,12 @@ function renderRankings() {
     [
       {
         label: 'Keyword',
-        render: (row) => `<div class="cell-primary" title="${row.keyword}">${row.keyword}</div>
-          ${row.url ? `<div class="cell-secondary">${tidyPath(row.url, 44)}</div>` : ''}`,
+        render: (row) => {
+          const path = row.url ? tidyPath(row.url, 44) : '';
+          const label = path === '/' ? 'Home' : path;
+          return `<div class="cell-primary" title="${row.keyword}">${row.keyword}</div>
+            ${label ? `<div class="cell-secondary" title="${row.url}">${label}</div>` : ''}`;
+        },
       },
       { label: 'Position', align: 'right', render: (row) => positionCell(row.position) },
       { label: 'Change', align: 'right', render: (row) => changeCell(row.change) },
@@ -827,6 +821,33 @@ async function renderSetup() {
       { name: 'Mouseflow', key: 'mouseflow' },
     ];
 
+    const rankings = state.rankings;
+    const rankingNotes = (rankings?.warnings || []).length
+      ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
+           <strong>Ranking data notes (${rankings.warnings.length})</strong>
+           <p style="margin:4px 0 6px;font-weight:400">Internal only — these are not shown on the Rankings report.</p>
+           <ul style="margin:0;padding-left:18px">
+             ${rankings.warnings.map((w) => `<li style="margin-bottom:3px">${w}</li>`).join('')}
+           </ul>
+         </div>`
+      : '';
+
+    const rankingStatus = rankings?.snapshotCount
+      ? `<div class="check-row">
+           <span class="check-row__name">Rank tracking (AWR)</span>
+           <span class="pill pill--live"><span class="pill__dot"></span>${rankings.snapshotCount} snapshot${rankings.snapshotCount === 1 ? '' : 's'}</span>
+           <span class="cell-secondary">latest ${longDate(rankings.latest)}${
+             rankings.filesRead && rankings.filesRead !== rankings.snapshotCount
+               ? ` · ${rankings.filesRead} files read, ${rankings.filesRead - rankings.snapshotCount} skipped`
+               : ''
+           }</span>
+         </div>`
+      : `<div class="check-row">
+           <span class="check-row__name">Rank tracking (AWR)</span>
+           <span class="pill pill--demo"><span class="pill__dot"></span>No exports</span>
+           <span class="cell-secondary">add a CSV to data/rankings/</span>
+         </div>`;
+
     panel.innerHTML =
       rows
         .map((row) => {
@@ -852,9 +873,11 @@ async function renderSetup() {
             <div class="cell-secondary" style="padding:0 0 12px 2px;line-height:1.7">${detail}</div>`;
         })
         .join('') +
+      rankingStatus +
       (health.serviceAccountEmail
         ? `<p class="cell-secondary" style="margin:14px 0 0">Grant this service account read access in GA4 and Search Console: <code>${health.serviceAccountEmail}</code></p>`
-        : `<p class="cell-secondary" style="margin:14px 0 0">No Google service account is configured yet.</p>`);
+        : `<p class="cell-secondary" style="margin:14px 0 0">No Google service account is configured yet.</p>`) +
+      rankingNotes;
   } catch (error) {
     panel.innerHTML = `<div class="error-box"><strong>Status check failed</strong>${error.message}</div>`;
   }
