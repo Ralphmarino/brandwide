@@ -39,7 +39,7 @@ const state = {
   gsc: null,
   mouseflow: null,
   errors: {},
-  trendMetric: 'users',
+  trendMetric: 'activeUsers',
   rankings: null,
   competitors: null,
   loading: false,
@@ -102,13 +102,13 @@ function deltaBadge(current, previous, options = {}) {
   return `<span class="delta delta--${result.direction}"><span class="delta__caret">${caret}</span>${result.label}</span>`;
 }
 
-function kpiCard({ label, value, current, previous, inverse, compareText, noCompare, asPositions }) {
+function kpiCard({ label, value, current, previous, inverse, compareText, noCompare, asPositions, help }) {
   // Some sources (Mouseflow) have no prior-period figure to compare against;
   // there the footer carries a plain descriptor instead of an empty badge.
   const badge = noCompare ? '' : deltaBadge(current, previous, { inverse, asPositions });
   return `
-    <article class="kpi">
-      <div class="kpi__label">${label}</div>
+    <article class="kpi"${help ? ` title="${help.replace(/"/g, '&quot;')}"` : ''}>
+      <div class="kpi__label">${label}${help ? ' <span class="kpi__hint" aria-hidden="true">?</span>' : ''}</div>
       <div class="kpi__value">${value}</div>
       <div class="kpi__foot">
         ${badge}
@@ -206,8 +206,27 @@ function renderOverview() {
     const totals = ga4.totals || {};
     const previous = ga4.previousTotals || {};
     $id('overview-kpis').innerHTML = [
-      kpiCard({ label: 'Users', value: num(totals.users), current: totals.users, previous: previous.users }),
-      kpiCard({ label: 'New users', value: num(totals.newUsers), current: totals.newUsers, previous: previous.newUsers }),
+      kpiCard({
+        label: 'Active users',
+        value: num(totals.activeUsers),
+        current: totals.activeUsers,
+        previous: previous.activeUsers,
+        help: 'Distinct people who had an engaged session. This is the figure GA4\'s own reports headline as "Users".',
+      }),
+      kpiCard({
+        label: 'Total users',
+        value: num(totals.users),
+        current: totals.users,
+        previous: previous.users,
+        help: 'Distinct people who triggered any event at all, engaged or not. Always equal to or higher than active users.',
+      }),
+      kpiCard({
+        label: 'New users',
+        value: num(totals.newUsers),
+        current: totals.newUsers,
+        previous: previous.newUsers,
+        help: 'Counted from first_visit events rather than deduplicated people, so cookie churn and multi-device visits can push this above the user counts. A higher figure here is a GA4 counting artefact, not an error.',
+      }),
       kpiCard({ label: 'Sessions', value: num(totals.sessions), current: totals.sessions, previous: previous.sessions }),
       kpiCard({ label: 'Page views', value: num(totals.pageViews), current: totals.pageViews, previous: previous.pageViews }),
       kpiCard({ label: 'Engagement rate', value: percent(totals.engagementRate), current: totals.engagementRate, previous: previous.engagementRate }),
@@ -287,7 +306,8 @@ function renderTrendChart() {
   const values = ga4.timeseries.map((point) => point[metric] ?? 0);
 
   const metricLabels = {
-    users: 'Users',
+    activeUsers: 'Active users',
+    users: 'Total users',
     sessions: 'Sessions',
     pageViews: 'Page views',
     conversions: 'Conversions',

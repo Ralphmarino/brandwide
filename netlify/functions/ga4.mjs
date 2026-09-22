@@ -20,6 +20,14 @@ const API = 'https://analyticsdata.googleapis.com/v1beta';
 const MAX_REPORTS_PER_BATCH = 5;
 
 const SUMMARY_METRICS = [
+  // GA4 counts these three differently, and the dashboard reports all three
+  // rather than picking one and inviting the discrepancy to be noticed later:
+  //   activeUsers — distinct users with an engaged session. This is the figure
+  //                 GA4's own UI headlines as "Users".
+  //   totalUsers  — distinct users with any event at all. Always >= activeUsers.
+  //   newUsers    — driven by first_visit events, so it is an occurrence count
+  //                 rather than a deduplicated user count, and can exceed both.
+  'activeUsers',
   'totalUsers',
   'newUsers',
   'sessions',
@@ -63,12 +71,13 @@ function summaryTotals(report) {
   const row = report?.rows?.[0];
   if (!row) {
     return {
-      users: 0, newUsers: 0, sessions: 0, pageViews: 0,
+      activeUsers: 0, users: 0, newUsers: 0, sessions: 0, pageViews: 0,
       conversions: 0, engagementRate: 0, avgEngagementDuration: 0,
     };
   }
   const m = metricReader(report);
   return {
+    activeUsers: m(row, 'activeUsers'),
     users: m(row, 'totalUsers'),
     newUsers: m(row, 'newUsers'),
     sessions: m(row, 'sessions'),
@@ -120,6 +129,7 @@ export default async (req) => {
             dateRanges,
             dimensions: dimensions(['date']),
             metrics: metrics([
+              'activeUsers',
               'totalUsers',
               'sessions',
               'screenPageViews',
@@ -216,6 +226,7 @@ export default async (req) => {
       previousTotals: summaryTotals(compareSummary),
       timeseries: (trend?.rows || []).map((row) => ({
         date: isoDate(trendDimension(row, 'date')),
+        activeUsers: trendMetric(row, 'activeUsers'),
         users: trendMetric(row, 'totalUsers'),
         sessions: trendMetric(row, 'sessions'),
         pageViews: trendMetric(row, 'screenPageViews'),

@@ -637,3 +637,19 @@ code {
 @media (max-width: 640px) {
   .rec { grid-template-columns: 1fr; gap: 6px; }
 }
+
+/* Hover hint on a scorecard whose metric definition is easy to misread. */
+.kpi__hint {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  line-height: 13px;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--line);
+  color: var(--ink-muted);
+  font-size: 9px;
+  font-weight: 700;
+  cursor: help;
+  vertical-align: 1px;
+}

@@ -78,6 +78,8 @@ export function demoGa4(startDate, endDate, compare) {
   const totalSessions = sum(sessions);
 
   const totals = {
+    // Active <= total, and new below both, which is the ordinary relationship.
+    activeUsers: Math.round(totalUsers * 0.93),
     users: totalUsers,
     newUsers: Math.round(totalUsers * 0.62),
     sessions: totalSessions,
@@ -90,6 +92,7 @@ export function demoGa4(startDate, endDate, compare) {
   // Prior period sits ~8% below so deltas read as healthy growth.
   const drift = 0.92;
   const previousTotals = {
+    activeUsers: Math.round(totals.activeUsers * drift),
     users: Math.round(totals.users * drift),
     newUsers: Math.round(totals.newUsers * drift),
     sessions: Math.round(totals.sessions * drift),
@@ -109,6 +112,7 @@ export function demoGa4(startDate, endDate, compare) {
     previousTotals,
     timeseries: dates.map((date, i) => ({
       date,
+      activeUsers: Math.round(users[i].value * 0.93),
       users: users[i].value,
       sessions: sessions[i].value,
       pageViews: views[i].value,
