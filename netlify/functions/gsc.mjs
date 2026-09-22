@@ -10,6 +10,7 @@
  * like a drop-off at the end of the chart.
  */
 import { googleFetch } from '../lib/google-auth.mjs';
+import { gscConfig } from '../lib/config.mjs';
 import { errorResponse, json, readParams, safeDate, safeLimit } from '../lib/http.mjs';
 import { demoGsc } from '../lib/demo-data.mjs';
 
@@ -54,12 +55,16 @@ export default async (req) => {
     const compareEndDate = safeDate(params.compareEndDate, 29);
     const limit = safeLimit(params.limit, 15, 500);
 
-    const siteUrl = (process.env.GSC_SITE_URL || '').trim();
     const compareRange = { startDate: compareStartDate, endDate: compareEndDate };
+    const settings = gscConfig();
 
-    if (!siteUrl || !process.env.GOOGLE_CLIENT_EMAIL) {
-      return json(demoGsc(startDate, endDate, compareRange));
+    if (!settings.ready) {
+      return json({
+        ...demoGsc(startDate, endDate, compareRange),
+        demoReason: settings.problem,
+      });
     }
+    const siteUrl = settings.siteUrl;
 
     const url = queryUrl(siteUrl);
     const run = (body) =>

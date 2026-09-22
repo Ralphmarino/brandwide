@@ -17,6 +17,7 @@
  *   /api/mouseflow?path=websites/<id>/heatmaps
  */
 import { errorResponse, json, readParams, safeDate, safeLimit } from '../lib/http.mjs';
+import { mouseflowConfig } from '../lib/config.mjs';
 import { demoMouseflow } from '../lib/demo-data.mjs';
 
 const APP_BASE = 'https://app.mouseflow.com';
@@ -140,8 +141,14 @@ export default async (req) => {
     const endDate = safeDate(params.endDate, 1);
     const limit = safeLimit(params.limit, 100, 500);
 
-    const creds = credentials();
-    if (!creds) return json(demoMouseflow(startDate, endDate));
+    const settings = mouseflowConfig();
+    const creds = settings.ready ? credentials() : null;
+    if (!creds) {
+      return json({
+        ...demoMouseflow(startDate, endDate),
+        demoReason: settings.problem,
+      });
+    }
 
     // Escape hatch: proxy any endpoint verbatim for exploration/debugging.
     if (params.path) {

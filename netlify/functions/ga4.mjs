@@ -8,6 +8,7 @@
  *         limit (rows per breakdown table).
  */
 import { googleFetch } from '../lib/google-auth.mjs';
+import { ga4Config } from '../lib/config.mjs';
 import { errorResponse, json, readParams, safeDate, safeLimit } from '../lib/http.mjs';
 import { demoGa4 } from '../lib/demo-data.mjs';
 
@@ -86,12 +87,18 @@ export default async (req) => {
     const compareEndDate = safeDate(params.compareEndDate, 29);
     const limit = safeLimit(params.limit, 10, 100);
 
-    const propertyId = (process.env.GA4_PROPERTY_ID || '').replace(/\D/g, '');
     const compareRange = { startDate: compareStartDate, endDate: compareEndDate };
+    const settings = ga4Config();
 
-    if (!propertyId || !process.env.GOOGLE_CLIENT_EMAIL) {
-      return json(demoGa4(startDate, endDate, compareRange));
+    if (!settings.ready) {
+      // Say why rather than quietly serving sample data — a silent fallback
+      // is indistinguishable from a broken connection.
+      return json({
+        ...demoGa4(startDate, endDate, compareRange),
+        demoReason: settings.problem,
+      });
     }
+    const propertyId = settings.propertyId;
 
     const dateRanges = [{ startDate, endDate }];
     const url = `${API}/properties/${propertyId}:batchRunReports`;

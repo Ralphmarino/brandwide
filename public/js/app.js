@@ -150,6 +150,8 @@ function setPill(id, payload, error) {
   } else if (payload?.demo) {
     pill.classList.add('pill--demo');
     pill.innerHTML = `<span class="pill__dot"></span> ${name} · sample data`;
+    // The reason the source fell back is the thing worth surfacing.
+    if (payload.demoReason) pill.title = payload.demoReason;
   } else if (payload) {
     pill.classList.add('pill--live');
     pill.innerHTML = `<span class="pill__dot"></span> ${name} · live`;
@@ -537,14 +539,14 @@ async function renderSetup() {
       rows
         .map((row) => {
           const source = health.sources?.[row.key] || {};
-          const detail = Object.entries(source.details || {})
-            .map(([name, value]) => {
-              if (typeof value === 'boolean') {
-                return `${name}: ${value ? 'set' : 'missing'}`;
-              }
-              return `${name}: ${value}`;
+          const detail = Object.entries(source.variables || {})
+            .map(([name, info]) => {
+              if (!info.set) return `${name}: <strong>missing</strong>`;
+              // Secrets report a length and last few characters only.
+              if (info.value !== undefined) return `${name}: ${info.value}`;
+              return `${name}: set (${info.length} chars, ends "${info.endsWith}")`;
             })
-            .join(' · ');
+            .join('<br>');
 
           return `
             <div class="check-row">
@@ -552,8 +554,10 @@ async function renderSetup() {
               <span class="pill ${source.configured ? 'pill--live' : 'pill--demo'}">
                 <span class="pill__dot"></span>${source.configured ? 'Connected' : 'Sample data'}
               </span>
-              <span class="cell-secondary">${detail}</span>
-            </div>`;
+            </div>
+            ${source.problem ? `<div class="error-box"><strong>Why this is showing sample data</strong>${source.problem}</div>` : ''}
+            ${source.warning ? `<div class="error-box" style="color:#a96a00;background:#fff6e5">${source.warning}</div>` : ''}
+            <div class="cell-secondary" style="padding:0 0 12px 2px;line-height:1.7">${detail}</div>`;
         })
         .join('') +
       (health.serviceAccountEmail
