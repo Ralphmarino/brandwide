@@ -114,6 +114,7 @@ export function demoGa4(startDate, endDate, compare) {
       date,
       activeUsers: Math.round(users[i].value * 0.93),
       users: users[i].value,
+      newUsers: Math.round(users[i].value * 0.62),
       sessions: sessions[i].value,
       pageViews: views[i].value,
       conversions: conversions[i].value,

@@ -257,6 +257,21 @@ function renderOverview() {
     $id('overview-kpis').innerHTML = '';
   }
 
+  const check = state.ga4?.userCountCheck;
+  const checkBox = $id('overview-errors');
+  if (check?.inverted && checkBox) {
+    checkBox.innerHTML += `
+      <div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
+        <strong>New users exceeds total users by ${num(check.newUsersExceedsBy)}</strong>
+        Every user whose first visit falls in this period is also a user with an event in it,
+        so new users should never be the larger figure. Daily new users sum to
+        ${num(check.dailyNewUsersSum)} against a period total of ${num(check.periodNewUsers)} —
+        ${Math.abs(check.dailyNewUsersSum - check.periodNewUsers) <= Math.max(2, check.periodNewUsers * 0.01)
+          ? 'they match, so new users is not being deduplicated across days. That points at first_visit firing more than once per person: cross-domain tracking without a linker, consent-mode re-acceptance, or a duplicate GA4 tag.'
+          : 'they differ, which points at deduplication or modelling rather than duplicate tagging.'}
+      </div>`;
+  }
+
   const gsc = state.gsc;
   if (gsc) {
     const totals = gsc.totals || {};
@@ -308,6 +323,7 @@ function renderTrendChart() {
   const metricLabels = {
     activeUsers: 'Active users',
     users: 'Total users',
+    newUsers: 'New users',
     sessions: 'Sessions',
     pageViews: 'Page views',
     conversions: 'Conversions',

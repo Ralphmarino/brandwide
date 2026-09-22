@@ -131,6 +131,7 @@ export default async (req) => {
             metrics: metrics([
               'activeUsers',
               'totalUsers',
+              'newUsers',
               'sessions',
               'screenPageViews',
               'conversions',
@@ -224,10 +225,33 @@ export default async (req) => {
       compareRange,
       totals: summaryTotals(summary),
       previousTotals: summaryTotals(compareSummary),
+      // Each user's first visit falls on exactly one day, so the daily new-user
+      // figures should sum to the period total. Total users, by contrast, is
+      // deduplicated across the period and so sums to more than it reports.
+      // Comparing the two exposes whether new users is being counted per user
+      // or per first_visit event.
+      userCountCheck: (() => {
+        const rows = trend?.rows || [];
+        const m = metricReader(trend);
+        const dailyNew = rows.reduce((total, row) => total + m(row, 'newUsers'), 0);
+        const dailyTotal = rows.reduce((total, row) => total + m(row, 'totalUsers'), 0);
+        const periodNew = summaryTotals(summary).newUsers;
+        const periodTotal = summaryTotals(summary).users;
+        return {
+          dailyNewUsersSum: dailyNew,
+          dailyTotalUsersSum: dailyTotal,
+          periodNewUsers: periodNew,
+          periodTotalUsers: periodTotal,
+          // True when new users exceeds total users, which should be impossible.
+          inverted: periodNew > periodTotal,
+          newUsersExceedsBy: periodNew - periodTotal,
+        };
+      })(),
       timeseries: (trend?.rows || []).map((row) => ({
         date: isoDate(trendDimension(row, 'date')),
         activeUsers: trendMetric(row, 'activeUsers'),
         users: trendMetric(row, 'totalUsers'),
+        newUsers: trendMetric(row, 'newUsers'),
         sessions: trendMetric(row, 'sessions'),
         pageViews: trendMetric(row, 'screenPageViews'),
         conversions: trendMetric(row, 'conversions'),
