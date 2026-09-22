@@ -597,8 +597,20 @@ function renderRankings() {
   const totals = latest.totals;
   const before = previous?.totals || {};
 
+  // Build-time notices (duplicate uploads, composition shifts) belong in front
+  // of the reader, not buried in a deploy log.
+  const notices = (data.warnings || []).length
+    ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
+         <strong>Data notes (${data.warnings.length})</strong>
+         <ul style="margin:6px 0 0;padding-left:18px">
+           ${data.warnings.map((w) => `<li style="margin-bottom:3px">${w}</li>`).join('')}
+         </ul>
+       </div>`
+    : '';
+
   container.innerHTML = `
     <h2 class="section-title">Tracked positions · ${longDate(latest.date)}</h2>
+    ${notices}
     <div class="grid grid--kpi" id="rankings-kpis"></div>
 
     <div class="card" style="margin-top:14px">
@@ -612,6 +624,13 @@ function renderRankings() {
           citation counts the same as a blue link. These figures come from your AWR Cloud
           tracked keyword set, where each position is the real ranking for that term.
         </p>
+        <p style="margin:12px 0 0;color:var(--ink-muted)">
+          <strong>On AI Overviews:</strong> an AI Overview appears on
+          ${num(totals.aiOverviewSerps)} of ${num(totals.trackedKeywords)} tracked SERPs —
+          that is the competitive backdrop, not a result. The number that matters is how
+          often you are <em>cited</em> in one: ${num(totals.aiCited)} keywords, of which
+          ${num(totals.aiCitedFirst)} cite you first of all sources.
+        </p>
       </div>
     </div>
 
@@ -623,8 +642,8 @@ function renderRankings() {
         <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-rank-bands"></canvas></div></div>
       </div>
       <div class="card">
-        <div class="card__head"><div><h3 class="card__title">AI Overview appearances</h3>
-          <p class="card__subtitle">Tracked keywords where you appear in the AI Overview</p></div></div>
+        <div class="card__head"><div><h3 class="card__title">AI Overview citations</h3>
+          <p class="card__subtitle">Keywords citing you, and those citing you first</p></div></div>
         <div class="card__body"><div class="chart-wrap chart-wrap--short"><canvas id="chart-rank-aio"></canvas></div></div>
       </div>
     </div>
@@ -633,7 +652,7 @@ function renderRankings() {
     <div class="card">
       <div class="card__head">
         <div><h3 class="card__title">Tracked keyword positions</h3>
-          <p class="card__subtitle">${latest.file}${previous ? ` · change vs ${longDate(previous.date)}` : ''}</p></div>
+          <p class="card__subtitle">${longDate(latest.date)}${previous ? ` · change vs ${longDate(previous.date)}` : ''} · ${latest.file}</p></div>
         <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="rankings" type="button">Export CSV</button></div>
       </div>
       <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-rankings"></table></div></div>
@@ -642,10 +661,10 @@ function renderRankings() {
   $id('rankings-kpis').innerHTML = [
     kpiCard({ label: 'In top 3', value: num(totals.top3), current: totals.top3, previous: before.top3, compareText: previous ? 'vs last export' : 'tracked keywords' }),
     kpiCard({ label: 'In top 10', value: num(totals.top10), current: totals.top10, previous: before.top10, compareText: previous ? 'vs last export' : 'tracked keywords' }),
-    kpiCard({ label: 'AI Overviews', value: num(totals.aiOverviews), current: totals.aiOverviews, previous: before.aiOverviews, compareText: previous ? 'vs last export' : 'appearances' }),
+    kpiCard({ label: 'Cited in AI Overviews', value: num(totals.aiCited), current: totals.aiCited, previous: before.aiCited, compareText: previous ? 'vs last export' : 'tracked keywords' }),
+    kpiCard({ label: '#1 in AI Overview', value: num(totals.aiCitedFirst), current: totals.aiCitedFirst, previous: before.aiCitedFirst, compareText: 'cited first of all sources' }),
     kpiCard({ label: 'Median position', value: decimal(totals.medianPosition, 1), current: totals.medianPosition, previous: before.medianPosition, asPositions: true, compareText: 'of ranked keywords' }),
     kpiCard({ label: 'Tracked', value: num(totals.trackedKeywords), noCompare: true, compareText: `${totals.rankedKeywords} ranked, ${totals.unrankedKeywords} not` }),
-    kpiCard({ label: 'Improved', value: num(totals.improved), noCompare: true, compareText: `${totals.declined} declined` }),
   ].join('');
 
   const labels = data.history.map((point) => shortDate(point.date));
@@ -655,11 +674,15 @@ function renderRankings() {
   ], { valueFormatter: (value) => num(value) });
 
   lineChart('chart-rank-aio', labels, [
-    { label: 'AI Overviews', data: data.history.map((point) => point.aiOverviews), color: PALETTE[3] },
+    { label: 'Cited', data: data.history.map((point) => point.aiCited), color: PALETTE[3] },
+    { label: 'Cited first', data: data.history.map((point) => point.aiCitedFirst), color: PALETTE[4] },
   ], { valueFormatter: (value) => num(value) });
 
   // Ranked keywords first, best position first; unranked fall to the bottom.
   const rows = [...latest.keywords].sort((a, b) => {
+    // AI Overview citations first, best citation rank first, then by position.
+    if (a.aiCited !== b.aiCited) return a.aiCited ? -1 : 1;
+    if (a.aiCited && b.aiCited) return a.aiCitationRank - b.aiCitationRank;
     if (a.position === null) return 1;
     if (b.position === null) return -1;
     return a.position - b.position;
@@ -678,10 +701,17 @@ function renderRankings() {
       {
         label: 'AI Overview',
         align: 'right',
-        render: (row) =>
-          row.aiOverview
-            ? `<span class="score score--low">Yes</span>`
-            : `<span class="cell-secondary">—</span>`,
+        render: (row) => {
+          if (!row.aiCited) {
+            // Distinguish "no AI Overview here" from "there is one, without us".
+            return row.serpHasAiOverview
+              ? `<span class="cell-secondary" title="An AI Overview appears for this keyword, but you are not cited">not cited</span>`
+              : `<span class="cell-secondary">—</span>`;
+          }
+          const band = row.aiCitationRank <= 3 ? 'low' : 'mid';
+          return `<span class="score score--${band}" title="Cited at position ${row.aiCitationRank} in the AI Overview">#${row.aiCitationRank}</span>` +
+            (row.aiTopSource ? ` <span class="cell-secondary" title="You are the top-cited source">top</span>` : '');
+        },
       },
       { label: 'Volume', align: 'right', render: (row) => (row.searchVolume ? num(row.searchVolume) : '—') },
       {
@@ -891,14 +921,18 @@ const EXPORTS = {
       rows: (latest?.keywords || []).map((row) => ({
         ...row,
         features: row.features?.join(' | ') || '',
-        aiOverview: row.aiOverview ? 'Yes' : 'No',
+        aiCitationRank: row.aiCitationRank ?? '',
+        aiTopSource: row.aiTopSource ? 'Yes' : 'No',
+        serpHasAiOverview: row.serpHasAiOverview ? 'Yes' : 'No',
       })),
       columns: [
         { key: 'keyword', label: 'Keyword' },
         { key: 'position', label: 'Position' },
         { key: 'previousPosition', label: 'Previous position' },
         { key: 'change', label: 'Change' },
-        { key: 'aiOverview', label: 'AI Overview' },
+        { key: 'aiCitationRank', label: 'AI Overview citation rank' },
+        { key: 'aiTopSource', label: 'Top AI Overview source' },
+        { key: 'serpHasAiOverview', label: 'SERP has AI Overview' },
         { key: 'searchVolume', label: 'Search volume' },
         { key: 'url', label: 'URL' },
         { key: 'features', label: 'SERP features' },

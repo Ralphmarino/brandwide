@@ -30,15 +30,32 @@ Only **keyword** and **position** are required.
 | Previous position | Previous Position, Previous Rank, Prev, Last Position, Start Position |
 | Landing page | URL, Landing Page, Ranking URL, Page, Target URL |
 | Search volume | Search Volume, Volume, Monthly Searches, Searches |
-| AI Overview | AI Overview, AI Overviews, AIO, SGE, AI Snapshot |
+| AI Overview citation rank | Citation Rank, AIO Rank, AI Citation Rank |
+| Top AI Overview source | Top AIO Source, Top AI Source, AIO Source |
+| AI brand mentions | AI Brand Mentions, Brand Mentions |
 | SERP features | SERP Features, Features, Special Results, Snippets |
+| Position change | Position Change, Pos Change, Rank Change, Change |
+| Keyword group | Labels, Label, Group, Keyword Group, Category, Tag |
+| Keyword difficulty | Keyword Difficulty, Difficulty, KD |
+| Search intent | Search Intent, Intent |
+| Impressions / clicks | Impressions, Clicks |
 | Search engine | Search Engine, Engine, SE |
 | Location | Location, Region, Country, Market, Geo |
 | Device | Device, Platform |
 | Group | Group, Keyword Group, Category, Tag, Project |
 
-AI Overview presence is picked up either from its own column or from the value
-appearing in the SERP-features column.
+### Three separate AI Overview facts
+
+These are **not** interchangeable, and the dashboard keeps them apart:
+
+- **An AI Overview exists** on the SERP — read from the SERP-features column.
+  In this market that is nearly every keyword, so it describes the battlefield
+  rather than performance.
+- **You are cited in it** — evidenced by a citation rank.
+- **You are its top-cited source** — from the Top AIO Source column.
+
+The headline figure is citations, not presence. Counting every SERP that merely
+*has* an AI Overview would overstate performance by roughly fifteen times.
 
 Comma, semicolon and tab delimiters are all handled, as is a title/preamble
 block above the header row — the parser finds the real header itself.
@@ -49,6 +66,23 @@ block above the header row — the parser finds the real header itself.
 `>100`, meaning beyond tracked depth). These count toward *tracked* but are
 excluded from average and median position, so a keyword entering the set at
 position 80 cannot quietly drag the average down.
+
+## Duplicates and mislabelled files
+
+The **Date column inside the export is authoritative**; the filename is only a
+label. If the two disagree, the build says so and trusts the Date column.
+
+Byte-identical uploads are detected and ignored, keeping the copy whose
+filename matches its own Date column. A duplicate would otherwise appear as a
+flat week that reads like genuine stability.
+
+The build also flags a snapshot where the number of keywords ranking at all
+swings by 20% or more, because average and median position then cover a
+different population than the week before — movement that looks like progress
+but is really a change of composition.
+
+All of these notices appear at the top of the Rankings report, not only in the
+deploy log.
 
 ## If a file is not recognised
 

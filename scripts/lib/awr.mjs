@@ -12,6 +12,19 @@
 
 const COLUMN_CANDIDATES = {
   keyword: ['keyword', 'keywords', 'search term', 'searchterm', 'query', 'phrase', 'term'],
+  // 'position change' must resolve before the looser 'change' spellings, and
+  // before 'page change' can be mistaken for it.
+  positionChange: ['position change', 'pos change', 'rank change', 'change', 'difference'],
+  // 'citation rank' before 'citations', since one contains the other.
+  citationRank: ['citation rank', 'aio citation rank', 'ai citation rank', 'aio rank'],
+  topAioSource: ['top aio source', 'top ai source', 'top aio', 'aio source'],
+  aiBrandMentions: ['ai brand mentions', 'brand mentions', 'ai mentions'],
+  citations: ['citations', 'citation'],
+  bestPosition: ['best position', 'best rank'],
+  keywordDifficulty: ['keyword difficulty', 'difficulty', 'kd'],
+  searchIntent: ['search intent', 'intent'],
+  impressions: ['impressions', 'impr'],
+  clicks: ['clicks'],
   position: [
     'position', 'rank', 'current position', 'current rank', 'best position',
     'best rank', 'google', 'ranking', 'pos',
@@ -34,7 +47,7 @@ const COLUMN_CANDIDATES = {
     'sge', 'ai snapshot',
   ],
   date: ['date', 'snapshot date', 'crawl date', 'day'],
-  group: ['group', 'keyword group', 'category', 'tag', 'project'],
+  group: ['labels', 'label', 'group', 'keyword group', 'category', 'tag', 'project'],
 };
 
 const normalise = (value) =>
@@ -118,6 +131,12 @@ function toFlag(value) {
   return !/^(0|no|false|n|-|none|not present)$/.test(text);
 }
 
+/** Trims a cell, mapping AWR's "-" placeholder to null. */
+function cleanText(value) {
+  const text = String(value ?? '').trim();
+  return !text || text === '-' || text === '--' ? null : text;
+}
+
 /** Splits a SERP-features cell into a clean list. */
 function toFeatures(value) {
   if (!value) return [];
@@ -140,31 +159,56 @@ export function normaliseRows(rows, mapping) {
       if (!keyword) return null;
 
       const features = toFeatures(read(row, 'features'));
-      // AI Overview may arrive as its own column or as a SERP feature value.
-      const aiOverview =
+
+      // Three distinct AI Overview facts, which must not be conflated:
+      //   serpHasAiOverview — an AI Overview appears on this SERP at all.
+      //     Near-universal in this market, so it describes the battlefield,
+      //     not performance.
+      //   aiCited — we are cited in it, evidenced by a citation rank.
+      //   aiTopSource — we are its top-cited source.
+      const serpHasAiOverview =
         toFlag(read(row, 'aiOverview')) ||
         features.some((feature) => AI_OVERVIEW_PATTERN.test(feature));
 
+      const aiCitationRank = toPosition(read(row, 'citationRank'));
+      const topAioSource = cleanText(read(row, 'topAioSource'));
+
       const position = toPosition(read(row, 'position'));
       const previousPosition = toPosition(read(row, 'previousPosition'));
+
+      // Prefer the export's own change column so the dashboard never disagrees
+      // with AWR; both use positive = improved.
+      const reportedChange = toNumber(read(row, 'positionChange'));
+      const change =
+        reportedChange !== null
+          ? reportedChange
+          : position !== null && previousPosition !== null
+            ? previousPosition - position
+            : null;
 
       return {
         keyword,
         position,
         previousPosition,
-        // Positive means improved (moved closer to 1).
-        change:
-          position !== null && previousPosition !== null
-            ? previousPosition - position
-            : null,
-        url: (read(row, 'url') || '').trim() || null,
+        change,
+        bestPosition: toPosition(read(row, 'bestPosition')),
+        url: cleanText(read(row, 'url')),
         searchVolume: toNumber(read(row, 'searchVolume')),
-        searchEngine: (read(row, 'searchEngine') || '').trim() || null,
-        location: (read(row, 'location') || '').trim() || null,
-        device: (read(row, 'device') || '').trim() || null,
-        group: (read(row, 'group') || '').trim() || null,
+        keywordDifficulty: toNumber(read(row, 'keywordDifficulty')),
+        impressions: toNumber(read(row, 'impressions')),
+        clicks: toNumber(read(row, 'clicks')),
+        searchIntent: cleanText(read(row, 'searchIntent')),
+        searchEngine: cleanText(read(row, 'searchEngine')),
+        location: cleanText(read(row, 'location')),
+        device: cleanText(read(row, 'device')),
+        group: cleanText(read(row, 'group')),
         features,
-        aiOverview,
+        serpHasAiOverview,
+        aiCited: aiCitationRank !== null,
+        aiCitationRank,
+        aiTopSource: Boolean(topAioSource),
+        topAioSource,
+        aiBrandMentions: cleanText(read(row, 'aiBrandMentions')),
       };
     })
     .filter(Boolean);
@@ -200,7 +244,13 @@ export function summarise(keywords) {
     top20: inTop(20),
     averagePosition,
     medianPosition,
-    aiOverviews: keywords.filter((k) => k.aiOverview).length,
+    // Kept apart deliberately: "an AI Overview exists" is context, while
+    // "we are cited in it" is the performance number.
+    aiOverviewSerps: keywords.filter((k) => k.serpHasAiOverview).length,
+    aiCited: keywords.filter((k) => k.aiCited).length,
+    aiTopSource: keywords.filter((k) => k.aiTopSource).length,
+    aiCitedTop3: keywords.filter((k) => k.aiCitationRank !== null && k.aiCitationRank <= 3).length,
+    aiCitedFirst: keywords.filter((k) => k.aiCitationRank === 1).length,
     improved,
     declined,
     // Visibility weighted by search volume, if the export carries volume.

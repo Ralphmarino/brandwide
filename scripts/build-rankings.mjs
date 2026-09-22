@@ -15,20 +15,21 @@
  * never deployed.
  */
 import { readdir, readFile, mkdir, writeFile, stat } from 'node:fs/promises';
-import { join, extname, basename } from 'node:path';
+import { createHash } from 'node:crypto';
+import { join, extname } from 'node:path';
 import { parseCsvRows } from './lib/csv.mjs';
 import { looksLikeHeader, mapColumns, normaliseRows, summarise } from './lib/awr.mjs';
 
 const INPUT_DIR = 'data/rankings';
 const OUTPUT_FILE = 'public/data/rankings.json';
 
-const DATE_IN_NAME = /(\d{4})[-_]?(\d{2})[-_]?(\d{2})/;
+const DATE_IN_NAME = /(\d{4})[-_]?(\d{1,2})[-_]?(\d{1,2})/;
 
 function dateFromFilename(name) {
   const match = name.match(DATE_IN_NAME);
   if (!match) return null;
   const [, year, month, day] = match;
-  const iso = `${year}-${month}-${day}`;
+  const iso = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
   return Number.isNaN(Date.parse(`${iso}T00:00:00Z`)) ? null : iso;
 }
 
@@ -47,6 +48,7 @@ function dateFromRows(rows, mapping) {
 async function readSnapshot(dir, filename) {
   const path = join(dir, filename);
   const text = await readFile(path, 'utf8');
+  const contentHash = createHash('sha1').update(text).digest('hex').slice(0, 12);
 
   const { headers, rows, headerIndex } = parseCsvRows(text, { looksLikeHeader });
   if (!headers.length) {
@@ -75,13 +77,20 @@ async function readSnapshot(dir, filename) {
     throw new Error(`${filename}: header parsed but no keyword rows followed.`);
   }
 
+  // The export's own Date column is authoritative — a filename is just a
+  // label, and mislabelling one is easy. Both are kept so a mismatch is
+  // reportable rather than silently resolved.
+  const dateFromData = dateFromRows(rows, mapping);
+  const labelDate = dateFromFilename(filename);
   const date =
-    dateFromFilename(filename) ||
-    dateFromRows(rows, mapping) ||
-    (await stat(path)).mtime.toISOString().slice(0, 10);
+    dateFromData || labelDate || (await stat(path)).mtime.toISOString().slice(0, 10);
 
   return {
+    contentHash,
     date,
+    labelDate,
+    dateFromData,
+    dateMismatch: Boolean(dateFromData && labelDate && dateFromData !== labelDate),
     file: filename,
     headerIndex,
     columns: mapping,
@@ -102,13 +111,13 @@ async function main() {
     console.log(`[rankings] ${INPUT_DIR}/ not present — skipping.`);
   }
 
-  const snapshots = [];
+  const parsed = [];
   for (const filename of filenames) {
     const snapshot = await readSnapshot(INPUT_DIR, filename);
-    snapshots.push(snapshot);
+    parsed.push(snapshot);
     console.log(
       `[rankings] ${filename}: ${snapshot.keywords.length} keywords, ` +
-        `${snapshot.totals.top3} in top 3, ${snapshot.totals.aiOverviews} with AI Overview ` +
+        `${snapshot.totals.top3} in top 3, ${snapshot.totals.aiCited} cited in AI Overviews ` +
         `(${snapshot.date})`
     );
     if (snapshot.unmatchedHeaders.length) {
@@ -116,13 +125,86 @@ async function main() {
     }
   }
 
+  // A duplicated export would otherwise show as a flat week that looks like
+  // real stability, so it is reported and only the first copy is kept.
+  const warnings = [];
+  const seenContent = new Map();
+  const seenDate = new Map();
+  const snapshots = [];
+
+  // When duplicates exist, keep the copy whose filename agrees with its Date
+  // column, so the retained snapshot is the correctly labelled one.
+  const ordered = [...parsed].sort((a, b) => {
+    const aTrusted = a.dateMismatch ? 1 : 0;
+    const bTrusted = b.dateMismatch ? 1 : 0;
+    return aTrusted - bTrusted || a.file.localeCompare(b.file);
+  });
+
+  for (const snapshot of ordered) {
+    if (snapshot.dateMismatch) {
+      warnings.push(
+        `${snapshot.file} is named for ${snapshot.labelDate} but its Date column ` +
+          `says ${snapshot.dateFromData}. Using ${snapshot.dateFromData}.`
+      );
+    }
+
+    const twin = seenContent.get(snapshot.contentHash);
+    if (twin) {
+      warnings.push(
+        `${snapshot.file} is byte-identical to ${twin} — the same export appears ` +
+          `to have been uploaded twice. Ignoring ${snapshot.file}.`
+      );
+      continue;
+    }
+    seenContent.set(snapshot.contentHash, snapshot.file);
+
+    const sameDate = seenDate.get(snapshot.date);
+    if (sameDate) {
+      warnings.push(
+        `${snapshot.file} and ${sameDate} both resolve to ${snapshot.date}. ` +
+          `Ignoring ${snapshot.file}.`
+      );
+      continue;
+    }
+    seenDate.set(snapshot.date, snapshot.file);
+
+    snapshots.push(snapshot);
+  }
+
   // Oldest first, so the dashboard can trend them left to right.
   snapshots.sort((a, b) => a.date.localeCompare(b.date));
+
+  // A large swing in how many keywords rank at all changes the population that
+  // average and median are computed over, so movement in those can be
+  // composition rather than performance. Say so rather than let it read as a win.
+  for (let i = 1; i < snapshots.length; i++) {
+    const current = snapshots[i].totals;
+    const prior = snapshots[i - 1].totals;
+    if (!prior.rankedKeywords) continue;
+    const swing = (current.rankedKeywords - prior.rankedKeywords) / prior.rankedKeywords;
+    if (Math.abs(swing) >= 0.2) {
+      warnings.push(
+        `${snapshots[i].date}: keywords ranking at all moved from ` +
+          `${prior.rankedKeywords} to ${current.rankedKeywords} ` +
+          `(${swing > 0 ? '+' : ''}${Math.round(swing * 100)}%). Average and median ` +
+          `position cover a different set of keywords than the week before, so read ` +
+          `the top-3 and top-10 counts instead.`
+      );
+    }
+  }
+
+  if (warnings.length) {
+    console.log('');
+    for (const warning of warnings) console.log(`[rankings] WARNING: ${warning}`);
+    console.log('');
+  }
 
   const payload = {
     generatedAt: new Date().toISOString(),
     source: 'AWR Cloud',
     snapshotCount: snapshots.length,
+    filesRead: parsed.length,
+    warnings,
     latest: snapshots.length ? snapshots[snapshots.length - 1].date : null,
     // Trend of the headline numbers across every uploaded export.
     history: snapshots.map((snapshot) => ({
