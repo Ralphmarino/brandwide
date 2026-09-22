@@ -48,6 +48,11 @@
         Rankings
       </button>
 
+      <button class="nav__item" role="tab" id="tab-competitors" data-view="competitors" aria-selected="false" aria-controls="view-competitors" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        Competitors
+      </button>
+
       <button class="nav__item" role="tab" id="tab-pages" data-view="pages" aria-selected="false" aria-controls="view-pages" tabindex="-1">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
         Page analysis
@@ -287,6 +292,11 @@
     <section class="view" id="view-rankings" role="tabpanel" aria-labelledby="tab-rankings" hidden>
       <div id="rankings-errors"></div>
       <div id="rankings-body"></div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="view" id="view-competitors" role="tabpanel" aria-labelledby="tab-competitors" hidden>
+      <div id="competitors-body"></div>
     </section>
 
     <!-- ---------------------------------------------------------------- -->

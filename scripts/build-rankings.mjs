@@ -26,6 +26,8 @@ const OUTPUT_FILE = 'public/data/rankings.json';
 // duplicated, so the scoring rules have exactly one definition.
 const SHARED_DIR = 'shared';
 const SHARED_OUT = 'public/js/shared';
+const COMPETITOR_DIR = 'data/competitors';
+const COMPETITOR_OUT = 'public/data/competitors.json';
 
 const DATE_IN_NAME = /(\d{4})[-_]?(\d{1,2})[-_]?(\d{1,2})/;
 
@@ -127,8 +129,48 @@ async function copyShared() {
   console.log(`[shared] published ${files.length} module(s) to ${SHARED_OUT} as .js`);
 }
 
+/** Publishes the newest competitor snapshot, if one has been committed. */
+async function copyCompetitors() {
+  let files = [];
+  try {
+    files = (await readdir(COMPETITOR_DIR))
+      .filter((name) => name.endsWith('.json'))
+      .sort();
+  } catch {
+    console.log(`[competitors] ${COMPETITOR_DIR}/ not present — skipping.`);
+    return;
+  }
+
+  if (!files.length) {
+    console.log('[competitors] no snapshots found.');
+    return;
+  }
+
+  // Newest by filename; older snapshots stay in the repo as history.
+  const newest = files[files.length - 1];
+  const raw = await readFile(join(COMPETITOR_DIR, newest), 'utf8');
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`${newest}: not valid JSON — ${error.message}`);
+  }
+  if (!parsed.self || !Array.isArray(parsed.keywords)) {
+    throw new Error(`${newest}: missing "self" or "keywords".`);
+  }
+
+  await mkdir('public/data', { recursive: true });
+  await writeFile(COMPETITOR_OUT, `${JSON.stringify(parsed, null, 2)}\n`);
+  console.log(
+    `[competitors] ${newest}: ${parsed.domains?.length || 0} domains, ` +
+      `${parsed.keywords.length} keywords -> ${COMPETITOR_OUT}`
+  );
+}
+
 async function main() {
   await copyShared();
+  await copyCompetitors();
 
   let filenames = [];
   try {

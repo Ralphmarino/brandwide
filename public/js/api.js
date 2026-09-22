@@ -159,3 +159,17 @@ export async function fetchPageAudit(url, context, signal) {
   }
   return payload;
 }
+
+/** Competitive snapshot compiled from Ahrefs at build time. */
+export async function fetchCompetitors(signal) {
+  const response = await fetch('/data/competitors.json', {
+    headers: { Accept: 'application/json' }, cache: 'no-cache', signal,
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new ApiError(`Could not load competitor data (HTTP ${response.status}).`, {
+      code: 'COMPETITORS_UNAVAILABLE', status: response.status,
+    });
+  }
+  return response.json();
+}

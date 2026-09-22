@@ -15,3 +15,4 @@ serve.log
 # Generated from data/rankings/ at build time
 public/data/rankings.json
 public/js/shared/
+public/data/competitors.json

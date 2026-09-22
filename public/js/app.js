@@ -7,10 +7,11 @@
  */
 import {
   resolveRange, fetchGa4, fetchGsc, fetchMouseflow, fetchHealth, fetchRankings,
-  fetchPageAudit,
+  fetchPageAudit, fetchCompetitors,
 } from './api.js';
 import { buildCtrModel } from './shared/ctr.js';
 import { rankOpportunities, pathOf } from './shared/opportunity.js';
+import { analyseCompetitors } from './shared/competitors.js';
 import { applyChartDefaults, lineChart, barChart, donutChart, destroyAll, PALETTE } from './charts.js';
 import {
   num, compact, axisNum, percent, decimal, duration, shortDate, longDate, dateTime,
@@ -21,6 +22,7 @@ const VIEW_META = {
   overview: { title: 'Overview', subtitle: 'Traffic, search and on-site behaviour at a glance' },
   acquisition: { title: 'Acquisition', subtitle: 'How visitors find brandwide.com' },
   search: { title: 'Search Console', subtitle: 'Organic visibility, queries and landing pages' },
+  competitors: { title: 'Competitors', subtitle: 'Where we meet FranchiseSoft, FranConnect and Delightree in search' },
   pages: { title: 'Page analysis', subtitle: 'Which pages to improve first, and exactly what to change' },
   rankings: { title: 'Rankings', subtitle: 'True tracked positions and AI Overview citations, from AWR Cloud' },
   behavior: { title: 'Behaviour', subtitle: 'Session recordings and on-page friction from Mouseflow' },
@@ -39,6 +41,7 @@ const state = {
   errors: {},
   trendMetric: 'users',
   rankings: null,
+  competitors: null,
   loading: false,
   inflight: null,
 };
@@ -811,6 +814,185 @@ function renderRankings() {
   );
 }
 
+/* ------------------------------------------------------------- Competitors */
+
+const OUTCOME_LABEL = {
+  ahead: 'Ahead', behind: 'Behind', level: 'Level',
+  uncontested: 'Uncontested', absent: 'Not ranking',
+};
+
+function outcomeBadge(outcome) {
+  const tone = outcome === 'ahead' ? 'up' : outcome === 'behind' ? 'down' : 'flat';
+  return `<span class="delta delta--${tone}">${OUTCOME_LABEL[outcome] || outcome}</span>`;
+}
+
+/** A rank cell that marks an AI Overview citation distinctly from a blue link. */
+function rankCell(rank) {
+  if (!rank) return '<span class="cell-secondary">—</span>';
+  const isAi = rank.kind === 'ai_overview' || rank.kind === 'ai_overview_sitelink';
+  const band = rank.position <= 3 ? 'low' : rank.position <= 10 ? 'mid' : 'high';
+  return `<span class="score score--${band}" title="${rank.url}">${rank.position}</span>` +
+    (isAi ? ' <span class="flag flag--ai" title="Cited in the AI Overview">AIO</span>' : '');
+}
+
+function renderCompetitors() {
+  const container = $id('competitors-body');
+  if (!container) return;
+
+  const snapshot = state.competitors;
+  const data = snapshot ? analyseCompetitors(snapshot) : null;
+
+  if (!data) {
+    container.innerHTML = `
+      <div class="card"><div class="card__body">
+        <div class="empty">No competitor snapshot yet. Add one to
+        <code>data/competitors/</code> and it will appear here.</div>
+      </div></div>`;
+    return;
+  }
+
+  const { summary } = data;
+  const self = data.domains.find((domain) => domain.domain === data.self);
+
+  container.innerHTML = `
+    <h2 class="section-title">Head to head · ${longDate(data.date)}</h2>
+    <div class="grid grid--kpi">
+      ${kpiCard({ label: 'Keywords compared', value: num(summary.keywordsCompared), noCompare: true, compareText: `${summary.contested} contested` })}
+      ${kpiCard({ label: 'Winning', value: num(summary.ahead), noCompare: true, compareText: `of ${summary.contested} contested` })}
+      ${kpiCard({ label: 'Losing', value: num(summary.behind), noCompare: true, compareText: 'a rival ranks higher' })}
+      ${kpiCard({ label: 'Not ranking', value: num(summary.gaps), noCompare: true, compareText: `${num(summary.gapVolume)} monthly searches` })}
+      ${kpiCard({ label: 'AI Overviews held', value: num(summary.myAiOverviews), noCompare: true, compareText: 'cited by Google' })}
+      ${kpiCard({ label: 'AI Overviews lost', value: num(summary.aiOverviewsLost), noCompare: true, compareText: 'a rival is cited, we are not' })}
+    </div>
+
+    <h2 class="section-title">Visibility</h2>
+    <div class="grid grid--halves">
+      <div class="card">
+        <div class="card__head"><div><h3 class="card__title">Organic traffic and keywords</h3>
+          <p class="card__subtitle">Ahrefs estimates, US, ${longDate(data.date)}</p></div></div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-comp-domains"></table></div></div>
+      </div>
+      <div class="card">
+        <div class="card__head"><div><h3 class="card__title">How directly each competes</h3>
+          <p class="card__subtitle">Shared keywords, and who wins them</p></div></div>
+        <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-comp-h2h"></table></div></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Contested keywords</h2>
+    <div class="card">
+      <div class="card__head">
+        <div><h3 class="card__title">Where we meet them</h3>
+          <p class="card__subtitle">Keywords we and at least one rival both rank for</p></div>
+        <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="comp-contested" type="button">Export CSV</button></div>
+      </div>
+      <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-comp-contested"></table></div></div>
+    </div>
+
+    <h2 class="section-title">Content gaps</h2>
+    <div class="card">
+      <div class="card__head">
+        <div><h3 class="card__title">Searches a rival owns and we do not appear for</h3>
+          <p class="card__subtitle">Ranked by monthly search volume</p></div>
+        <div class="card__actions"><button class="btn btn--ghost btn--sm" data-export="comp-gaps" type="button">Export CSV</button></div>
+      </div>
+      <div class="card__body card__body--flush"><div class="table-scroll"><table id="table-comp-gaps"></table></div></div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card__body">
+        <p style="margin:0;color:var(--ink-muted)">
+          ${data.source}. ${data.note || ''}
+          Ahrefs counts an AI Overview citation as a ranking position, marked
+          <span class="flag flag--ai">AIO</span> above, which is why a keyword can show
+          position 1 without a first organic result.
+        </p>
+      </div>
+    </div>`;
+
+  const maxTraffic = Math.max(...data.domains.map((domain) => domain.orgTraffic || 0), 0);
+  renderTable(
+    'table-comp-domains',
+    [
+      {
+        label: 'Domain',
+        render: (row) => `<div class="cell-primary">${row.label}${row.self ? ' <span class="flag flag--easy">us</span>' : ''}</div>
+          <div class="cell-secondary">${row.domain}</div>`,
+      },
+      { label: 'Organic traffic', align: 'right', render: (row) => barCell(row.orgTraffic, maxTraffic, num(row.orgTraffic)) },
+      { label: 'Keywords', align: 'right', render: (row) => num(row.orgKeywords) },
+      { label: 'In top 3', align: 'right', render: (row) => num(row.orgTop3) },
+      { label: 'Traffic value', align: 'right', render: (row) => `$${num(row.orgValueUsd)}` },
+    ],
+    data.domains
+  );
+
+  renderTable(
+    'table-comp-h2h',
+    [
+      { label: 'Competitor', render: (row) => `<div class="cell-primary">${row.label}</div>` },
+      { label: 'Shared', align: 'right', render: (row) => num(row.shared) },
+      {
+        label: 'W / L',
+        align: 'right',
+        render: (row) =>
+          `<span style="color:var(--positive);font-weight:700">${row.wins}</span> / <span style="color:var(--negative);font-weight:700">${row.losses}</span>`,
+      },
+      {
+        label: 'Their own',
+        align: 'right',
+        render: (row) => `${num(row.exclusiveKeywords)}<div class="cell-secondary">${num(row.exclusiveVolume)} vol</div>`,
+      },
+    ],
+    data.headToHead
+  );
+
+  const rivalColumns = data.domains
+    .filter((domain) => domain.domain !== data.self)
+    .map((domain) => ({
+      label: domain.label,
+      align: 'right',
+      render: (row) => rankCell(row.rivals.find((rival) => rival.domain === domain.domain)?.rank),
+    }));
+
+  renderTable(
+    'table-comp-contested',
+    [
+      { label: 'Keyword', render: (row) => `<div class="cell-primary">${row.keyword}</div>` },
+      { label: 'Volume', align: 'right', render: (row) => num(row.volume) },
+      { label: self?.label || 'Us', align: 'right', render: (row) => rankCell(row.mine) },
+      ...rivalColumns,
+      { label: '', align: 'right', render: (row) => outcomeBadge(row.outcome) },
+    ],
+    data.contested
+  );
+
+  const maxGapVolume = Math.max(...data.gaps.map((row) => row.volume || 0), 0);
+  renderTable(
+    'table-comp-gaps',
+    [
+      { label: 'Keyword', render: (row) => `<div class="cell-primary">${row.keyword}</div>` },
+      { label: 'Volume', align: 'right', render: (row) => barCell(row.volume, maxGapVolume, num(row.volume)) },
+      { label: 'Difficulty', align: 'right', render: (row) => (row.keywordDifficulty === null ? '—' : num(row.keywordDifficulty)) },
+      {
+        label: 'Who ranks',
+        render: (row) =>
+          row.rivals
+            .map((rival) => `<span class="flag">${rival.label} #${rival.rank.position}</span>`)
+            .join(''),
+      },
+      {
+        label: 'Their page',
+        render: (row) =>
+          row.bestRival
+            ? `<a href="${row.bestRival.rank.url}" target="_blank" rel="noopener noreferrer" class="cell-secondary">${tidyPath(row.bestRival.rank.url, 40)}</a>`
+            : '—',
+      },
+    ],
+    data.gaps.slice(0, 40)
+  );
+}
+
 /* ---------------------------------------------------------- Page analysis */
 
 const FLAG_LABELS = {
@@ -1132,6 +1314,7 @@ function renderActiveView() {
   else if (state.view === 'acquisition') renderAcquisition();
   else if (state.view === 'search') renderSearch();
   else if (state.view === 'rankings') renderRankings();
+  else if (state.view === 'competitors') renderCompetitors();
   else if (state.view === 'pages') renderPages();
   else if (state.view === 'behavior') renderBehavior();
   else if (state.view === 'setup') renderSetup();
@@ -1182,11 +1365,12 @@ async function loadAll() {
     fetchMouseflow(state.range, controller.signal),
     // Rank data is a build-time file, so it ignores the date range.
     fetchRankings(controller.signal),
+    fetchCompetitors(controller.signal),
   ]);
 
   if (controller.signal.aborted) return;
 
-  const [ga4Result, gscResult, mouseflowResult, rankingsResult] = results;
+  const [ga4Result, gscResult, mouseflowResult, rankingsResult, competitorsResult] = results;
 
   if (ga4Result.status === 'fulfilled') state.ga4 = ga4Result.value;
   else if (ga4Result.reason?.name !== 'AbortError') state.errors.ga4 = ga4Result.reason?.message;
@@ -1203,6 +1387,8 @@ async function loadAll() {
   else if (rankingsResult.reason?.name !== 'AbortError') {
     state.errors.rankings = rankingsResult.reason?.message;
   }
+
+  if (competitorsResult.status === 'fulfilled') state.competitors = competitorsResult.value;
 
   state.loading = false;
   state.inflight = null;
@@ -1305,6 +1491,40 @@ const EXPORTS = {
         { key: 'searchVolume', label: 'Search volume' },
         { key: 'url', label: 'URL' },
         { key: 'features', label: 'SERP features' },
+      ],
+    };
+  },
+  'comp-contested': () => {
+    const data = analyseCompetitors(state.competitors);
+    return {
+      filename: 'brandwide-contested-keywords',
+      rows: (data?.contested || []).map((row) => ({
+        keyword: row.keyword, volume: row.volume, difficulty: row.keywordDifficulty,
+        ourPosition: row.mine?.position ?? '', ourKind: row.mine?.kind ?? '',
+        bestRival: row.bestRival?.label ?? '', bestRivalPosition: row.bestRivalRank ?? '',
+        outcome: row.outcome,
+      })),
+      columns: [
+        { key: 'keyword', label: 'Keyword' }, { key: 'volume', label: 'Volume' },
+        { key: 'difficulty', label: 'Difficulty' }, { key: 'ourPosition', label: 'Our position' },
+        { key: 'ourKind', label: 'Our result type' }, { key: 'bestRival', label: 'Best rival' },
+        { key: 'bestRivalPosition', label: 'Their position' }, { key: 'outcome', label: 'Outcome' },
+      ],
+    };
+  },
+  'comp-gaps': () => {
+    const data = analyseCompetitors(state.competitors);
+    return {
+      filename: 'brandwide-content-gaps',
+      rows: (data?.gaps || []).map((row) => ({
+        keyword: row.keyword, volume: row.volume, difficulty: row.keywordDifficulty,
+        whoRanks: row.rivals.map((r) => `${r.label} #${r.rank.position}`).join(' | '),
+        theirPage: row.bestRival?.rank.url ?? '',
+      })),
+      columns: [
+        { key: 'keyword', label: 'Keyword' }, { key: 'volume', label: 'Monthly volume' },
+        { key: 'difficulty', label: 'Difficulty' }, { key: 'whoRanks', label: 'Who ranks' },
+        { key: 'theirPage', label: 'Their ranking page' },
       ],
     };
   },
