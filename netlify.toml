@@ -8,6 +8,9 @@
 
 [functions]
   node_bundler = "esbuild"
+  # The Mouseflow snapshot is read from disk at request time rather than
+  # bundled, so a new sync commit reaches the function on the next rebuild.
+  included_files = ["data/mouseflow/**"]
 
 # Friendly API paths -> serverless functions
 [[redirects]]
@@ -26,6 +29,11 @@
   status = 200
 
 [[redirects]]
+  from = "/api/mouseflow-ingest"
+  to   = "/.netlify/functions/mouseflow-ingest"
+  status = 200
+
+[[redirects]]
   from = "/api/page-audit"
   to   = "/.netlify/functions/page-audit"
   status = 200
@@ -33,6 +41,12 @@
 [[redirects]]
   from = "/api/health"
   to   = "/.netlify/functions/health"
+  status = 200
+
+# The sync tool is a real page, not part of the dashboard SPA.
+[[redirects]]
+  from = "/tools"
+  to   = "/tools/index.html"
   status = 200
 
 # SPA-style fallback for the single-page dashboard

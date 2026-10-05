@@ -11,6 +11,7 @@
 import { json } from '../lib/http.mjs';
 import { getServiceAccount } from '../lib/google-auth.mjs';
 import { ga4Config, gscConfig, mouseflowConfig, googleCredentials } from '../lib/config.mjs';
+import { loadSnapshot } from '../lib/mouseflow-snapshot.mjs';
 
 /** Describes a variable without revealing it. */
 function describe(name, { reveal = false } = {}) {
@@ -24,6 +25,8 @@ function describe(name, { reveal = false } = {}) {
 
 export default async () => {
   const google = getServiceAccount();
+  const snapshot = await loadSnapshot();
+  const snapshotDays = Object.keys(snapshot?.days || {}).sort();
   const credentials = googleCredentials();
   const ga4 = ga4Config();
   const gsc = gscConfig();
@@ -65,8 +68,21 @@ export default async () => {
         },
       },
       mouseflow: {
-        configured: mouseflow.ready,
-        problem: mouseflow.problem,
+        // A snapshot is a valid source even with no API key, so the panel must
+        // not report Mouseflow as unconfigured when one is present.
+        configured: mouseflow.ready || snapshotDays.length > 0,
+        mode: mouseflow.ready ? 'api' : snapshotDays.length ? 'snapshot' : 'demo',
+        problem: mouseflow.ready || snapshotDays.length ? null : mouseflow.problem,
+        snapshot: {
+          present: snapshotDays.length > 0,
+          days: snapshotDays.length,
+          earliest: snapshotDays[0] || null,
+          latest: snapshotDays[snapshotDays.length - 1] || null,
+          syncedAt: snapshot?.syncedAt || null,
+          recordings: (snapshot?.recordings || []).length,
+          ingestSecretSet: Boolean((process.env.MOUSEFLOW_INGEST_SECRET || '').trim()),
+          githubTokenSet: Boolean((process.env.GITHUB_TOKEN || '').trim()),
+        },
         variables: {
           MOUSEFLOW_USERNAME: describe('MOUSEFLOW_USERNAME', { reveal: true }),
           MOUSEFLOW_API_KEY: describe('MOUSEFLOW_API_KEY'),

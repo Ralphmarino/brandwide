@@ -166,6 +166,18 @@ function setPill(id, payload, error) {
     pill.innerHTML = `<span class="pill__dot"></span> ${name} · sample data`;
     // The reason the source fell back is the thing worth surfacing.
     if (payload.demoReason) pill.title = payload.demoReason;
+  } else if (payload?.mode === 'snapshot') {
+    // A snapshot is real data but not live, and the distinction matters when
+    // someone asks why today is missing. Show when it was last captured.
+    pill.classList.add('pill--live');
+    const synced = payload.syncedAt ? shortDate(payload.syncedAt) : 'unknown date';
+    pill.innerHTML = `<span class="pill__dot"></span> ${name} · synced ${synced}`;
+    const notes = payload.coverage?.notes || [];
+    pill.title = `Captured from Mouseflow on ${
+      payload.syncedAt ? longDate(payload.syncedAt) : 'an unknown date'
+    }. ${payload.coverage?.daysCaptured || 0} days stored.${
+      notes.length ? `\n\n${notes.join('\n')}` : ''
+    }`;
   } else if (payload) {
     pill.classList.add('pill--live');
     pill.innerHTML = `<span class="pill__dot"></span> ${name} · live`;
@@ -528,18 +540,98 @@ function renderBehavior() {
   }
 
   const totals = mf.totals || {};
-  $id('behavior-kpis').innerHTML = [
-    kpiCard({ label: 'Recordings', value: num(totals.recordings), noCompare: true, compareText: 'captured in this period' }),
-    kpiCard({ label: 'Avg. duration', value: duration(totals.avgDuration), noCompare: true, compareText: 'per recorded session' }),
-    kpiCard({ label: 'Pages per session', value: decimal(totals.avgPageViews), noCompare: true, compareText: 'average across recordings' }),
-    kpiCard({ label: 'High friction', value: percent(totals.highFrictionShare), noCompare: true, compareText: 'of sessions scoring 60+' }),
-  ].join('');
+  const previous = mf.previousTotals || {};
+  const snapshotMode = mf.mode === 'snapshot';
+
+  // A comparison is only honest when the prior window holds a comparable
+  // number of days. Early on, the snapshot barely reaches back, and comparing
+  // 28 days against 2 produces a four-figure percentage that means nothing.
+  const comparable =
+    snapshotMode &&
+    previous.daysWithData > 0 &&
+    previous.daysWithData >= (totals.daysWithData || 0) * 0.8;
+  const compareNote = comparable
+    ? undefined
+    : previous.daysWithData
+      ? `prior period only has ${previous.daysWithData} day(s) synced`
+      : 'no synced data in the prior period';
+
+  // The snapshot carries true aggregates, so it gets its own scorecards with
+  // a comparison period. The recordings-API labels would misdescribe them:
+  // "recordings" is a session count, and friction is a 0-1 score rather than
+  // the share of sessions above a threshold.
+  $id('behavior-kpis').innerHTML = (snapshotMode
+    ? [
+        kpiCard({
+          label: 'Sessions', value: num(totals.sessions),
+          current: totals.sessions, previous: previous.sessions,
+          noCompare: !comparable, compareText: compareNote,
+        }),
+        kpiCard({
+          label: 'Visitors', value: num(totals.visitorDailySum),
+          current: totals.visitorDailySum, previous: previous.visitorDailySum,
+          noCompare: !comparable, compareText: compareNote,
+          help: 'The sum of each day\'s unique visitors. Someone returning on three days counts three times, so this is higher than unique visitors for the whole period.',
+        }),
+        kpiCard({
+          label: 'Avg. visit', value: duration(totals.avgDuration),
+          current: totals.avgDuration, previous: previous.avgDuration,
+          noCompare: !comparable, compareText: compareNote,
+          help: 'Average visit duration, weighted by each day\'s session count.',
+        }),
+        kpiCard({
+          label: 'Pages per session', value: decimal(totals.avgPageViews),
+          current: totals.avgPageViews, previous: previous.avgPageViews,
+          noCompare: !comparable, compareText: compareNote,
+        }),
+        kpiCard({
+          label: 'Friction score', value: decimal(totals.frictionScore, 2),
+          current: totals.frictionScore, previous: previous.frictionScore,
+          inverse: true, noCompare: !comparable, compareText: compareNote,
+          help: 'Mouseflow\'s friction score per session, session-weighted across the period. Lower is better.',
+        }),
+        kpiCard({
+          label: 'Days captured', value: num(totals.daysWithData), noCompare: true,
+          compareText: `of ${mf.coverage?.daysCaptured || 0} stored`,
+        }),
+      ]
+    : [
+        kpiCard({ label: 'Recordings', value: num(totals.recordings), noCompare: true, compareText: 'captured in this period' }),
+        kpiCard({ label: 'Avg. duration', value: duration(totals.avgDuration), noCompare: true, compareText: 'per recorded session' }),
+        kpiCard({ label: 'Pages per session', value: decimal(totals.avgPageViews), noCompare: true, compareText: 'average across recordings' }),
+        kpiCard({ label: 'High friction', value: percent(totals.highFrictionShare), noCompare: true, compareText: 'of sessions scoring 60+' }),
+      ]
+  ).join('');
+
+  // Coverage gaps are the reason a number can look low; say so in the report.
+  if (snapshotMode && mf.coverage?.notes?.length) {
+    $id('behavior-errors').innerHTML += `
+      <div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
+        <strong>Snapshot coverage</strong>${mf.coverage.notes.join(' ')}
+      </div>`;
+  }
+
+  if (snapshotMode) {
+    const relabel = (selector, title, subtitle) => {
+      const card = document.querySelector(selector)?.closest('.card');
+      if (!card) return;
+      const heading = card.querySelector('.card__title');
+      const sub = card.querySelector('.card__subtitle');
+      if (heading) heading.textContent = title;
+      if (sub && subtitle) sub.textContent = subtitle;
+    };
+    relabel('#chart-mf-trend', 'Sessions over time', 'Mouseflow snapshot');
+    relabel('#chart-mf-devices', 'Sessions by device');
+    relabel('#table-mf-entry', 'Where sessions start');
+    const heading = document.querySelector('#view-behavior .section-title');
+    if (heading) heading.textContent = 'Session activity';
+  }
 
   const points = mf.timeseries || [];
   lineChart(
     'chart-mf-trend',
     points.map((point) => shortDate(point.date)),
-    [{ label: 'Recordings', data: points.map((point) => point.recordings) }],
+    [{ label: snapshotMode ? 'Sessions' : 'Recordings', data: points.map((point) => point.recordings) }],
     { valueFormatter: (value, isAxis) => (isAxis ? axisNum(value) : num(value)) }
   );
 
@@ -557,7 +649,11 @@ function renderBehavior() {
     'table-mf-entry',
     [
       { label: 'Entry page', render: (row) => `<div class="cell-primary" title="${row.page}">${tidyPath(row.page)}</div>` },
-      { label: 'Recordings', align: 'right', render: (row) => barCell(row.recordings, maxEntry, num(row.recordings)) },
+      {
+        label: snapshotMode ? 'Sessions' : 'Recordings',
+        align: 'right',
+        render: (row) => barCell(row.recordings, maxEntry, num(row.recordings)),
+      },
     ],
     entryPages
   );
@@ -584,7 +680,14 @@ function renderBehavior() {
   );
 
   const heatmapLink = $id('mf-heatmap-link');
-  if (heatmapLink) {
+  if (heatmapLink && snapshotMode) {
+    heatmapLink.innerHTML =
+      `Synced ${mf.syncedAt ? longDate(mf.syncedAt) : 'at an unknown time'} · ` +
+      `<a href="/tools" target="_blank" rel="noopener">Run a new sync</a>` +
+      (mf.heatmapUrl
+        ? ` · <a href="${mf.heatmapUrl}" target="_blank" rel="noopener noreferrer">Heatmaps in Mouseflow</a>`
+        : '');
+  } else if (heatmapLink) {
     heatmapLink.innerHTML = mf.heatmapUrl
       ? `${mf.website?.name || 'Mouseflow'} · <a href="${mf.heatmapUrl}" target="_blank" rel="noopener noreferrer">Open heatmaps in Mouseflow</a>`
       : mf.website?.name || '';

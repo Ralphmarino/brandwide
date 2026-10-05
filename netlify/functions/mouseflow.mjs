@@ -18,6 +18,7 @@
  */
 import { errorResponse, json, readParams, safeDate, safeLimit } from '../lib/http.mjs';
 import { mouseflowConfig } from '../lib/config.mjs';
+import { loadSnapshot, rollUp } from '../lib/mouseflow-snapshot.mjs';
 import { demoMouseflow } from '../lib/demo-data.mjs';
 
 const APP_BASE = 'https://app.mouseflow.com';
@@ -134,6 +135,105 @@ function tally(rows, key, valueName) {
     .sort((a, b) => b[valueName] - a[valueName]);
 }
 
+/**
+ * Shapes a snapshot roll-up into the payload the Behaviour report expects.
+ *
+ * The report was built against the recordings-oriented public API, so the
+ * field names are kept. What changes is the meaning behind two of them, and
+ * that is stated in the payload rather than left for a reader to assume:
+ * `totals.recordings` is a session count here, and `visitorDailySum` is the
+ * sum of daily uniques, not unique visitors for the period.
+ */
+function fromSnapshot(snapshot, rolled, range) {
+  const { current, previous, coverage } = rolled;
+
+  const recordings = (snapshot.recordings || []).map((row) => ({
+    id: pick(row, ['id', 'sessionId', 'session_id', 'recordingId'], ''),
+    date: (() => {
+      const value = pick(row, ['date', 'timestamp', 'created', 'startTime'], null);
+      if (!value) return null;
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
+    })(),
+    duration: Number(pick(row, ['duration', 'length'], 0)) || 0,
+    pageViews: Number(pick(row, ['pageViews', 'pages', 'pageCount'], 0)) || 0,
+    frictionScore: Number(pick(row, ['frictionScore', 'friction', 'score'], 0)) || 0,
+    device: pick(row, ['device', 'deviceType', 'platform'], 'Unknown'),
+    browser: pick(row, ['browser', 'browserName'], 'Unknown'),
+    country: pick(row, ['country', 'countryName'], 'Unknown'),
+    entryPage: pick(row, ['entryPage', 'landingPage', 'uri', 'url', 'page'], '/'),
+    url: snapshot.websiteId && pick(row, ['id', 'sessionId'], null)
+      ? `${APP_BASE}/websites/${snapshot.websiteId}/recordings/${pick(row, ['id', 'sessionId'], '')}`
+      : null,
+  }));
+
+  const pages = (snapshot.pages || []).map((row) => ({
+    page: pick(row, ['uri', 'url', 'page', 'path'], '/'),
+    views: Number(pick(row, ['pageViews', 'views', 'count', 'pageviews'], 0)) || 0,
+  }));
+
+  return {
+    source: 'mouseflow',
+    configured: true,
+    demo: false,
+    mode: 'snapshot',
+    syncedAt: snapshot.syncedAt || null,
+    coverage,
+    range: { startDate: range.startDate, endDate: range.endDate },
+    compareRange: { startDate: range.compareStartDate, endDate: range.compareEndDate },
+    website: {
+      id: snapshot.websiteId || null,
+      name: 'Mouseflow snapshot',
+      url: null,
+    },
+    websites: [],
+    totals: {
+      // Kept as "recordings" for the existing report; it counts sessions.
+      recordings: current.sessions,
+      sessions: current.sessions,
+      visitorDailySum: current.visitorDailySum,
+      pageviews: current.pageviews,
+      avgDuration: Math.round(current.avgVisitDurationMs / 1000),
+      avgEngagementDuration: Math.round(current.avgEngagementDurationMs / 1000),
+      avgPageViews: Math.round(current.pagesPerSession * 10) / 10,
+      frictionScore: Math.round(current.frictionScore * 100) / 100,
+      // The report's existing card expects a share; friction is 0-1 already.
+      highFrictionShare: current.frictionScore,
+      daysWithData: current.daysWithData,
+    },
+    previousTotals: {
+      recordings: previous.sessions,
+      sessions: previous.sessions,
+      visitorDailySum: previous.visitorDailySum,
+      pageviews: previous.pageviews,
+      avgDuration: Math.round(previous.avgVisitDurationMs / 1000),
+      avgEngagementDuration: Math.round(previous.avgEngagementDurationMs / 1000),
+      avgPageViews: Math.round(previous.pagesPerSession * 10) / 10,
+      frictionScore: Math.round(previous.frictionScore * 100) / 100,
+      daysWithData: previous.daysWithData,
+    },
+    timeseries: rolled.trend,
+    recordings,
+    devices: rolled.devices.map((row) => ({
+      device: row.device,
+      recordings: row.sessions,
+      sessions: row.sessions,
+    })),
+    entryPages: rolled.entryPages.slice(0, 10).map((row) => ({
+      page: row.page,
+      recordings: row.sessions,
+      sessions: row.sessions,
+    })),
+    countries: rolled.countries.slice(0, 10),
+    referrers: rolled.referrers.slice(0, 10),
+    browsers: rolled.browsers.slice(0, 10),
+    topPages: pages,
+    heatmapUrl: snapshot.websiteId
+      ? `${APP_BASE}/websites/${snapshot.websiteId}/heatmaps`
+      : null,
+  };
+}
+
 export default async (req) => {
   try {
     const params = await readParams(req);
@@ -141,12 +241,32 @@ export default async (req) => {
     const endDate = safeDate(params.endDate, 1);
     const limit = safeLimit(params.limit, 100, 500);
 
+    const compareStartDate = safeDate(params.compareStartDate, 56);
+    const compareEndDate = safeDate(params.compareEndDate, 29);
+
     const settings = mouseflowConfig();
     const creds = settings.ready ? credentials() : null;
+
+    // Priority: a real API key wins, then the committed snapshot, then demo.
+    // The snapshot exists because this plan's public API returns nothing
+    // useful; if a key is ever added it should take over without a code change.
     if (!creds) {
+      const snapshot = await loadSnapshot();
+      const rolled = snapshot
+        ? rollUp(snapshot, { startDate, endDate, compareStartDate, compareEndDate })
+        : null;
+
+      if (rolled) {
+        return json(
+          fromSnapshot(snapshot, rolled, { startDate, endDate, compareStartDate, compareEndDate })
+        );
+      }
+
       return json({
         ...demoMouseflow(startDate, endDate),
-        demoReason: settings.problem,
+        demoReason:
+          settings.problem +
+          ' No synced snapshot is present either — run the Mouseflow sync tool, or set an API key.',
       });
     }
 

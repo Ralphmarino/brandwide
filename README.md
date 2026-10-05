@@ -103,14 +103,45 @@ list. Set what you have — each source works independently.
 Authentication is HTTP Basic (`email:apikey`) against
 `https://api-us.mouseflow.com` or `https://api-eu.mouseflow.com`.
 
-**What Mouseflow can and cannot contribute.** Its REST API is built around
-*session recordings and heatmaps*, not aggregate metrics — there is no
-GA4-style "give me totals by dimension for a date range" endpoint. So the
-Behaviour report derives its numbers from the recordings themselves: volume over
-time, average duration, pages per session, friction-score distribution, device
-split and entry pages, with each row deep-linking into Mouseflow for playback,
-plus a link through to heatmaps. Heatmap *images* stay in Mouseflow; they are
-not embeddable here.
+**This plan's public API returns nothing usable**, so the Behaviour report is
+fed by a *snapshot sync* instead — see below. If you later move to a plan whose
+API works, set the variables above and the function will prefer it automatically;
+no code change needed.
+
+### Snapshot sync (how Behaviour is actually fed)
+
+The figures are captured from the endpoints Mouseflow's own web app calls,
+using your logged-in session, by a bookmarklet you run from inside Mouseflow.
+
+1. Set `MOUSEFLOW_INGEST_SECRET` and `GITHUB_TOKEN` in Netlify (below).
+2. Open `https://brandwide.netlify.app/tools` and drag the bookmarklet to your
+   bookmarks bar.
+3. On **us.mouseflow.com**, signed in, click the bookmark. The first run asks
+   for the ingest secret and remembers it in that browser.
+
+What happens: the tool pulls 90 days of daily aggregates — sessions, visitors,
+pageviews, visit and engagement duration, friction score — plus daily session
+counts by device, entry page, country, referrer type and browser, then the most
+recent recordings and top pages. It POSTs that to `/api/mouseflow-ingest`,
+which merges it into `data/mouseflow/daily.json` and commits. Netlify rebuilds,
+and the report updates.
+
+**Days are merged, never replaced.** Mouseflow retains about 90 days, so the
+committed file is the only place older days survive. After a few months of
+syncing the report reaches back further than Mouseflow itself can.
+
+Two things the roll-up is careful about, because both would otherwise be wrong:
+
+- Visit duration, engagement duration and friction arrive as *per-day averages*
+  and are recombined **weighted by each day's session count**. A plain mean
+  would let a quiet Sunday count as heavily as a busy Tuesday.
+- Summing daily visitors gives the **sum of daily uniques**, not unique
+  visitors for the period — someone returning on three days counts three
+  times. The card is labelled accordingly and says so on hover.
+
+Personal fields (IP, latitude, longitude, city, visitor ID) are stripped in the
+browser before anything is sent, and stripped again server-side so a stale copy
+of the tool cannot commit them.
 
 Because Mouseflow has revised its field names over time, the function reads each
 value from a list of candidate keys and normalises the result, and it retries
@@ -138,7 +169,11 @@ The dashboard is `noindex`, but that is not access control. Two options:
 ## Project layout
 
 ```
+data/mouseflow/
+  daily.json                Accumulated Mouseflow snapshot, written by syncs
 public/                     Static dashboard (published as-is)
+  tools/index.html          Sync bookmarklet and instructions
+  tools/mouseflow-sync.js   The script the bookmarklet loads
   index.html                Shell and all five report panels
   css/dashboard.css         Brand tokens, layout, components
   js/app.js                 State, data loading, rendering
@@ -148,9 +183,11 @@ public/                     Static dashboard (published as-is)
 netlify/functions/
   ga4.mjs                   GA4 Data API (one batchRunReports call)
   gsc.mjs                   Search Console Search Analytics API
-  mouseflow.mjs             Mouseflow REST proxy and normaliser
+  mouseflow.mjs             Behaviour data: API key, else snapshot, else demo
+  mouseflow-ingest.mjs      Receives a snapshot sync and commits it to the repo
   health.mjs                Which sources have credentials (never echoes them)
 netlify/lib/
+  mouseflow-snapshot.mjs    Reads and rolls up the committed Mouseflow snapshot
   google-auth.mjs           Service-account JWT signing and token cache
   http.mjs                  Shared request/response helpers
   demo-data.mjs             Deterministic sample data
@@ -165,7 +202,8 @@ netlify/edge-functions/
 | `GET /api/ga4` | GA4 totals, prior-period totals, daily trend, channels, top pages, devices, countries |
 | `GET /api/gsc` | Search Console totals, prior-period totals, daily trend, queries, pages, devices, countries |
 | `GET /api/mouseflow` | Mouseflow site, recording roll-ups, trend, device split, entry pages, recent recordings |
-| `GET /api/health` | Per-source configuration status and the service-account email |
+| `GET /api/health` | Per-source configuration status, the service-account email, and Mouseflow snapshot coverage |
+| `POST /api/mouseflow-ingest` | Receives a Mouseflow snapshot from the sync bookmarklet. Origin-locked to `https://us.mouseflow.com` and gated by `MOUSEFLOW_INGEST_SECRET` |
 
 All accept `startDate`, `endDate`, `compareStartDate`, `compareEndDate`
 (`YYYY-MM-DD`) and `limit`.
