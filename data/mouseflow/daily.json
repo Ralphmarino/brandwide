@@ -1,7 +1,7 @@
 {
   "websiteId": "e4495438-587e-42d7-95f7-b371c838c0ab",
   "source": "mouseflow-snapshot-sync",
-  "syncedAt": "2026-10-05T16:41:29.660Z",
+  "syncedAt": "2026-10-05T17:04:38.328Z",
   "days": {
     "2026-07-07": {
       "sessionCount": 57,
@@ -9,7 +9,7 @@
       "pageviewsCount": 123,
       "visitDuration": 64797,
       "engagementDuration": 34387,
-      "frictionScorePerSession": 0.7192982456140351,
+      "frictionScorePerSession": 0.719298245614035,
       "dimensions": {
         "DeviceType": {
           "Desktop": 45,
@@ -68,7 +68,7 @@
       "pageviewsCount": 58,
       "visitDuration": 159621,
       "engagementDuration": 34208,
-      "frictionScorePerSession": 0.30000000000000004,
+      "frictionScorePerSession": 0.3,
       "dimensions": {
         "DeviceType": {
           "Desktop": 20,
@@ -167,7 +167,7 @@
       "pageviewsCount": 76,
       "visitDuration": 223859,
       "engagementDuration": 49423,
-      "frictionScorePerSession": 0.45714285714285724,
+      "frictionScorePerSession": 0.45714285714285735,
       "dimensions": {
         "DeviceType": {
           "Desktop": 25,
@@ -260,7 +260,7 @@
       "pageviewsCount": 480,
       "visitDuration": 3156,
       "engagementDuration": 2716,
-      "frictionScorePerSession": 0.002123142250530786,
+      "frictionScorePerSession": 0.002123142250530787,
       "dimensions": {
         "DeviceType": {
           "Desktop": 462,
@@ -306,7 +306,7 @@
       "pageviewsCount": 121,
       "visitDuration": 58082,
       "engagementDuration": 18290,
-      "frictionScorePerSession": 0.3473684210526315,
+      "frictionScorePerSession": 0.34736842105263155,
       "dimensions": {
         "DeviceType": {
           "Desktop": 69,
@@ -353,7 +353,7 @@
       "pageviewsCount": 305,
       "visitDuration": 36945,
       "engagementDuration": 6699,
-      "frictionScorePerSession": 0.040145985401459854,
+      "frictionScorePerSession": 0.04014598540145986,
       "dimensions": {
         "DeviceType": {
           "Desktop": 255,
@@ -406,7 +406,7 @@
       "pageviewsCount": 508,
       "visitDuration": 14972,
       "engagementDuration": 4935,
-      "frictionScorePerSession": 0.0443458980044346,
+      "frictionScorePerSession": 0.04434589800443461,
       "dimensions": {
         "DeviceType": {
           "Desktop": 417,
@@ -520,7 +520,7 @@
       "pageviewsCount": 69,
       "visitDuration": 161432,
       "engagementDuration": 20908,
-      "frictionScorePerSession": 0.4444444444444444,
+      "frictionScorePerSession": 0.4444444444444445,
       "dimensions": {
         "DeviceType": {
           "Desktop": 24,
@@ -571,7 +571,7 @@
       "pageviewsCount": 47,
       "visitDuration": 82805,
       "engagementDuration": 33727,
-      "frictionScorePerSession": 0.5000000000000002,
+      "frictionScorePerSession": 0.5,
       "dimensions": {
         "DeviceType": {
           "Desktop": 5,
@@ -615,7 +615,7 @@
       "pageviewsCount": 276,
       "visitDuration": 18021,
       "engagementDuration": 8273,
-      "frictionScorePerSession": 0.34765625,
+      "frictionScorePerSession": 0.3476562499999999,
       "dimensions": {
         "DeviceType": {
           "Desktop": 225,
@@ -819,7 +819,7 @@
       "pageviewsCount": 107,
       "visitDuration": 49071,
       "engagementDuration": 19278,
-      "frictionScorePerSession": 0.7261904761904763,
+      "frictionScorePerSession": 0.7261904761904762,
       "dimensions": {
         "DeviceType": {
           "Desktop": 53,
@@ -865,7 +865,7 @@
       "pageviewsCount": 50,
       "visitDuration": 80550,
       "engagementDuration": 21116,
-      "frictionScorePerSession": 0.24324324324324323,
+      "frictionScorePerSession": 0.24324324324324326,
       "dimensions": {
         "DeviceType": {
           "Desktop": 14,
@@ -978,7 +978,7 @@
       "pageviewsCount": 57,
       "visitDuration": 91219,
       "engagementDuration": 24993,
-      "frictionScorePerSession": 0.06060606060606061,
+      "frictionScorePerSession": 0.06060606060606062,
       "dimensions": {
         "DeviceType": {
           "Desktop": 14,
@@ -1074,7 +1074,7 @@
       "pageviewsCount": 44,
       "visitDuration": 53173,
       "engagementDuration": 14231,
-      "frictionScorePerSession": 0.30000000000000004,
+      "frictionScorePerSession": 0.3,
       "dimensions": {
         "DeviceType": {
           "Desktop": 11,
@@ -1165,7 +1165,7 @@
       "pageviewsCount": 73,
       "visitDuration": 102323,
       "engagementDuration": 41783,
-      "frictionScorePerSession": 0.3255813953488372,
+      "frictionScorePerSession": 0.3255813953488373,
       "dimensions": {
         "DeviceType": {
           "Desktop": 17,
@@ -1211,7 +1211,7 @@
       "pageviewsCount": 29,
       "visitDuration": 31638,
       "engagementDuration": 15510,
-      "frictionScorePerSession": 0.4166666666666667,
+      "frictionScorePerSession": 0.41666666666666663,
       "dimensions": {
         "DeviceType": {
           "Desktop": 4,
@@ -1286,7 +1286,7 @@
       "pageviewsCount": 44,
       "visitDuration": 95362,
       "engagementDuration": 27671,
-      "frictionScorePerSession": 0.46875000000000006,
+      "frictionScorePerSession": 0.46874999999999994,
       "dimensions": {
         "DeviceType": {
           "Desktop": 11,
@@ -1377,7 +1377,7 @@
       "pageviewsCount": 88,
       "visitDuration": 73170,
       "engagementDuration": 34682,
-      "frictionScorePerSession": 0.4545454545454544,
+      "frictionScorePerSession": 0.45454545454545453,
       "dimensions": {
         "DeviceType": {
           "Desktop": 12,
@@ -1424,7 +1424,7 @@
       "pageviewsCount": 69,
       "visitDuration": 248669,
       "engagementDuration": 51967,
-      "frictionScorePerSession": 0.29032258064516137,
+      "frictionScorePerSession": 0.29032258064516125,
       "dimensions": {
         "DeviceType": {
           "Desktop": 18,
@@ -1512,7 +1512,7 @@
       "pageviewsCount": 90,
       "visitDuration": 80406,
       "engagementDuration": 38017,
-      "frictionScorePerSession": 2.4000000000000004,
+      "frictionScorePerSession": 2.4,
       "dimensions": {
         "DeviceType": {
           "Desktop": 21,
@@ -1593,7 +1593,7 @@
       "pageviewsCount": 63,
       "visitDuration": 84649,
       "engagementDuration": 34277,
-      "frictionScorePerSession": 0.5588235294117646,
+      "frictionScorePerSession": 0.5588235294117647,
       "dimensions": {
         "DeviceType": {
           "Desktop": 24,
@@ -1635,7 +1635,7 @@
       "pageviewsCount": 45,
       "visitDuration": 138819,
       "engagementDuration": 34584,
-      "frictionScorePerSession": 0.4137931034482759,
+      "frictionScorePerSession": 0.41379310344827586,
       "dimensions": {
         "DeviceType": {
           "Desktop": 14,
@@ -1774,7 +1774,7 @@
       "pageviewsCount": 34,
       "visitDuration": 173567,
       "engagementDuration": 43906,
-      "frictionScorePerSession": 0.0909090909090909,
+      "frictionScorePerSession": 0.09090909090909088,
       "dimensions": {
         "DeviceType": {
           "Desktop": 7,
@@ -1814,7 +1814,7 @@
       "pageviewsCount": 57,
       "visitDuration": 128030,
       "engagementDuration": 27135,
-      "frictionScorePerSession": 0.28205128205128205,
+      "frictionScorePerSession": 0.2820512820512821,
       "dimensions": {
         "DeviceType": {
           "Desktop": 1,
@@ -1853,7 +1853,7 @@
       "pageviewsCount": 108,
       "visitDuration": 39926,
       "engagementDuration": 18234,
-      "frictionScorePerSession": 1.8461538461538463,
+      "frictionScorePerSession": 1.8461538461538454,
       "dimensions": {
         "DeviceType": {
           "Desktop": 48,
@@ -1903,7 +1903,7 @@
       "pageviewsCount": 112,
       "visitDuration": 142591,
       "engagementDuration": 32122,
-      "frictionScorePerSession": 0.6086956521739131,
+      "frictionScorePerSession": 0.6086956521739129,
       "dimensions": {
         "DeviceType": {
           "Desktop": 25,
@@ -2041,7 +2041,7 @@
       "pageviewsCount": 72,
       "visitDuration": 191583,
       "engagementDuration": 41530,
-      "frictionScorePerSession": 0.24999999999999997,
+      "frictionScorePerSession": 0.25000000000000006,
       "dimensions": {
         "DeviceType": {
           "Desktop": 17,
@@ -2088,7 +2088,7 @@
       "pageviewsCount": 57,
       "visitDuration": 174629,
       "engagementDuration": 38824,
-      "frictionScorePerSession": 0.6551724137931034,
+      "frictionScorePerSession": 0.6551724137931035,
       "dimensions": {
         "DeviceType": {
           "Desktop": 11,
@@ -2170,7 +2170,7 @@
       "pageviewsCount": 43,
       "visitDuration": 278100,
       "engagementDuration": 79204,
-      "frictionScorePerSession": 0.37499999999999994,
+      "frictionScorePerSession": 0.375,
       "dimensions": {
         "DeviceType": {
           "Desktop": 2,
@@ -2211,7 +2211,7 @@
       "pageviewsCount": 74,
       "visitDuration": 320958,
       "engagementDuration": 37380,
-      "frictionScorePerSession": 0.15789473684210528,
+      "frictionScorePerSession": 0.1578947368421053,
       "dimensions": {
         "DeviceType": {
           "Desktop": 19,
@@ -2254,7 +2254,7 @@
       "pageviewsCount": 43,
       "visitDuration": 166647,
       "engagementDuration": 34073,
-      "frictionScorePerSession": 0.1904761904761905,
+      "frictionScorePerSession": 0.19047619047619047,
       "dimensions": {
         "DeviceType": {
           "Desktop": 15,
@@ -2296,7 +2296,7 @@
       "pageviewsCount": 64,
       "visitDuration": 89737,
       "engagementDuration": 32192,
-      "frictionScorePerSession": 0.2916666666666667,
+      "frictionScorePerSession": 0.29166666666666663,
       "dimensions": {
         "DeviceType": {
           "Desktop": 16,
@@ -2340,7 +2340,7 @@
       "pageviewsCount": 73,
       "visitDuration": 170481,
       "engagementDuration": 64254,
-      "frictionScorePerSession": 0.7812500000000001,
+      "frictionScorePerSession": 0.78125,
       "dimensions": {
         "DeviceType": {
           "Desktop": 14,
@@ -2429,7 +2429,7 @@
       "pageviewsCount": 54,
       "visitDuration": 78514,
       "engagementDuration": 36648,
-      "frictionScorePerSession": 0.4523809523809525,
+      "frictionScorePerSession": 0.45238095238095233,
       "dimensions": {
         "DeviceType": {
           "Desktop": 2,
@@ -2508,7 +2508,7 @@
       "pageviewsCount": 94,
       "visitDuration": 92498,
       "engagementDuration": 30692,
-      "frictionScorePerSession": 0.44999999999999996,
+      "frictionScorePerSession": 0.45000000000000007,
       "dimensions": {
         "DeviceType": {
           "Desktop": 15,
@@ -2695,7 +2695,7 @@
       "pageviewsCount": 60,
       "visitDuration": 91207,
       "engagementDuration": 39721,
-      "frictionScorePerSession": 0.9210526315789472,
+      "frictionScorePerSession": 0.9210526315789473,
       "dimensions": {
         "DeviceType": {
           "Desktop": 10,
@@ -2777,7 +2777,7 @@
       "pageviewsCount": 75,
       "visitDuration": 100121,
       "engagementDuration": 34603,
-      "frictionScorePerSession": 0.24489795918367344,
+      "frictionScorePerSession": 0.24489795918367338,
       "dimensions": {
         "DeviceType": {
           "Desktop": 5,
@@ -2870,7 +2870,7 @@
       "pageviewsCount": 79,
       "visitDuration": 257052,
       "engagementDuration": 72708,
-      "frictionScorePerSession": 0.5,
+      "frictionScorePerSession": 0.4999999999999999,
       "dimensions": {
         "DeviceType": {
           "Desktop": 11,
@@ -2914,7 +2914,7 @@
       "pageviewsCount": 58,
       "visitDuration": 133103,
       "engagementDuration": 30700,
-      "frictionScorePerSession": 0.17647058823529416,
+      "frictionScorePerSession": 0.1764705882352941,
       "dimensions": {
         "DeviceType": {
           "Desktop": 20,
@@ -2962,7 +2962,7 @@
       "pageviewsCount": 97,
       "visitDuration": 111648,
       "engagementDuration": 44239,
-      "frictionScorePerSession": 0.6785714285714285,
+      "frictionScorePerSession": 0.6785714285714286,
       "dimensions": {
         "DeviceType": {
           "Desktop": 15,
@@ -3009,7 +3009,7 @@
       "pageviewsCount": 93,
       "visitDuration": 165387,
       "engagementDuration": 31878,
-      "frictionScorePerSession": 0.21052631578947373,
+      "frictionScorePerSession": 0.21052631578947376,
       "dimensions": {
         "DeviceType": {
           "Desktop": 18,
@@ -3094,7 +3094,7 @@
       "pageviewsCount": 54,
       "visitDuration": 59315,
       "engagementDuration": 37422,
-      "frictionScorePerSession": 1.121212121212121,
+      "frictionScorePerSession": 1.1212121212121213,
       "dimensions": {
         "DeviceType": {
           "Desktop": 3,
@@ -3138,7 +3138,7 @@
       "pageviewsCount": 98,
       "visitDuration": 106182,
       "engagementDuration": 28063,
-      "frictionScorePerSession": 0.1756756756756757,
+      "frictionScorePerSession": 0.17567567567567569,
       "dimensions": {
         "DeviceType": {
           "Desktop": 15,
@@ -3191,7 +3191,7 @@
       "pageviewsCount": 73,
       "visitDuration": 233799,
       "engagementDuration": 34922,
-      "frictionScorePerSession": 0.48484848484848486,
+      "frictionScorePerSession": 0.48484848484848475,
       "dimensions": {
         "DeviceType": {
           "Desktop": 19,
@@ -3231,7 +3231,7 @@
       "pageviewsCount": 123,
       "visitDuration": 193426,
       "engagementDuration": 39957,
-      "frictionScorePerSession": 0.42592592592592593,
+      "frictionScorePerSession": 0.42592592592592604,
       "dimensions": {
         "DeviceType": {
           "Desktop": 37,
@@ -3277,7 +3277,7 @@
       "pageviewsCount": 114,
       "visitDuration": 488243,
       "engagementDuration": 60371,
-      "frictionScorePerSession": 0.45945945945945943,
+      "frictionScorePerSession": 0.45945945945945954,
       "dimensions": {
         "DeviceType": {
           "Desktop": 29,
@@ -3407,7 +3407,7 @@
       "pageviewsCount": 65,
       "visitDuration": 55190,
       "engagementDuration": 30894,
-      "frictionScorePerSession": 0.41860465116279066,
+      "frictionScorePerSession": 0.4186046511627908,
       "dimensions": {
         "DeviceType": {
           "Desktop": 2,
@@ -3443,7 +3443,7 @@
       "pageviewsCount": 83,
       "visitDuration": 87282,
       "engagementDuration": 23437,
-      "frictionScorePerSession": 0.1384615384615385,
+      "frictionScorePerSession": 0.1384615384615384,
       "dimensions": {
         "DeviceType": {
           "Desktop": 11,
@@ -3486,7 +3486,7 @@
       "pageviewsCount": 121,
       "visitDuration": 121971,
       "engagementDuration": 37606,
-      "frictionScorePerSession": 0.22500000000000003,
+      "frictionScorePerSession": 0.22500000000000006,
       "dimensions": {
         "DeviceType": {
           "Desktop": 18,
@@ -3532,7 +3532,7 @@
       "pageviewsCount": 85,
       "visitDuration": 71448,
       "engagementDuration": 30529,
-      "frictionScorePerSession": 1.1,
+      "frictionScorePerSession": 1.1000000000000003,
       "dimensions": {
         "DeviceType": {
           "Desktop": 12,
@@ -3676,7 +3676,7 @@
       "pageviewsCount": 38,
       "visitDuration": 53679,
       "engagementDuration": 33647,
-      "frictionScorePerSession": 0.19354838709677424,
+      "frictionScorePerSession": 0.19354838709677422,
       "dimensions": {
         "DeviceType": {
           "Desktop": 7,
@@ -3717,7 +3717,7 @@
       "pageviewsCount": 47,
       "visitDuration": 76412,
       "engagementDuration": 34905,
-      "frictionScorePerSession": 0.1875,
+      "frictionScorePerSession": 0.18750000000000003,
       "dimensions": {
         "DeviceType": {
           "Desktop": 6,
@@ -3761,7 +3761,7 @@
       "pageviewsCount": 72,
       "visitDuration": 57204,
       "engagementDuration": 33615,
-      "frictionScorePerSession": 0.42187500000000006,
+      "frictionScorePerSession": 0.421875,
       "dimensions": {
         "DeviceType": {
           "Desktop": 14,
@@ -3813,7 +3813,7 @@
       "pageviewsCount": 110,
       "visitDuration": 120174,
       "engagementDuration": 36267,
-      "frictionScorePerSession": 0.6,
+      "frictionScorePerSession": 0.6000000000000002,
       "dimensions": {
         "DeviceType": {
           "Desktop": 31,
@@ -3867,7 +3867,7 @@
       "pageviewsCount": 41,
       "visitDuration": 155185,
       "engagementDuration": 28622,
-      "frictionScorePerSession": 1.08,
+      "frictionScorePerSession": 1.0799999999999998,
       "dimensions": {
         "DeviceType": {
           "Desktop": 8,
@@ -3910,7 +3910,7 @@
       "pageviewsCount": 79,
       "visitDuration": 188951,
       "engagementDuration": 31069,
-      "frictionScorePerSession": 1.3571428571428572,
+      "frictionScorePerSession": 1.357142857142857,
       "dimensions": {
         "DeviceType": {
           "Desktop": 24,
@@ -3963,7 +3963,7 @@
       "pageviewsCount": 77,
       "visitDuration": 70553,
       "engagementDuration": 23013,
-      "frictionScorePerSession": 0.2903225806451612,
+      "frictionScorePerSession": 0.2903225806451614,
       "dimensions": {
         "DeviceType": {
           "Desktop": 19,
@@ -4108,22 +4108,22 @@
       }
     },
     "2026-10-05": {
-      "sessionCount": 49,
-      "visitorCount": 49,
-      "pageviewsCount": 56,
-      "visitDuration": 36364,
-      "engagementDuration": 21026,
-      "frictionScorePerSession": 0.06122448979591838,
+      "sessionCount": 50,
+      "visitorCount": 50,
+      "pageviewsCount": 60,
+      "visitDuration": 36633,
+      "engagementDuration": 21509,
+      "frictionScorePerSession": 0.05999999999999999,
       "dimensions": {
         "DeviceType": {
-          "Desktop": 1,
+          "Desktop": 2,
           "Phone": 48
         },
         "EntryPage": {
-          "/": 49
+          "/": 50
         },
         "Country": {
-          "US": 5,
+          "US": 6,
           "RO": 40,
           "ZA": 1,
           "IN": 1,
@@ -4131,13 +4131,13 @@
           "SA": 1
         },
         "ReferrerType": {
-          "__NULL__": 3,
+          "__NULL__": 4,
           "Link": 42,
           "Internal": 3,
           "Search": 1
         },
         "Browser": {
-          "Chrome": 1,
+          "Chrome": 2,
           "Facebook App": 2,
           "Chrome Mobile": 43,
           "Safari mobile": 1,
@@ -4148,6 +4148,35 @@
     }
   },
   "recordings": [
+    {
+      "id": "ece3687938c5f1a4b3708f9a0a627745",
+      "token": "",
+      "created": "2026-10-05T15:56:11.089+00:00",
+      "lastActivity": "2026-10-05T15:57:00.904+00:00",
+      "pages": 4,
+      "duration": 49815,
+      "engagementTime": 45191,
+      "friction": 0,
+      "country": "US",
+      "region": "Nevada",
+      "lang": "en-US,en;q=0.9",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+      "browser": "Chrome",
+      "browserVersion": "153.0.0.0",
+      "os": "Windows",
+      "osVersion": "10",
+      "device": "Desktop",
+      "referrer": "",
+      "screenRes": "1536x960",
+      "entry": "https://meetbrandwide.com/",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/ece3687938c5f1a4b3708f9a0a627745/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/ece3687938c5f1a4b3708f9a0a627745/play"
+    },
     {
       "id": "cf476a65c9b7a373fb8aa4952b58bde0",
       "token": "",
@@ -4867,54 +4896,24 @@
       "beingProcessed": false,
       "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/550689cc9029b08411749861d7373293/play",
       "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/550689cc9029b08411749861d7373293/play"
-    },
-    {
-      "id": "6abc81b7f91f4b066a9d4c1cbbfa2b69",
-      "token": "",
-      "created": "2026-10-05T11:16:44.096+00:00",
-      "lastActivity": "2026-10-05T11:19:21.759+00:00",
-      "pages": 2,
-      "duration": 157663,
-      "engagementTime": 39494,
-      "friction": 0,
-      "country": "IN",
-      "region": "",
-      "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
-      "browser": "Chrome",
-      "browserVersion": "154.0.0.0",
-      "os": "Windows",
-      "osVersion": "10",
-      "device": "Desktop",
-      "referrer": "https://www.google.com",
-      "referrerType": "Search",
-      "screenRes": "1366x768",
-      "entry": "https://meetbrandwide.com/",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6abc81b7f91f4b066a9d4c1cbbfa2b69/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6abc81b7f91f4b066a9d4c1cbbfa2b69/play"
     }
   ],
   "pages": [
     {
       "displayUrl": "/",
-      "uri": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIs5Hmw5yjlwMVD7g3CB0hJQ5uEAEYASAAEgKu2_D_BwE",
+      "uri": "https://meetbrandwide.com/",
       "starred": false,
       "title": "Franchise Management Software & CRM Platform | BrandWide",
-      "views": 5135,
-      "visitTime": 47489,
-      "engagementTime": 16841,
-      "clicks": 5749,
-      "friction": 0.18987341,
-      "renderTime": 1792,
+      "views": 5136,
+      "visitTime": 47482,
+      "engagementTime": 16840,
+      "clicks": 5751,
+      "friction": 0.18983644,
+      "renderTime": 1790,
       "scroll": 19,
       "fold": 849,
-      "height": 14262,
-      "size": 422438,
+      "height": 14261,
+      "size": 422408,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
@@ -5020,16 +5019,16 @@
       "uri": "https://meetbrandwide.com/see-a-demo/",
       "starred": false,
       "title": "See a Demo - BrandWide",
-      "views": 153,
-      "visitTime": 36893,
-      "engagementTime": 12360,
-      "clicks": 190,
-      "friction": 0.078431375,
+      "views": 154,
+      "visitTime": 36740,
+      "engagementTime": 12366,
+      "clicks": 191,
+      "friction": 0.077922076,
       "renderTime": 448,
-      "scroll": 36,
+      "scroll": 37,
       "fold": 824,
-      "height": 3177,
-      "size": 285554,
+      "height": 3175,
+      "size": 284765,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
@@ -5134,6 +5133,12 @@
   "syncs": [
     {
       "at": "2026-10-05T16:41:29.660Z",
+      "daysWritten": 91,
+      "from": "2026-07-07",
+      "to": "2026-10-05"
+    },
+    {
+      "at": "2026-10-05T17:04:38.328Z",
       "daysWritten": 91,
       "from": "2026-07-07",
       "to": "2026-10-05"
