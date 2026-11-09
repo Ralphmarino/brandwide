@@ -12,6 +12,7 @@ import {
 import { buildCtrModel } from './shared/ctr.js';
 import { rankOpportunities, pathOf } from './shared/opportunity.js';
 import { analyseCompetitors, competitorContextForPage } from './shared/competitors.js';
+import { buildExecutiveSummary } from './shared/executive-summary.js';
 import { applyChartDefaults, lineChart, barChart, donutChart, destroyAll, PALETTE } from './charts.js';
 import {
   num, compact, axisNum, percent, decimal, duration, shortDate, longDate, dateTime,
@@ -208,10 +209,77 @@ function refreshStatusStrip() {
   }
 }
 
+/* ------------------------------------------------------- Executive summary */
+
+/**
+ * A plain-English read of the period for the client's team, at the top of the
+ * Overview. Built from whatever is actually loaded — a source that is missing
+ * or on sample data contributes nothing rather than a guess.
+ */
+function renderExecutiveSummary() {
+  const host = $id('executive-summary');
+  if (!host) return;
+
+  const summary = buildExecutiveSummary(state, { num, compact, percent, decimal, longDate });
+  if (!summary) {
+    host.innerHTML = '';
+    return;
+  }
+
+  const range = state.range
+    ? `${longDate(state.range.startDate)} – ${longDate(state.range.endDate)}`
+    : '';
+
+  host.innerHTML = `
+    <div class="card summary">
+      <div class="card__head">
+        <div>
+          <h3 class="card__title">Executive summary</h3>
+          <p class="card__subtitle">${range}${range ? ' · ' : ''}compared with the preceding period</p>
+        </div>
+        <div class="card__actions">
+          <button class="btn btn--ghost btn--sm" id="copy-summary" type="button">Copy as text</button>
+        </div>
+      </div>
+      <div class="card__body">
+        <p class="summary__headline">${summary.headline}</p>
+        <dl class="summary__list">
+          ${summary.points
+            .map(
+              (point) => `
+              <div class="summary__item">
+                <dt>${point.label}</dt>
+                <dd>${point.text}</dd>
+              </div>`
+            )
+            .join('')}
+        </dl>
+        ${summary.caveats.length
+          ? `<p class="summary__caveat">${summary.caveats.join(' ')}</p>`
+          : ''}
+      </div>
+    </div>`;
+
+  // Emailing the summary is the most likely next step after reading it.
+  $id('copy-summary')?.addEventListener('click', (event) => {
+    const plain =
+      `${summary.headline}\n${range}\n\n` +
+      summary.points.map((point) => `${point.label}: ${point.text}`).join('\n\n') +
+      (summary.caveats.length ? `\n\nNote: ${summary.caveats.join(' ')}` : '');
+    const button = event.currentTarget;
+    navigator.clipboard.writeText(plain).then(
+      () => { button.textContent = 'Copied'; },
+      () => { button.textContent = 'Copy failed'; }
+    );
+    setTimeout(() => { button.textContent = 'Copy as text'; }, 2200);
+  });
+}
+
 /* --------------------------------------------------------------- Overview */
 
 function renderOverview() {
   renderErrors('overview-errors', ['ga4', 'gsc']);
+  renderExecutiveSummary();
 
   const ga4 = state.ga4;
   if (ga4) {
@@ -267,21 +335,6 @@ function renderOverview() {
     skeletonKpis('overview-kpis', 6);
   } else {
     $id('overview-kpis').innerHTML = '';
-  }
-
-  const check = state.ga4?.userCountCheck;
-  const checkBox = $id('overview-errors');
-  if (check?.inverted && checkBox) {
-    checkBox.innerHTML += `
-      <div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
-        <strong>New users exceeds total users by ${num(check.newUsersExceedsBy)}</strong>
-        Every user whose first visit falls in this period is also a user with an event in it,
-        so new users should never be the larger figure. Daily new users sum to
-        ${num(check.dailyNewUsersSum)} against a period total of ${num(check.periodNewUsers)} —
-        ${Math.abs(check.dailyNewUsersSum - check.periodNewUsers) <= Math.max(2, check.periodNewUsers * 0.01)
-          ? 'they match, so new users is not being deduplicated across days. That points at first_visit firing more than once per person: cross-domain tracking without a linker, consent-mode re-acceptance, or a duplicate GA4 tag.'
-          : 'they differ, which points at deduplication or modelling rather than duplicate tagging.'}
-      </div>`;
   }
 
   const gsc = state.gsc;
@@ -1477,6 +1530,20 @@ async function renderSetup() {
     ];
 
     const rankings = state.rankings;
+    const check = state.ga4?.userCountCheck;
+    const ga4Note = check?.inverted
+      ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
+           <strong>GA4: new users exceeds total users by ${num(check.newUsersExceedsBy)}</strong>
+           <p style="margin:4px 0 6px;font-weight:400">Internal only — not shown on the reports.</p>
+           Every user whose first visit falls in the period is also a user with an event in it, so new
+           users should never be the larger figure. Daily new users sum to ${num(check.dailyNewUsersSum)}
+           against a period total of ${num(check.periodNewUsers)} —
+           ${Math.abs(check.dailyNewUsersSum - check.periodNewUsers) <= Math.max(2, check.periodNewUsers * 0.01)
+             ? 'they match, so new users is not being deduplicated across days. That points at first_visit firing more than once per person: cross-domain tracking without a linker, consent-mode re-acceptance, or a duplicate GA4 tag.'
+             : 'they differ, which points at deduplication or modelling rather than duplicate tagging.'}
+         </div>`
+      : '';
+
     const rankingNotes = (rankings?.warnings || []).length
       ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
            <strong>Ranking data notes (${rankings.warnings.length})</strong>
@@ -1532,6 +1599,7 @@ async function renderSetup() {
       (health.serviceAccountEmail
         ? `<p class="cell-secondary" style="margin:14px 0 0">Grant this service account read access in GA4 and Search Console: <code>${health.serviceAccountEmail}</code></p>`
         : `<p class="cell-secondary" style="margin:14px 0 0">No Google service account is configured yet.</p>`) +
+      ga4Note +
       rankingNotes;
   } catch (error) {
     panel.innerHTML = `<div class="error-box"><strong>Status check failed</strong>${error.message}</div>`;
