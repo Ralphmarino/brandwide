@@ -1,7 +1,7 @@
 {
   "websiteId": "e4495438-587e-42d7-95f7-b371c838c0ab",
   "source": "mouseflow-snapshot-sync",
-  "syncedAt": "2026-10-26T04:33:11.227Z",
+  "syncedAt": "2026-11-09T16:10:22.815Z",
   "days": {
     "2026-07-07": {
       "sessionCount": 57,
@@ -1635,7 +1635,7 @@
       "pageviewsCount": 45,
       "visitDuration": 138819,
       "engagementDuration": 34584,
-      "frictionScorePerSession": 0.4137931034482758,
+      "frictionScorePerSession": 0.4137931034482759,
       "dimensions": {
         "DeviceType": {
           "Phone": 15,
@@ -1648,14 +1648,15 @@
           "/franchise-management-software-pricing": 1,
           "/contact": 1,
           "/blog": 1,
-          "__OTHER__": 2
+          "/blog/meet-ria-ai-franchise-sales-assistant": 1,
+          "__OTHER__": 1
         },
         "Country": {
           "US": 22,
           "IN": 4,
+          "JP": 1,
           "UA": 1,
-          "VN": 1,
-          "JP": 1
+          "VN": 1
         },
         "ReferrerType": {
           "Link": 11,
@@ -1664,9 +1665,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 6,
           "Chrome": 11,
           "Chrome Mobile": 1,
+          "Facebook App": 6,
           "Safari mobile": 6,
           "Microsoft Edge": 3,
           "Android WebView": 1,
@@ -1680,7 +1681,7 @@
       "pageviewsCount": 74,
       "visitDuration": 306922,
       "engagementDuration": 55886,
-      "frictionScorePerSession": 0.4444444444444445,
+      "frictionScorePerSession": 0.4444444444444444,
       "dimensions": {
         "DeviceType": {
           "Phone": 15,
@@ -1698,8 +1699,8 @@
           "US": 21,
           "RO": 1,
           "NG": 1,
-          "ZA": 1,
           "IN": 7,
+          "ZA": 1,
           "PK": 1,
           "BD": 3,
           "__OTHER__": 1
@@ -1711,9 +1712,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 4,
           "Chrome": 18,
           "Chrome Mobile": 4,
+          "Facebook App": 4,
           "Safari mobile": 5,
           "Microsoft Edge": 1,
           "Android WebView": 2,
@@ -1728,7 +1729,7 @@
       "pageviewsCount": 48,
       "visitDuration": 148337,
       "engagementDuration": 31213,
-      "frictionScorePerSession": 0.1,
+      "frictionScorePerSession": 0.10000000000000002,
       "dimensions": {
         "DeviceType": {
           "Phone": 13,
@@ -1738,14 +1739,14 @@
           "/": 25,
           "/franchise-management-software": 1,
           "/franchisee": 1,
-          "/franchise-onboarding-system": 1,
           "/contact": 1,
+          "/franchise-onboarding-system": 1,
           "/request-a-demo": 1
         },
         "Country": {
           "US": 18,
-          "ZA": 3,
           "IN": 6,
+          "ZA": 3,
           "CA": 1,
           "GB": 1,
           "BD": 1
@@ -1758,9 +1759,9 @@
           "Social": 2
         },
         "Browser": {
-          "Facebook App": 7,
           "Chrome": 14,
           "Chrome Mobile": 1,
+          "Facebook App": 7,
           "Safari mobile": 4,
           "Microsoft Edge": 2,
           "Safari": 1,
@@ -1774,7 +1775,7 @@
       "pageviewsCount": 34,
       "visitDuration": 173567,
       "engagementDuration": 43906,
-      "frictionScorePerSession": 0.09090909090909091,
+      "frictionScorePerSession": 0.0909090909090909,
       "dimensions": {
         "DeviceType": {
           "Phone": 15,
@@ -1788,8 +1789,8 @@
         "Country": {
           "US": 8,
           "RO": 1,
-          "ZA": 4,
           "IN": 6,
+          "ZA": 4,
           "CA": 1,
           "PK": 1,
           "VN": 1
@@ -1800,9 +1801,9 @@
           "Internal": 4
         },
         "Browser": {
-          "Facebook App": 5,
           "Chrome": 7,
           "Chrome Mobile": 6,
+          "Facebook App": 5,
           "Safari mobile": 3,
           "Android WebView": 1
         }
@@ -1838,9 +1839,9 @@
           "__NULL__": 3
         },
         "Browser": {
-          "Facebook App": 28,
           "Chrome": 1,
           "Chrome Mobile": 6,
+          "Facebook App": 28,
           "Safari mobile": 2,
           "Instagram App": 1,
           "LinkedIn App": 1
@@ -1853,7 +1854,7 @@
       "pageviewsCount": 108,
       "visitDuration": 39926,
       "engagementDuration": 18234,
-      "frictionScorePerSession": 1.8461538461538465,
+      "frictionScorePerSession": 1.846153846153846,
       "dimensions": {
         "DeviceType": {
           "Phone": 43,
@@ -1875,10 +1876,10 @@
           "GB": 1,
           "SA": 1,
           "AU": 1,
-          "DE": 1,
-          "AR": 2,
           "IE": 1,
-          "NL": 2
+          "DE": 1,
+          "NL": 2,
+          "AR": 2
         },
         "ReferrerType": {
           "Link": 41,
@@ -1888,12 +1889,12 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 39,
           "Chrome": 46,
           "Chrome Mobile": 2,
+          "Facebook App": 39,
           "Instagram App": 1,
-          "Safari": 2,
-          "Google App": 1
+          "Google App": 1,
+          "Safari": 2
         }
       }
     },
@@ -1903,7 +1904,7 @@
       "pageviewsCount": 112,
       "visitDuration": 142591,
       "engagementDuration": 32122,
-      "frictionScorePerSession": 0.608695652173913,
+      "frictionScorePerSession": 0.6086956521739131,
       "dimensions": {
         "DeviceType": {
           "Phone": 44,
@@ -1937,13 +1938,13 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 30,
           "Chrome": 23,
           "Chrome Mobile": 5,
+          "Facebook App": 30,
           "Safari mobile": 5,
           "Microsoft Edge": 2,
-          "Mobile Samsung Browser": 1,
-          "Instagram App": 3
+          "Instagram App": 3,
+          "Mobile Samsung Browser": 1
         }
       }
     },
@@ -1953,7 +1954,7 @@
       "pageviewsCount": 46,
       "visitDuration": 118722,
       "engagementDuration": 27661,
-      "frictionScorePerSession": 0.41379310344827586,
+      "frictionScorePerSession": 0.41379310344827597,
       "dimensions": {
         "DeviceType": {
           "Phone": 15,
@@ -1970,8 +1971,8 @@
         "Country": {
           "US": 13,
           "RO": 6,
-          "ZA": 2,
           "IN": 4,
+          "ZA": 2,
           "CA": 1,
           "GB": 2,
           "AU": 1
@@ -1984,9 +1985,9 @@
           "Social": 2
         },
         "Browser": {
-          "Facebook App": 10,
           "Chrome": 12,
           "Chrome Mobile": 2,
+          "Facebook App": 10,
           "Safari mobile": 1,
           "Microsoft Edge": 2,
           "Instagram App": 2
@@ -2027,9 +2028,9 @@
           "Internal": 4
         },
         "Browser": {
-          "Facebook App": 34,
           "Chrome": 12,
           "Chrome Mobile": 1,
+          "Facebook App": 34,
           "Safari mobile": 2,
           "Instagram App": 4
         }
@@ -2041,7 +2042,7 @@
       "pageviewsCount": 72,
       "visitDuration": 191583,
       "engagementDuration": 41530,
-      "frictionScorePerSession": 0.25000000000000006,
+      "frictionScorePerSession": 0.24999999999999997,
       "dimensions": {
         "DeviceType": {
           "Phone": 35,
@@ -2050,7 +2051,7 @@
         "EntryPage": {
           "/": 50,
           "/franchise-management-software-pricing": 1,
-          "/blog/best-franchise-management-software-for-compliance-audit": 1
+          "__OTHER__": 1
         },
         "Country": {
           "US": 18,
@@ -2061,7 +2062,7 @@
           "PK": 1,
           "PH": 1,
           "BR": 1,
-          "GT": 1
+          "__OTHER__": 1
         },
         "ReferrerType": {
           "Link": 28,
@@ -2070,14 +2071,14 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 12,
           "Chrome": 13,
           "Chrome Mobile": 17,
+          "Facebook App": 12,
           "Safari mobile": 2,
           "Microsoft Edge": 1,
           "Instagram App": 2,
-          "Safari": 3,
           "Google App": 1,
+          "Safari": 3,
           "Huawei Browser Mobile": 1
         }
       }
@@ -2088,7 +2089,7 @@
       "pageviewsCount": 57,
       "visitDuration": 174629,
       "engagementDuration": 38824,
-      "frictionScorePerSession": 0.6551724137931032,
+      "frictionScorePerSession": 0.6551724137931034,
       "dimensions": {
         "DeviceType": {
           "Phone": 18,
@@ -2103,8 +2104,8 @@
         "Country": {
           "US": 10,
           "NG": 8,
-          "ZA": 3,
           "IN": 4,
+          "ZA": 3,
           "SA": 1,
           "PK": 1,
           "BD": 1,
@@ -2118,12 +2119,12 @@
           "Social": 2
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 11,
           "Chrome Mobile": 4,
+          "Facebook App": 11,
           "Safari mobile": 1,
-          "Mobile Samsung Browser": 1,
-          "Google App": 1
+          "Google App": 1,
+          "Mobile Samsung Browser": 1
         }
       }
     },
@@ -2147,8 +2148,8 @@
         "Country": {
           "US": 8,
           "NG": 7,
-          "ZA": 1,
-          "IN": 1
+          "IN": 1,
+          "ZA": 1
         },
         "ReferrerType": {
           "Link": 12,
@@ -2157,9 +2158,9 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 8,
           "Chrome": 3,
           "Chrome Mobile": 4,
+          "Facebook App": 8,
           "Safari mobile": 2
         }
       }
@@ -2195,13 +2196,13 @@
           "Internal": 4
         },
         "Browser": {
-          "Facebook App": 9,
           "Chrome": 2,
           "Chrome Mobile": 5,
+          "Facebook App": 9,
           "Safari mobile": 2,
-          "Mobile Samsung Browser": 4,
           "Instagram App": 1,
-          "Google App": 1
+          "Google App": 1,
+          "Mobile Samsung Browser": 4
         }
       }
     },
@@ -2211,7 +2212,7 @@
       "pageviewsCount": 74,
       "visitDuration": 320958,
       "engagementDuration": 37380,
-      "frictionScorePerSession": 0.1578947368421053,
+      "frictionScorePerSession": 0.15789473684210528,
       "dimensions": {
         "DeviceType": {
           "Phone": 19,
@@ -2241,8 +2242,8 @@
           "Search": 11
         },
         "Browser": {
-          "Facebook App": 13,
           "Chrome": 18,
+          "Facebook App": 13,
           "Safari mobile": 6,
           "Microsoft Edge": 1
         }
@@ -2265,8 +2266,8 @@
           "/franchise-management-software": 1,
           "/franchise-marketing-automation": 2,
           "/franchise-solutions": 1,
-          "/franchise-crm": 1,
-          "/blog/what-is-franchise-development": 2
+          "/blog/what-is-franchise-development": 2,
+          "/franchise-crm": 1
         },
         "Country": {
           "US": 16,
@@ -2281,8 +2282,8 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 3,
           "Chrome": 13,
+          "Facebook App": 3,
           "Safari mobile": 2,
           "Microsoft Edge": 1,
           "Android WebView": 1,
@@ -2296,7 +2297,7 @@
       "pageviewsCount": 64,
       "visitDuration": 89737,
       "engagementDuration": 32192,
-      "frictionScorePerSession": 0.29166666666666663,
+      "frictionScorePerSession": 0.29166666666666674,
       "dimensions": {
         "DeviceType": {
           "Phone": 32,
@@ -2307,8 +2308,8 @@
           "/franchise-management-software": 1,
           "/franchisee": 2,
           "/franchise-onboarding-system": 1,
-          "/franchisee-communication-collaboration": 1,
-          "/field-audit-software": 2
+          "/field-audit-software": 2,
+          "/franchisee-communication-collaboration": 1
         },
         "Country": {
           "US": 15,
@@ -2325,9 +2326,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 24,
           "Chrome": 14,
           "Chrome Mobile": 5,
+          "Facebook App": 24,
           "Safari mobile": 2,
           "Microsoft Edge": 2,
           "Mobile Samsung Browser": 1
@@ -2340,7 +2341,7 @@
       "pageviewsCount": 73,
       "visitDuration": 170481,
       "engagementDuration": 64254,
-      "frictionScorePerSession": 0.7812499999999999,
+      "frictionScorePerSession": 0.78125,
       "dimensions": {
         "DeviceType": {
           "Phone": 18,
@@ -2366,9 +2367,9 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 11,
           "Chrome Mobile": 3,
+          "Facebook App": 11,
           "Safari mobile": 2,
           "Microsoft Edge": 1,
           "Android WebView": 1,
@@ -2383,7 +2384,7 @@
       "pageviewsCount": 64,
       "visitDuration": 94035,
       "engagementDuration": 47123,
-      "frictionScorePerSession": 0.5749999999999998,
+      "frictionScorePerSession": 0.575,
       "dimensions": {
         "DeviceType": {
           "Phone": 32,
@@ -2395,15 +2396,15 @@
           "/see-a-demo": 1,
           "/blog/what-is-franchise-management": 1,
           "/blog/5-components-of-successful-franchise-management": 1,
-          "/blog/best-franchise-management-software-for-compliance-audit": 1
+          "__OTHER__": 1
         },
         "Country": {
           "US": 9,
           "RO": 17,
           "NG": 2,
-          "ZA": 1,
           "IN": 1,
           "BG": 6,
+          "ZA": 1,
           "PK": 1,
           "PH": 1,
           "ID": 1,
@@ -2417,9 +2418,9 @@
           "Social": 4
         },
         "Browser": {
-          "Facebook App": 27,
           "Chrome": 9,
-          "Chrome Mobile": 4
+          "Chrome Mobile": 4,
+          "Facebook App": 27
         }
       }
     },
@@ -2429,7 +2430,7 @@
       "pageviewsCount": 54,
       "visitDuration": 78514,
       "engagementDuration": 36648,
-      "frictionScorePerSession": 0.45238095238095233,
+      "frictionScorePerSession": 0.4523809523809524,
       "dimensions": {
         "DeviceType": {
           "Phone": 40,
@@ -2457,12 +2458,12 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 26,
           "Chrome": 2,
           "Chrome Mobile": 3,
+          "Facebook App": 26,
           "Safari mobile": 7,
-          "Mobile Samsung Browser": 3,
-          "Google App": 1
+          "Google App": 1,
+          "Mobile Samsung Browser": 3
         }
       }
     },
@@ -2472,7 +2473,7 @@
       "pageviewsCount": 38,
       "visitDuration": 46999,
       "engagementDuration": 27306,
-      "frictionScorePerSession": 0.3235294117647059,
+      "frictionScorePerSession": 0.32352941176470584,
       "dimensions": {
         "DeviceType": {
           "Phone": 27,
@@ -2494,9 +2495,9 @@
           "Internal": 1
         },
         "Browser": {
-          "Facebook App": 16,
           "Chrome": 6,
           "Chrome Mobile": 9,
+          "Facebook App": 16,
           "Safari mobile": 2,
           "Safari": 1
         }
@@ -2517,10 +2518,10 @@
         "EntryPage": {
           "/": 53,
           "/franchisee": 2,
-          "/terms": 1,
           "/blog": 1,
-          "/pricing": 1,
+          "/terms": 1,
           "/blog/what-is-franchise-development": 1,
+          "/pricing": 1,
           "__OTHER__": 1
         },
         "Country": {
@@ -2540,14 +2541,14 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 10,
           "Chrome": 13,
           "Chrome Mobile": 24,
+          "Facebook App": 10,
           "Safari mobile": 7,
           "Microsoft Edge": 1,
+          "Google App": 1,
           "Mobile Samsung Browser": 1,
           "Safari": 1,
-          "Google App": 1,
           "Apple Mail": 2
         }
       }
@@ -2587,9 +2588,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 5,
           "Chrome": 6,
           "Chrome Mobile": 6,
+          "Facebook App": 5,
           "Microsoft Edge": 2
         }
       }
@@ -2600,7 +2601,7 @@
       "pageviewsCount": 74,
       "visitDuration": 145361,
       "engagementDuration": 28411,
-      "frictionScorePerSession": 0.13953488372093026,
+      "frictionScorePerSession": 0.13953488372093023,
       "dimensions": {
         "DeviceType": {
           "Phone": 24,
@@ -2611,9 +2612,9 @@
           "/franchise-management-software": 2,
           "/franchise-onboarding-system": 1,
           "/request-a-demo": 1,
+          "/about": 1,
           "/franchisee-communication-collaboration": 1,
-          "/franchisee-operations-management-automation": 2,
-          "/about": 1
+          "/franchisee-operations-management-automation": 2
         },
         "Country": {
           "US": 23,
@@ -2634,9 +2635,9 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 9,
           "Chrome": 15,
           "Chrome Mobile": 8,
+          "Facebook App": 9,
           "Safari mobile": 4,
           "Microsoft Edge": 3,
           "Mobile Samsung Browser": 1,
@@ -2652,7 +2653,7 @@
       "pageviewsCount": 106,
       "visitDuration": 9906,
       "engagementDuration": 7212,
-      "frictionScorePerSession": 0.019607843137254898,
+      "frictionScorePerSession": 0.019607843137254905,
       "dimensions": {
         "DeviceType": {
           "Phone": 20,
@@ -2669,9 +2670,9 @@
           "CA": 4,
           "GB": 4,
           "AU": 2,
+          "IE": 2,
           "DE": 1,
-          "AT": 1,
-          "IE": 2
+          "AT": 1
         },
         "ReferrerType": {
           "Link": 11,
@@ -2679,9 +2680,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 5,
           "Chrome": 81,
           "Chrome Mobile": 2,
+          "Facebook App": 5,
           "Safari mobile": 10,
           "Microsoft Edge": 1,
           "Android WebView": 1,
@@ -2725,9 +2726,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 16,
           "Chrome": 9,
           "Chrome Mobile": 2,
+          "Facebook App": 16,
           "Safari mobile": 7,
           "Android WebView": 2,
           "Mobile Samsung Browser": 1,
@@ -2755,8 +2756,8 @@
           "US": 9,
           "RO": 4,
           "NG": 6,
-          "ZA": 1,
-          "IN": 2
+          "IN": 2,
+          "ZA": 1
         },
         "ReferrerType": {
           "Link": 17,
@@ -2764,9 +2765,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 4,
           "Chrome Mobile": 6,
+          "Facebook App": 11,
           "Safari": 1
         }
       }
@@ -2790,9 +2791,9 @@
         "Country": {
           "US": 20,
           "NG": 13,
-          "ZA": 4,
           "IN": 1,
           "BG": 8,
+          "ZA": 4,
           "CA": 2,
           "FR": 1
         },
@@ -2803,9 +2804,9 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 17,
           "Chrome": 4,
           "Chrome Mobile": 18,
+          "Facebook App": 17,
           "Safari mobile": 5,
           "Android WebView": 3,
           "Mobile Samsung Browser": 1,
@@ -2829,15 +2830,15 @@
           "/": 39,
           "/franchise-management-software": 1,
           "/contact": 1,
-          "/franchise-crm-solution": 1,
-          "/franchise-royalty-management": 2
+          "/franchise-royalty-management": 2,
+          "/franchise-crm-solution": 1
         },
         "Country": {
           "US": 17,
           "NG": 9,
-          "ZA": 7,
           "IN": 1,
           "BG": 2,
+          "ZA": 7,
           "CA": 1,
           "GB": 2,
           "PK": 2,
@@ -2852,14 +2853,14 @@
           "Search": 6
         },
         "Browser": {
-          "Facebook App": 15,
           "Chrome": 8,
           "Chrome Mobile": 13,
+          "Facebook App": 15,
           "Safari mobile": 1,
           "Microsoft Edge": 2,
           "Android WebView": 2,
-          "Mobile Samsung Browser": 1,
           "Google App": 1,
+          "Mobile Samsung Browser": 1,
           "Firefox": 1
         }
       }
@@ -2870,7 +2871,7 @@
       "pageviewsCount": 79,
       "visitDuration": 257052,
       "engagementDuration": 72708,
-      "frictionScorePerSession": 0.5000000000000002,
+      "frictionScorePerSession": 0.5000000000000001,
       "dimensions": {
         "DeviceType": {
           "Phone": 29,
@@ -2884,8 +2885,8 @@
           "US": 10,
           "RO": 1,
           "NG": 16,
-          "ZA": 5,
           "IN": 4,
+          "ZA": 5,
           "GB": 1,
           "UA": 1,
           "VN": 1,
@@ -2898,13 +2899,13 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 13,
           "Chrome": 8,
           "Chrome Mobile": 10,
+          "Facebook App": 13,
           "Microsoft Edge": 3,
           "Android WebView": 2,
-          "Mobile Samsung Browser": 3,
-          "Google App": 1
+          "Google App": 1,
+          "Mobile Samsung Browser": 3
         }
       }
     },
@@ -2914,7 +2915,7 @@
       "pageviewsCount": 58,
       "visitDuration": 133103,
       "engagementDuration": 30700,
-      "frictionScorePerSession": 0.17647058823529413,
+      "frictionScorePerSession": 0.17647058823529416,
       "dimensions": {
         "DeviceType": {
           "Phone": 14,
@@ -2923,16 +2924,16 @@
         "EntryPage": {
           "/": 29,
           "/franchise-management-software-pricing": 1,
-          "/franchise-solutions": 1,
           "/blog": 1,
+          "/franchise-solutions": 1,
           "/blog/what-is-franchise-management": 1,
           "/about": 1
         },
         "Country": {
           "US": 20,
           "RO": 1,
-          "ZA": 7,
           "IN": 1,
+          "ZA": 7,
           "CA": 1,
           "GB": 2,
           "SA": 1,
@@ -2945,14 +2946,14 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 6,
           "Chrome": 15,
           "Chrome Mobile": 4,
+          "Facebook App": 6,
           "Safari mobile": 1,
           "Microsoft Edge": 1,
           "Android WebView": 2,
-          "Safari": 4,
-          "Google App": 1
+          "Google App": 1,
+          "Safari": 4
         }
       }
     },
@@ -2962,7 +2963,7 @@
       "pageviewsCount": 97,
       "visitDuration": 111648,
       "engagementDuration": 44239,
-      "frictionScorePerSession": 0.6785714285714285,
+      "frictionScorePerSession": 0.6785714285714287,
       "dimensions": {
         "DeviceType": {
           "Phone": 41,
@@ -2979,9 +2980,9 @@
           "US": 21,
           "RO": 1,
           "NG": 20,
-          "ZA": 2,
           "IN": 1,
           "BG": 1,
+          "ZA": 2,
           "CA": 4,
           "GB": 5,
           "PK": 1
@@ -2993,9 +2994,9 @@
           "Search": 3
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 9,
           "Chrome Mobile": 23,
+          "Facebook App": 11,
           "Safari mobile": 5,
           "Microsoft Edge": 5,
           "Mobile Samsung Browser": 2,
@@ -3009,7 +3010,7 @@
       "pageviewsCount": 93,
       "visitDuration": 165387,
       "engagementDuration": 31878,
-      "frictionScorePerSession": 0.2105263157894737,
+      "frictionScorePerSession": 0.21052631578947367,
       "dimensions": {
         "DeviceType": {
           "Phone": 38,
@@ -3021,7 +3022,7 @@
           "/franchise-management-software": 1,
           "/franchise-management-software-pricing": 1,
           "/franchise-royalty-management": 3,
-          "__OTHER__": 1
+          "/tools-to-increase-franchisee-sales-2": 1
         },
         "Country": {
           "US": 19,
@@ -3041,9 +3042,9 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 26,
           "Chrome": 17,
           "Chrome Mobile": 8,
+          "Facebook App": 26,
           "Safari mobile": 1,
           "Microsoft Edge": 1,
           "Android WebView": 4
@@ -3056,7 +3057,7 @@
       "pageviewsCount": 50,
       "visitDuration": 37760,
       "engagementDuration": 24323,
-      "frictionScorePerSession": 0.2926829268292683,
+      "frictionScorePerSession": 0.29268292682926833,
       "dimensions": {
         "DeviceType": {
           "Phone": 39,
@@ -3080,9 +3081,9 @@
           "__NULL__": 3
         },
         "Browser": {
-          "Facebook App": 33,
           "Chrome": 2,
           "Chrome Mobile": 3,
+          "Facebook App": 33,
           "Android WebView": 2,
           "Instagram App": 1
         }
@@ -3110,9 +3111,9 @@
           "US": 13,
           "RO": 3,
           "NG": 12,
-          "ZA": 1,
           "IN": 1,
           "BG": 2,
+          "ZA": 1,
           "PL": 1
         },
         "ReferrerType": {
@@ -3122,13 +3123,13 @@
           "Search": 3
         },
         "Browser": {
-          "Facebook App": 18,
           "Chrome": 3,
           "Chrome Mobile": 6,
+          "Facebook App": 18,
           "Safari mobile": 2,
-          "Mobile Samsung Browser": 2,
           "Instagram App": 1,
-          "Google App": 1
+          "Google App": 1,
+          "Mobile Samsung Browser": 2
         }
       }
     },
@@ -3138,7 +3139,7 @@
       "pageviewsCount": 98,
       "visitDuration": 106182,
       "engagementDuration": 28063,
-      "frictionScorePerSession": 0.17567567567567569,
+      "frictionScorePerSession": 0.17567567567567566,
       "dimensions": {
         "DeviceType": {
           "Phone": 58,
@@ -3174,9 +3175,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 35,
           "Chrome": 15,
           "Chrome Mobile": 13,
+          "Facebook App": 35,
           "Safari mobile": 3,
           "Android WebView": 5,
           "Instagram App": 1,
@@ -3191,7 +3192,7 @@
       "pageviewsCount": 73,
       "visitDuration": 233799,
       "engagementDuration": 34922,
-      "frictionScorePerSession": 0.484848484848485,
+      "frictionScorePerSession": 0.48484848484848503,
       "dimensions": {
         "DeviceType": {
           "Phone": 14,
@@ -3217,9 +3218,9 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 8,
           "Chrome": 19,
           "Chrome Mobile": 1,
+          "Facebook App": 8,
           "Safari mobile": 3,
           "Google App": 2
         }
@@ -3231,7 +3232,7 @@
       "pageviewsCount": 123,
       "visitDuration": 193426,
       "engagementDuration": 39957,
-      "frictionScorePerSession": 0.42592592592592593,
+      "frictionScorePerSession": 0.425925925925926,
       "dimensions": {
         "DeviceType": {
           "Phone": 17,
@@ -3241,8 +3242,8 @@
           "/": 45,
           "/franchise-management-software": 3,
           "/contact": 1,
-          "/franchise-solutions": 2,
           "/blog": 2,
+          "/franchise-solutions": 2,
           "__OTHER__": 1
         },
         "Country": {
@@ -3260,14 +3261,14 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 6,
           "Chrome": 36,
           "Chrome Mobile": 6,
+          "Facebook App": 6,
           "Safari mobile": 1,
           "Microsoft Edge": 1,
           "Android WebView": 1,
-          "Mobile Samsung Browser": 2,
-          "Google App": 1
+          "Google App": 1,
+          "Mobile Samsung Browser": 2
         }
       }
     },
@@ -3277,7 +3278,7 @@
       "pageviewsCount": 114,
       "visitDuration": 488243,
       "engagementDuration": 60371,
-      "frictionScorePerSession": 0.4594594594594595,
+      "frictionScorePerSession": 0.45945945945945943,
       "dimensions": {
         "DeviceType": {
           "Phone": 8,
@@ -3286,10 +3287,10 @@
         "EntryPage": {
           "/": 25,
           "/franchisee": 2,
-          "/franchise-onboarding-system": 1,
           "/contact": 1,
-          "/franchise-management-software-integrations": 1,
+          "/franchise-onboarding-system": 1,
           "/franchise-marketing-automation": 1,
+          "/franchise-management-software-integrations": 1,
           "/field-audit-software": 2,
           "/more-info": 1,
           "/franchisee-lead-capture": 1,
@@ -3312,9 +3313,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 1,
           "Chrome": 21,
           "Chrome Mobile": 3,
+          "Facebook App": 1,
           "Safari mobile": 2,
           "Microsoft Edge": 8,
           "Android WebView": 2
@@ -3327,7 +3328,7 @@
       "pageviewsCount": 32,
       "visitDuration": 39444,
       "engagementDuration": 22975,
-      "frictionScorePerSession": 0.4400000000000001,
+      "frictionScorePerSession": 0.44,
       "dimensions": {
         "DeviceType": {
           "Phone": 18,
@@ -3337,7 +3338,7 @@
           "/": 20,
           "/franchise-management-software": 1,
           "/%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19": 2,
-          "/blog/author/surajit": 2
+          "__OTHER__": 2
         },
         "Country": {
           "US": 15,
@@ -3354,9 +3355,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 9,
           "Chrome": 7,
           "Chrome Mobile": 3,
+          "Facebook App": 9,
           "Safari mobile": 2,
           "Android WebView": 2,
           "Mobile QQbrowser": 2
@@ -3369,7 +3370,7 @@
       "pageviewsCount": 79,
       "visitDuration": 66355,
       "engagementDuration": 24576,
-      "frictionScorePerSession": 0.3275862068965516,
+      "frictionScorePerSession": 0.3275862068965517,
       "dimensions": {
         "DeviceType": {
           "Phone": 56,
@@ -3391,13 +3392,13 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 7,
           "Chrome": 2,
           "Chrome Mobile": 44,
+          "Facebook App": 7,
           "Safari mobile": 1,
           "Android WebView": 2,
-          "Mobile Samsung Browser": 1,
-          "Instagram App": 1
+          "Instagram App": 1,
+          "Mobile Samsung Browser": 1
         }
       }
     },
@@ -3407,7 +3408,7 @@
       "pageviewsCount": 65,
       "visitDuration": 55190,
       "engagementDuration": 30894,
-      "frictionScorePerSession": 0.4186046511627907,
+      "frictionScorePerSession": 0.41860465116279066,
       "dimensions": {
         "DeviceType": {
           "Phone": 41,
@@ -3427,9 +3428,9 @@
           "__NULL__": 3
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 2,
           "Chrome Mobile": 24,
+          "Facebook App": 11,
           "Safari mobile": 2,
           "Android WebView": 2,
           "Instagram App": 1,
@@ -3453,10 +3454,9 @@
         "EntryPage": {
           "/": 58,
           "/franchisee": 3,
-          "/franchise-management-software-integrations": 1,
           "/franchise-crm-solution": 1,
-          "/blog/how-franchise-directors-can-streamline-revenue-with-royalty-management-software": 1,
-          "/blog/how-multi-unit-franchises-can-be-managed-using-franchise-solution": 1
+          "/franchise-management-software-integrations": 1,
+          "__OTHER__": 2
         },
         "Country": {
           "US": 11,
@@ -3473,9 +3473,9 @@
           "Search": 3
         },
         "Browser": {
-          "Facebook App": 3,
           "Chrome": 11,
           "Chrome Mobile": 49,
+          "Facebook App": 3,
           "Safari mobile": 2
         }
       }
@@ -3486,7 +3486,7 @@
       "pageviewsCount": 121,
       "visitDuration": 121971,
       "engagementDuration": 37606,
-      "frictionScorePerSession": 0.22499999999999998,
+      "frictionScorePerSession": 0.22500000000000006,
       "dimensions": {
         "DeviceType": {
           "Phone": 62,
@@ -3498,7 +3498,7 @@
           "/terms": 1,
           "/brandwide-ai": 1,
           "/privacy-policy": 1,
-          "/blog/how-franchise-directors-can-streamline-revenue-with-royalty-management-software": 1
+          "__OTHER__": 1
         },
         "Country": {
           "US": 22,
@@ -3515,13 +3515,13 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 9,
           "Chrome": 16,
           "Chrome Mobile": 48,
+          "Facebook App": 9,
           "Safari mobile": 3,
           "Microsoft Edge": 1,
-          "Safari": 1,
           "Google App": 1,
+          "Safari": 1,
           "Firefox": 1
         }
       }
@@ -3541,18 +3541,18 @@
         "EntryPage": {
           "/": 47,
           "/franchise-management-software-pricing": 1,
-          "/blog": 1,
           "/%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19": 4,
-          "/%3efranchise": 5,
+          "/blog": 1,
+          "/employment": 1,
           "/brandwide-ai": 1,
-          "/employment": 1
+          "/%3efranchise": 5
         },
         "Country": {
           "US": 18,
           "RO": 28,
           "NG": 1,
-          "ZA": 1,
           "IN": 1,
+          "ZA": 1,
           "CA": 2,
           "GB": 1,
           "SA": 1,
@@ -3566,13 +3566,13 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 12,
           "Chrome": 10,
           "Chrome Mobile": 28,
+          "Facebook App": 12,
           "Safari mobile": 1,
           "Microsoft Edge": 1,
-          "Safari": 1,
           "Google App": 1,
+          "Safari": 1,
           "Mobile QQbrowser": 5,
           "Microsoft Edge mobile": 1
         }
@@ -3584,7 +3584,7 @@
       "pageviewsCount": 85,
       "visitDuration": 210971,
       "engagementDuration": 39686,
-      "frictionScorePerSession": 0.4489795918367347,
+      "frictionScorePerSession": 0.44897959183673464,
       "dimensions": {
         "DeviceType": {
           "Phone": 23,
@@ -3601,13 +3601,13 @@
           "US": 37,
           "RO": 1,
           "NG": 3,
-          "ZA": 1,
           "IN": 1,
+          "ZA": 1,
           "GB": 2,
           "AU": 1,
-          "PL": 1,
+          "NL": 1,
           "EG": 1,
-          "NL": 1
+          "PL": 1
         },
         "ReferrerType": {
           "Link": 18,
@@ -3616,13 +3616,13 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 8,
           "Chrome": 26,
           "Chrome Mobile": 9,
+          "Facebook App": 8,
           "Safari mobile": 2,
           "Android WebView": 1,
-          "Mobile Samsung Browser": 1,
-          "Instagram App": 2
+          "Instagram App": 2,
+          "Mobile Samsung Browser": 1
         }
       }
     },
@@ -3648,8 +3648,8 @@
           "US": 16,
           "RO": 4,
           "NG": 2,
-          "ZA": 2,
           "IN": 2,
+          "ZA": 2,
           "CA": 2,
           "GB": 2,
           "__OTHER__": 1
@@ -3661,9 +3661,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 10,
           "Chrome": 10,
           "Chrome Mobile": 7,
+          "Facebook App": 10,
           "Safari mobile": 1,
           "Microsoft Edge": 2,
           "Google App": 1
@@ -3701,9 +3701,9 @@
           "Internal": 2
         },
         "Browser": {
-          "Facebook App": 14,
           "Chrome": 6,
           "Chrome Mobile": 3,
+          "Facebook App": 14,
           "Safari mobile": 1,
           "Microsoft Edge": 1,
           "Android WebView": 5,
@@ -3736,7 +3736,7 @@
           "ZA": 1,
           "CA": 1,
           "AT": 1,
-          "QA": 1
+          "__OTHER__": 1
         },
         "ReferrerType": {
           "Link": 26,
@@ -3745,9 +3745,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 19,
           "Chrome": 3,
           "Chrome Mobile": 2,
+          "Facebook App": 19,
           "Safari mobile": 2,
           "Microsoft Edge": 2,
           "Android WebView": 3,
@@ -3761,7 +3761,7 @@
       "pageviewsCount": 72,
       "visitDuration": 57204,
       "engagementDuration": 33615,
-      "frictionScorePerSession": 0.42187500000000006,
+      "frictionScorePerSession": 0.42187499999999994,
       "dimensions": {
         "DeviceType": {
           "Phone": 50,
@@ -3770,18 +3770,18 @@
         "EntryPage": {
           "/": 55,
           "/franchisee": 4,
-          "/franchise-crm-solution": 1,
+          "/employment": 1,
           "/blog/2022/05/17/7-ways-to-improve-your-franchise-management-strategy": 1,
           "/franchise-crm": 1,
-          "/blog/2022/02/22/why-franchise-business-should-use-franchise-software": 1,
-          "/employment": 1
+          "/franchise-crm-solution": 1,
+          "/blog/2022/02/22/why-franchise-business-should-use-franchise-software": 1
         },
         "Country": {
           "US": 24,
           "RO": 24,
           "NG": 2,
-          "ZA": 5,
           "IN": 1,
+          "ZA": 5,
           "CA": 2,
           "GB": 1,
           "AU": 3,
@@ -3795,13 +3795,13 @@
           "Social": 2
         },
         "Browser": {
-          "Facebook App": 32,
           "Chrome": 12,
           "Chrome Mobile": 8,
+          "Facebook App": 32,
           "Safari mobile": 4,
           "Android WebView": 4,
-          "Safari": 1,
           "Google App": 1,
+          "Safari": 1,
           "Firefox": 1,
           "TikTok App": 1
         }
@@ -3813,7 +3813,7 @@
       "pageviewsCount": 110,
       "visitDuration": 120174,
       "engagementDuration": 36267,
-      "frictionScorePerSession": 0.6000000000000001,
+      "frictionScorePerSession": 0.6,
       "dimensions": {
         "DeviceType": {
           "Phone": 29,
@@ -3824,25 +3824,25 @@
           "/franchisee": 2,
           "/franchise-management-software-pricing": 1,
           "/see-a-demo": 8,
-          "/terms": 1,
-          "/franchise-management-software-integrations": 1,
           "/franchise-marketing-automation": 2,
+          "/terms": 1,
           "/blog/2022/05/17/7-ways-to-improve-your-franchise-management-strategy": 4,
           "/brandwide-ai": 1,
-          "/more-info": 1,
-          "/privacy-policy": 1
+          "/franchise-management-software-integrations": 1,
+          "/privacy-policy": 1,
+          "/more-info": 1
         },
         "Country": {
           "US": 28,
           "RO": 17,
-          "ZA": 5,
           "IN": 3,
           "BG": 1,
+          "ZA": 5,
           "CA": 2,
           "GB": 1,
           "SA": 1,
-          "DE": 1,
-          "SG": 1
+          "SG": 1,
+          "DE": 1
         },
         "ReferrerType": {
           "Link": 30,
@@ -3851,9 +3851,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 17,
           "Chrome": 25,
           "Chrome Mobile": 10,
+          "Facebook App": 17,
           "Safari mobile": 1,
           "Microsoft Edge": 5,
           "Instagram App": 1,
@@ -3883,8 +3883,8 @@
           "US": 12,
           "RO": 7,
           "NG": 1,
-          "ZA": 1,
           "IN": 2,
+          "ZA": 1,
           "GB": 1,
           "PT": 1
         },
@@ -3895,9 +3895,9 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 6,
           "Chrome Mobile": 3,
+          "Facebook App": 11,
           "Safari mobile": 2,
           "Microsoft Edge": 2,
           "TikTok App": 1
@@ -3910,7 +3910,7 @@
       "pageviewsCount": 79,
       "visitDuration": 188951,
       "engagementDuration": 31069,
-      "frictionScorePerSession": 1.3571428571428574,
+      "frictionScorePerSession": 1.3571428571428572,
       "dimensions": {
         "DeviceType": {
           "Phone": 18,
@@ -3919,13 +3919,13 @@
         "EntryPage": {
           "/": 27,
           "/franchisee": 1,
-          "/franchise-onboarding-system": 1,
           "/contact": 1,
+          "/franchise-onboarding-system": 1,
+          "/employment": 1,
           "/brandwide-pricing": 1,
           "/franchise-crm": 1,
           "/blog/2022/02/22/why-franchise-business-should-use-franchise-software": 1,
           "/blog/2020/03/04/what-are-the-advantages-of-franchise-software-system": 2,
-          "/employment": 1,
           "/blog/2020/07/31/key-features-of-franchise-crm-software-2": 1,
           "/offers/franchise-management-software": 1,
           "/blog/2021/01/22/improve-your-franchise-business-using-franchise-management-software": 1,
@@ -3950,9 +3950,9 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 8,
           "Chrome": 22,
           "Chrome Mobile": 1,
+          "Facebook App": 8,
           "Safari mobile": 6,
           "Microsoft Edge": 2,
           "Android WebView": 3
@@ -3965,7 +3965,7 @@
       "pageviewsCount": 77,
       "visitDuration": 70553,
       "engagementDuration": 23013,
-      "frictionScorePerSession": 0.29032258064516125,
+      "frictionScorePerSession": 0.2903225806451613,
       "dimensions": {
         "DeviceType": {
           "Phone": 42,
@@ -3978,9 +3978,9 @@
           "/franchisee": 1,
           "/franchise-marketing-automation": 1,
           "/franchise-solutions": 1,
-          "/franchisee-communication-collaboration": 1,
           "/blog/2022/02/22/why-franchise-business-should-use-franchise-software": 1,
           "/blog/2020/03/04/what-are-the-advantages-of-franchise-software-system": 1,
+          "/franchisee-communication-collaboration": 1,
           "/franchisee-operations-management-automation": 1,
           "/restaurant-franchise-management-software": 1,
           "__OTHER__": 4
@@ -3988,9 +3988,9 @@
         "Country": {
           "US": 13,
           "RO": 30,
-          "ZA": 1,
           "IN": 12,
           "BG": 3,
+          "ZA": 1,
           "MX": 1,
           "CL": 1,
           "__OTHER__": 1
@@ -4002,9 +4002,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 15,
           "Chrome": 19,
           "Chrome Mobile": 22,
+          "Facebook App": 15,
           "Safari mobile": 4,
           "Android WebView": 1,
           "Instagram App": 1
@@ -4017,7 +4017,7 @@
       "pageviewsCount": 47,
       "visitDuration": 48408,
       "engagementDuration": 28171,
-      "frictionScorePerSession": 0.33333333333333337,
+      "frictionScorePerSession": 0.33333333333333326,
       "dimensions": {
         "DeviceType": {
           "Phone": 27,
@@ -4038,8 +4038,8 @@
           "US": 21,
           "RO": 7,
           "NG": 2,
-          "ZA": 3,
           "IN": 1,
+          "ZA": 3,
           "CA": 2,
           "SA": 1,
           "AR": 1,
@@ -4052,9 +4052,9 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 16,
           "Chrome": 7,
           "Chrome Mobile": 3,
+          "Facebook App": 16,
           "Safari mobile": 5,
           "Microsoft Edge": 1,
           "Android WebView": 3,
@@ -4099,9 +4099,9 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 10,
           "Chrome": 4,
           "Chrome Mobile": 54,
+          "Facebook App": 10,
           "Safari mobile": 3,
           "Android WebView": 1,
           "Safari": 1
@@ -4114,7 +4114,7 @@
       "pageviewsCount": 73,
       "visitDuration": 40342,
       "engagementDuration": 22713,
-      "frictionScorePerSession": 0.06557377049180328,
+      "frictionScorePerSession": 0.0655737704918033,
       "dimensions": {
         "DeviceType": {
           "Phone": 56,
@@ -4127,8 +4127,8 @@
         "Country": {
           "US": 16,
           "RO": 40,
-          "ZA": 1,
           "IN": 1,
+          "ZA": 1,
           "CA": 2,
           "SA": 1
         },
@@ -4139,9 +4139,9 @@
           "Search": 3
         },
         "Browser": {
-          "Facebook App": 4,
           "Chrome": 5,
           "Chrome Mobile": 47,
+          "Facebook App": 4,
           "Safari mobile": 2,
           "Instagram App": 1,
           "Google App": 1,
@@ -4155,7 +4155,7 @@
       "pageviewsCount": 76,
       "visitDuration": 204897,
       "engagementDuration": 28884,
-      "frictionScorePerSession": 1.2727272727272732,
+      "frictionScorePerSession": 1.272727272727273,
       "dimensions": {
         "DeviceType": {
           "Phone": 12,
@@ -4167,16 +4167,15 @@
           "/franchise-management-software-pricing": 1,
           "/franchise-onboarding-system": 1,
           "/franchise-solutions": 1,
-          "/franchise-crm-solution": 1,
           "/blog/2022/05/17/7-ways-to-improve-your-franchise-management-strategy": 2,
-          "/field-audit-software": 1,
+          "/franchise-crm-solution": 1,
           "/blog/2020/03/04/what-are-the-advantages-of-franchise-software-system": 2,
+          "/field-audit-software": 1,
           "/blog/2020/07/31/key-features-of-franchise-crm-software-2": 1,
           "/offers/franchise-management-software": 1,
           "/blog/2021/01/22/improve-your-franchise-business-using-franchise-management-software": 1,
           "/blog/2021/02/04/franchise-management-software-help-businesses-to-turn-a-top-performer": 1,
-          "/blog/how-multi-unit-franchises-can-be-managed-using-franchise-solution": 1,
-          "__OTHER__": 2
+          "__OTHER__": 3
         },
         "Country": {
           "US": 21,
@@ -4187,7 +4186,7 @@
           "BR": 2,
           "IT": 1,
           "UA": 1,
-          "MA": 1,
+          "EC": 1,
           "TR": 1,
           "__OTHER__": 3
         },
@@ -4198,9 +4197,9 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 4,
           "Chrome": 32,
           "Chrome Mobile": 5,
+          "Facebook App": 4,
           "Google App": 3
         }
       }
@@ -4211,7 +4210,7 @@
       "pageviewsCount": 125,
       "visitDuration": 139159,
       "engagementDuration": 35456,
-      "frictionScorePerSession": 0.42028985507246375,
+      "frictionScorePerSession": 0.4202898550724638,
       "dimensions": {
         "DeviceType": {
           "Phone": 56,
@@ -4220,17 +4219,17 @@
         "EntryPage": {
           "/": 63,
           "/franchise-management-software": 1,
+          "/employment": 1,
           "/terms": 1,
           "/blog/why-franchising-best-way-to-expand-your-brand": 1,
-          "/employment": 1,
           "/blog/2023/04/12/how-does-franchise-management-software-help-in-identifying": 2
         },
         "Country": {
           "US": 29,
           "RO": 29,
           "NG": 2,
-          "ZA": 3,
           "IN": 1,
+          "ZA": 3,
           "SA": 1,
           "PH": 1,
           "SG": 1,
@@ -4244,9 +4243,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 16,
           "Chrome": 11,
           "Chrome Mobile": 30,
+          "Facebook App": 16,
           "Safari mobile": 7,
           "Microsoft Edge": 1,
           "Android WebView": 2,
@@ -4261,7 +4260,7 @@
       "pageviewsCount": 48,
       "visitDuration": 36471,
       "engagementDuration": 19118,
-      "frictionScorePerSession": 0.23809523809523805,
+      "frictionScorePerSession": 0.23809523809523808,
       "dimensions": {
         "DeviceType": {
           "Phone": 34,
@@ -4286,14 +4285,14 @@
           "Search": 3
         },
         "Browser": {
-          "Facebook App": 9,
           "Chrome": 6,
           "Chrome Mobile": 19,
+          "Facebook App": 9,
           "Safari mobile": 3,
           "Microsoft Edge": 1,
           "Android WebView": 2,
-          "Safari": 1,
-          "Google App": 1
+          "Google App": 1,
+          "Safari": 1
         }
       }
     },
@@ -4320,9 +4319,9 @@
           "US": 13,
           "RO": 17,
           "NG": 1,
-          "ZA": 5,
           "IN": 5,
           "BG": 2,
+          "ZA": 5,
           "AU": 1
         },
         "ReferrerType": {
@@ -4332,9 +4331,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 14,
           "Chrome Mobile": 16,
+          "Facebook App": 11,
           "Safari mobile": 1,
           "Mobile Samsung Browser": 2
         }
@@ -4372,9 +4371,9 @@
           "Internal": 3
         },
         "Browser": {
-          "Facebook App": 20,
           "Chrome": 2,
           "Chrome Mobile": 12,
+          "Facebook App": 20,
           "Safari mobile": 4,
           "Microsoft Edge": 1,
           "Android WebView": 3,
@@ -4404,9 +4403,9 @@
           "US": 20,
           "RO": 3,
           "NG": 5,
-          "ZA": 2,
           "IN": 2,
           "BG": 3,
+          "ZA": 2,
           "SA": 1,
           "PK": 1,
           "PH": 1
@@ -4419,9 +4418,9 @@
           "Social": 2
         },
         "Browser": {
-          "Facebook App": 13,
           "Chrome": 4,
           "Chrome Mobile": 9,
+          "Facebook App": 13,
           "Safari mobile": 5,
           "Android WebView": 2,
           "Instagram App": 1,
@@ -4436,8 +4435,8 @@
       "visitorCount": 37,
       "pageviewsCount": 80,
       "visitDuration": 213446,
-      "engagementDuration": 56399,
-      "frictionScorePerSession": 0.8999999999999999,
+      "engagementDuration": 56400,
+      "frictionScorePerSession": 0.9,
       "dimensions": {
         "DeviceType": {
           "Phone": 30,
@@ -4445,17 +4444,17 @@
         },
         "EntryPage": {
           "/": 37,
-          "/franchise-crm-solution": 1,
           "/franchise-crm": 1,
+          "/franchise-crm-solution": 1,
           "/online-store": 1
         },
         "Country": {
           "US": 20,
           "RO": 2,
           "NG": 4,
-          "ZA": 4,
           "IN": 3,
           "BG": 6,
+          "ZA": 4,
           "__OTHER__": 1
         },
         "ReferrerType": {
@@ -4465,9 +4464,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 12,
           "Chrome": 9,
           "Chrome Mobile": 9,
+          "Facebook App": 12,
           "Safari mobile": 6,
           "Android WebView": 2,
           "Instagram App": 1,
@@ -4481,7 +4480,7 @@
       "pageviewsCount": 55,
       "visitDuration": 45157,
       "engagementDuration": 24385,
-      "frictionScorePerSession": 0.35294117647058837,
+      "frictionScorePerSession": 0.35294117647058826,
       "dimensions": {
         "DeviceType": {
           "Phone": 23,
@@ -4496,9 +4495,9 @@
           "US": 16,
           "RO": 2,
           "NG": 2,
-          "ZA": 6,
           "IN": 3,
           "BG": 4,
+          "ZA": 6,
           "CA": 1
         },
         "ReferrerType": {
@@ -4508,9 +4507,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 10,
           "Chrome Mobile": 8,
+          "Facebook App": 11,
           "Safari mobile": 4,
           "Safari": 1
         }
@@ -4522,7 +4521,7 @@
       "pageviewsCount": 59,
       "visitDuration": 67955,
       "engagementDuration": 24535,
-      "frictionScorePerSession": 0.4468085106382979,
+      "frictionScorePerSession": 0.4468085106382981,
       "dimensions": {
         "DeviceType": {
           "Phone": 35,
@@ -4533,8 +4532,8 @@
           "/franchise-management-software": 1,
           "/franchise-management-software-pricing": 1,
           "/contact": 1,
-          "/pricing": 1,
           "/blog/what-is-franchise-management": 1,
+          "/pricing": 1,
           "/restaurant-franchise-management-software": 1,
           "__OTHER__": 2
         },
@@ -4542,18 +4541,18 @@
           "US": 16,
           "RO": 3,
           "NG": 1,
-          "ZA": 8,
           "IN": 2,
           "BG": 6,
+          "ZA": 8,
           "CA": 2,
           "GB": 1,
           "PH": 1,
-          "BD": 1,
-          "DE": 1,
           "SG": 1,
+          "DE": 1,
+          "BD": 1,
           "ES": 1,
-          "MY": 1,
-          "IL": 2
+          "IL": 2,
+          "MY": 1
         },
         "ReferrerType": {
           "Link": 25,
@@ -4563,14 +4562,14 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 5,
           "Chrome": 14,
           "Chrome Mobile": 13,
+          "Facebook App": 5,
           "Safari mobile": 10,
           "Microsoft Edge": 1,
           "Android WebView": 1,
-          "Mobile Samsung Browser": 1,
-          "Google App": 2
+          "Google App": 2,
+          "Mobile Samsung Browser": 1
         }
       }
     },
@@ -4580,7 +4579,7 @@
       "pageviewsCount": 56,
       "visitDuration": 51609,
       "engagementDuration": 24164,
-      "frictionScorePerSession": 0.22222222222222224,
+      "frictionScorePerSession": 0.22222222222222227,
       "dimensions": {
         "DeviceType": {
           "Phone": 30,
@@ -4594,9 +4593,9 @@
           "US": 9,
           "RO": 1,
           "NG": 19,
-          "ZA": 1,
           "IN": 3,
           "BG": 1,
+          "ZA": 1,
           "CA": 1,
           "GB": 1
         },
@@ -4607,14 +4606,14 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 6,
           "Chrome": 5,
           "Chrome Mobile": 20,
+          "Facebook App": 6,
           "Safari mobile": 1,
           "Android WebView": 1,
           "Instagram App": 1,
-          "Safari": 1,
-          "Google App": 1
+          "Google App": 1,
+          "Safari": 1
         }
       }
     },
@@ -4624,7 +4623,7 @@
       "pageviewsCount": 49,
       "visitDuration": 34549,
       "engagementDuration": 23779,
-      "frictionScorePerSession": 0.2564102564102564,
+      "frictionScorePerSession": 0.25641025641025644,
       "dimensions": {
         "DeviceType": {
           "Phone": 37,
@@ -4637,8 +4636,8 @@
           "US": 17,
           "RO": 3,
           "NG": 4,
-          "ZA": 4,
           "BG": 10,
+          "ZA": 4,
           "ES": 1
         },
         "ReferrerType": {
@@ -4648,9 +4647,9 @@
           "Social": 1
         },
         "Browser": {
-          "Facebook App": 22,
           "Chrome": 2,
           "Chrome Mobile": 9,
+          "Facebook App": 22,
           "Safari mobile": 4,
           "Microsoft Edge": 1,
           "Instagram App": 1
@@ -4663,7 +4662,7 @@
       "pageviewsCount": 39,
       "visitDuration": 41035,
       "engagementDuration": 26067,
-      "frictionScorePerSession": 0.058823529411764726,
+      "frictionScorePerSession": 0.058823529411764705,
       "dimensions": {
         "DeviceType": {
           "Phone": 33,
@@ -4683,9 +4682,9 @@
           "__NULL__": 11
         },
         "Browser": {
-          "Facebook App": 15,
           "Chrome": 2,
           "Chrome Mobile": 7,
+          "Facebook App": 15,
           "Safari mobile": 10
         }
       }
@@ -4696,7 +4695,7 @@
       "pageviewsCount": 45,
       "visitDuration": 157206,
       "engagementDuration": 35904,
-      "frictionScorePerSession": 0.21212121212121213,
+      "frictionScorePerSession": 0.21212121212121215,
       "dimensions": {
         "DeviceType": {
           "Phone": 29,
@@ -4718,9 +4717,9 @@
           "Internal": 1
         },
         "Browser": {
-          "Facebook App": 6,
           "Chrome": 5,
           "Chrome Mobile": 15,
+          "Facebook App": 6,
           "Safari mobile": 3,
           "Instagram App": 1,
           "Safari": 1,
@@ -4735,7 +4734,7 @@
       "pageviewsCount": 54,
       "visitDuration": 159001,
       "engagementDuration": 26012,
-      "frictionScorePerSession": 0.25641025641025633,
+      "frictionScorePerSession": 0.25641025641025644,
       "dimensions": {
         "DeviceType": {
           "Phone": 31,
@@ -4749,13 +4748,13 @@
         },
         "Country": {
           "US": 17,
-          "ZA": 2,
           "IN": 2,
           "BG": 13,
+          "ZA": 2,
           "CA": 1,
           "PK": 1,
-          "PL": 1,
           "FR": 1,
+          "PL": 1,
           "JP": 1
         },
         "ReferrerType": {
@@ -4765,9 +4764,9 @@
           "Search": 2
         },
         "Browser": {
-          "Facebook App": 12,
           "Chrome": 8,
           "Chrome Mobile": 9,
+          "Facebook App": 12,
           "Safari mobile": 8,
           "Google App": 1,
           "Firefox": 1
@@ -4780,7 +4779,7 @@
       "pageviewsCount": 64,
       "visitDuration": 206165,
       "engagementDuration": 40257,
-      "frictionScorePerSession": 0.297872340425532,
+      "frictionScorePerSession": 0.29787234042553196,
       "dimensions": {
         "DeviceType": {
           "Phone": 36,
@@ -4797,8 +4796,8 @@
         },
         "Country": {
           "US": 21,
-          "ZA": 4,
           "BG": 16,
+          "ZA": 4,
           "CA": 1,
           "GB": 2,
           "SA": 1,
@@ -4812,9 +4811,9 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 18,
           "Chrome": 8,
           "Chrome Mobile": 11,
+          "Facebook App": 18,
           "Safari mobile": 5,
           "Microsoft Edge": 3,
           "Instagram App": 1,
@@ -4841,8 +4840,8 @@
         },
         "Country": {
           "US": 28,
-          "ZA": 1,
           "BG": 25,
+          "ZA": 1,
           "CA": 2
         },
         "ReferrerType": {
@@ -4852,9 +4851,9 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 6,
           "Chrome": 9,
           "Chrome Mobile": 29,
+          "Facebook App": 6,
           "Safari mobile": 8,
           "Microsoft Edge": 3,
           "Safari": 1
@@ -4876,22 +4875,22 @@
         "EntryPage": {
           "/": 51,
           "/franchise-management-software": 1,
-          "/franchise-marketing-automation": 1,
           "/request-a-demo": 1,
+          "/franchise-marketing-automation": 1,
           "__OTHER__": 1
         },
         "Country": {
           "US": 26,
           "RO": 2,
           "NG": 1,
-          "ZA": 5,
           "BG": 14,
+          "ZA": 5,
           "CA": 1,
           "SA": 1,
           "PK": 2,
           "BD": 1,
-          "PL": 1,
-          "FR": 1
+          "FR": 1,
+          "PL": 1
         },
         "ReferrerType": {
           "Link": 30,
@@ -4900,9 +4899,9 @@
           "Search": 5
         },
         "Browser": {
-          "Facebook App": 8,
           "Chrome": 17,
           "Chrome Mobile": 21,
+          "Facebook App": 8,
           "Safari mobile": 5,
           "Android WebView": 2,
           "Instagram App": 1,
@@ -4916,7 +4915,7 @@
       "pageviewsCount": 99,
       "visitDuration": 78163,
       "engagementDuration": 28360,
-      "frictionScorePerSession": 0.3818181818181818,
+      "frictionScorePerSession": 0.38181818181818183,
       "dimensions": {
         "DeviceType": {
           "Phone": 39,
@@ -4934,9 +4933,9 @@
         "Country": {
           "US": 17,
           "RO": 19,
-          "ZA": 1,
           "IN": 2,
           "BG": 10,
+          "ZA": 1,
           "CA": 2,
           "SA": 1,
           "PK": 1,
@@ -4950,13 +4949,13 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 4,
           "Chrome": 14,
           "Chrome Mobile": 30,
+          "Facebook App": 4,
           "Safari mobile": 2,
           "Microsoft Edge": 2,
-          "Mobile Samsung Browser": 1,
           "Instagram App": 1,
+          "Mobile Samsung Browser": 1,
           "Huawei Browser Mobile": 1
         }
       }
@@ -4967,7 +4966,7 @@
       "pageviewsCount": 68,
       "visitDuration": 82097,
       "engagementDuration": 34889,
-      "frictionScorePerSession": 0.163265306122449,
+      "frictionScorePerSession": 0.16326530612244897,
       "dimensions": {
         "DeviceType": {
           "Phone": 43,
@@ -4994,12 +4993,12 @@
           "Search": 4
         },
         "Browser": {
-          "Facebook App": 11,
           "Chrome": 6,
           "Chrome Mobile": 23,
+          "Facebook App": 11,
           "Safari mobile": 7,
-          "Mobile Samsung Browser": 1,
-          "Instagram App": 1
+          "Instagram App": 1,
+          "Mobile Samsung Browser": 1
         }
       }
     },
@@ -5009,7 +5008,7 @@
       "pageviewsCount": 51,
       "visitDuration": 96213,
       "engagementDuration": 28406,
-      "frictionScorePerSession": 0.08108108108108109,
+      "frictionScorePerSession": 0.08108108108108107,
       "dimensions": {
         "DeviceType": {
           "Phone": 34,
@@ -5033,84 +5032,845 @@
           "Search": 1
         },
         "Browser": {
-          "Facebook App": 8,
           "Chrome": 3,
           "Chrome Mobile": 21,
+          "Facebook App": 8,
           "Safari mobile": 2,
-          "Mobile Samsung Browser": 1,
-          "Instagram App": 2
+          "Instagram App": 2,
+          "Mobile Samsung Browser": 1
         }
       }
     },
     "2026-10-26": {
-      "sessionCount": 1,
-      "visitorCount": 1,
-      "pageviewsCount": 1,
-      "visitDuration": 10000,
-      "engagementDuration": 5006,
-      "frictionScorePerSession": 5,
+      "sessionCount": 50,
+      "visitorCount": 48,
+      "pageviewsCount": 73,
+      "visitDuration": 63201,
+      "engagementDuration": 32464,
+      "frictionScorePerSession": 0.4399999999999999,
       "dimensions": {
         "DeviceType": {
-          "Desktop": 1
+          "Phone": 36,
+          "Desktop": 14
         },
         "EntryPage": {
+          "/": 46,
+          "/franchise-management-software": 2,
+          "/terms": 1,
           "/franchise-crm-solution": 1
         },
         "Country": {
-          "US": 1
-        },
-        "ReferrerType": {
+          "US": 16,
+          "RO": 18,
+          "NG": 7,
+          "IN": 3,
+          "ZA": 1,
+          "CA": 3,
+          "GB": 1,
           "__NULL__": 1
         },
+        "ReferrerType": {
+          "Link": 30,
+          "__NULL__": 14,
+          "Internal": 3,
+          "Search": 3
+        },
         "Browser": {
-          "Chrome": 1
+          "Chrome": 12,
+          "Chrome Mobile": 24,
+          "Facebook App": 5,
+          "Safari mobile": 5,
+          "Microsoft Edge": 1,
+          "Instagram App": 1,
+          "Google App": 1,
+          "Safari": 1
+        }
+      }
+    },
+    "2026-10-27": {
+      "sessionCount": 477,
+      "visitorCount": 475,
+      "pageviewsCount": 499,
+      "visitDuration": 6157,
+      "engagementDuration": 3835,
+      "frictionScorePerSession": 0.023060796645702313,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 37,
+          "Desktop": 440
+        },
+        "EntryPage": {
+          "/": 471,
+          "/franchise-management-software": 2,
+          "/franchisee": 2,
+          "/franchise-management-software-pricing": 1,
+          "/franchise-marketing-automation": 1
+        },
+        "Country": {
+          "US": 387,
+          "RO": 21,
+          "NG": 4,
+          "IN": 4,
+          "CA": 8,
+          "GB": 26,
+          "AU": 5,
+          "IE": 13,
+          "NL": 7,
+          "FR": 1,
+          "GE": 1
+        },
+        "ReferrerType": {
+          "Link": 31,
+          "__NULL__": 441,
+          "Internal": 2,
+          "Search": 2,
+          "Social": 1
+        },
+        "Browser": {
+          "Chrome": 438,
+          "Chrome Mobile": 21,
+          "Facebook App": 8,
+          "Safari mobile": 5,
+          "Microsoft Edge": 1,
+          "Android WebView": 1,
+          "Google App": 2,
+          "Yandex.Browser": 1
+        }
+      }
+    },
+    "2026-10-28": {
+      "sessionCount": 49,
+      "visitorCount": 46,
+      "pageviewsCount": 79,
+      "visitDuration": 88284,
+      "engagementDuration": 19980,
+      "frictionScorePerSession": 0.30612244897959184,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 28,
+          "Desktop": 20,
+          "Tablet": 1
+        },
+        "EntryPage": {
+          "/": 42,
+          "/franchise-management-software": 2,
+          "/franchisee": 1,
+          "/employment": 1,
+          "/blog/what-is-franchise-management": 1,
+          "/franchise-crm": 1,
+          "/franchise-royalty-management": 1
+        },
+        "Country": {
+          "US": 21,
+          "RO": 4,
+          "NG": 21,
+          "IN": 1,
+          "CA": 1,
+          "MY": 1
+        },
+        "ReferrerType": {
+          "Link": 29,
+          "__NULL__": 10,
+          "Internal": 7,
+          "Search": 3
+        },
+        "Browser": {
+          "Chrome": 18,
+          "Chrome Mobile": 23,
+          "Facebook App": 6,
+          "Microsoft Edge": 2
+        }
+      }
+    },
+    "2026-10-29": {
+      "sessionCount": 63,
+      "visitorCount": 63,
+      "pageviewsCount": 86,
+      "visitDuration": 52004,
+      "engagementDuration": 22180,
+      "frictionScorePerSession": 0.5555555555555555,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 42,
+          "Desktop": 21
+        },
+        "EntryPage": {
+          "/": 54,
+          "/%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19516befd0d02dd7628c4f02994b77c2f36ca1cda12e5887cc42cc72f7%7d20%7bd76f1c19": 5,
+          "/employment": 1,
+          "/about": 1,
+          "/online-store": 1,
+          "__OTHER__": 1
+        },
+        "Country": {
+          "US": 22,
+          "RO": 3,
+          "NG": 23,
+          "IN": 3,
+          "CA": 4,
+          "GB": 1,
+          "CN": 4,
+          "SG": 2,
+          "AO": 1
+        },
+        "ReferrerType": {
+          "Link": 35,
+          "__NULL__": 17,
+          "Internal": 6,
+          "Search": 5
+        },
+        "Browser": {
+          "Chrome": 21,
+          "Chrome Mobile": 29,
+          "Facebook App": 6,
+          "Safari mobile": 1,
+          "Safari": 1,
+          "Mobile QQbrowser": 2,
+          "TikTok App": 3
+        }
+      }
+    },
+    "2026-10-30": {
+      "sessionCount": 53,
+      "visitorCount": 53,
+      "pageviewsCount": 68,
+      "visitDuration": 30724,
+      "engagementDuration": 18795,
+      "frictionScorePerSession": 0.22641509433962267,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 39,
+          "Desktop": 14
+        },
+        "EntryPage": {
+          "/": 43,
+          "/franchisee": 5,
+          "/contact": 1,
+          "/employment": 1,
+          "/request-a-demo": 1,
+          "/blog/a-comprehensive-guide-to-franchise-social-media-marketing": 2
+        },
+        "Country": {
+          "US": 22,
+          "RO": 6,
+          "NG": 21,
+          "IN": 1,
+          "AU": 3
+        },
+        "ReferrerType": {
+          "Link": 33,
+          "__NULL__": 15,
+          "Internal": 3,
+          "Social": 2
+        },
+        "Browser": {
+          "Chrome": 11,
+          "Chrome Mobile": 15,
+          "Facebook App": 16,
+          "Safari mobile": 4,
+          "Microsoft Edge": 1,
+          "Android WebView": 1,
+          "Instagram App": 2,
+          "Safari": 2,
+          "Firefox": 1
+        }
+      }
+    },
+    "2026-10-31": {
+      "sessionCount": 74,
+      "visitorCount": 74,
+      "pageviewsCount": 104,
+      "visitDuration": 58157,
+      "engagementDuration": 29179,
+      "frictionScorePerSession": 0.14864864864864866,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 68,
+          "Desktop": 5,
+          "Tablet": 1
+        },
+        "EntryPage": {
+          "/": 72,
+          "/request-a-demo": 1,
+          "/blog/what-is-franchise-development": 1
+        },
+        "Country": {
+          "US": 14,
+          "RO": 49,
+          "NG": 2,
+          "IN": 1,
+          "CA": 3,
+          "GB": 1,
+          "IE": 1,
+          "SG": 1,
+          "DE": 1,
+          "BR": 1
+        },
+        "ReferrerType": {
+          "Link": 51,
+          "__NULL__": 14,
+          "Internal": 4,
+          "Search": 1,
+          "Social": 4
+        },
+        "Browser": {
+          "Chrome": 7,
+          "Chrome Mobile": 42,
+          "Facebook App": 11,
+          "Safari mobile": 3,
+          "Android WebView": 1,
+          "Google App": 1,
+          "LinkedIn App": 9
+        }
+      }
+    },
+    "2026-11-01": {
+      "sessionCount": 55,
+      "visitorCount": 55,
+      "pageviewsCount": 86,
+      "visitDuration": 61314,
+      "engagementDuration": 29529,
+      "frictionScorePerSession": 0.12727272727272726,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 46,
+          "Desktop": 9
+        },
+        "EntryPage": {
+          "/": 52,
+          "/contact": 1,
+          "/terms": 1,
+          "/blog/meet-ria-ai-franchise-sales-assistant": 1
+        },
+        "Country": {
+          "US": 15,
+          "RO": 21,
+          "NG": 7,
+          "IN": 5,
+          "CA": 1,
+          "SG": 1,
+          "NL": 1,
+          "EC": 1,
+          "CZ": 1,
+          "__OTHER__": 2
+        },
+        "ReferrerType": {
+          "Link": 34,
+          "__NULL__": 17,
+          "Internal": 3,
+          "Search": 1
+        },
+        "Browser": {
+          "Chrome": 7,
+          "Chrome Mobile": 30,
+          "Facebook App": 9,
+          "Safari mobile": 5,
+          "Microsoft Edge": 1,
+          "Google App": 1,
+          "Safari": 1,
+          "LinkedIn App": 1
+        }
+      }
+    },
+    "2026-11-02": {
+      "sessionCount": 92,
+      "visitorCount": 89,
+      "pageviewsCount": 144,
+      "visitDuration": 68322,
+      "engagementDuration": 25035,
+      "frictionScorePerSession": 0.1630434782608696,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 71,
+          "Desktop": 21
+        },
+        "EntryPage": {
+          "/": 87,
+          "/franchise-management-software": 1,
+          "/employment": 1,
+          "/request-a-demo": 1,
+          "/blog/what-is-franchise-management": 1,
+          "/brandwide-ai": 1
+        },
+        "Country": {
+          "US": 25,
+          "RO": 42,
+          "NG": 12,
+          "IN": 2,
+          "CA": 2,
+          "GB": 2,
+          "IE": 1,
+          "DE": 1,
+          "EG": 1,
+          "CD": 1,
+          "__OTHER__": 3
+        },
+        "ReferrerType": {
+          "Link": 58,
+          "__NULL__": 15,
+          "Internal": 10,
+          "Search": 7,
+          "Social": 2
+        },
+        "Browser": {
+          "Chrome": 19,
+          "Chrome Mobile": 49,
+          "Facebook App": 9,
+          "Safari mobile": 6,
+          "Microsoft Edge": 1,
+          "Instagram App": 2,
+          "Google App": 1,
+          "Mobile Samsung Browser": 2,
+          "LinkedIn App": 2,
+          "Firefox": 1
+        }
+      }
+    },
+    "2026-11-03": {
+      "sessionCount": 77,
+      "visitorCount": 73,
+      "pageviewsCount": 159,
+      "visitDuration": 64212,
+      "engagementDuration": 31874,
+      "frictionScorePerSession": 0.29870129870129875,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 59,
+          "Desktop": 17,
+          "Tablet": 1
+        },
+        "EntryPage": {
+          "/": 72,
+          "/franchise-management-software": 1,
+          "/employment": 1,
+          "/blog/what-is-franchise-management": 1,
+          "/brandwide-ai": 1,
+          "/privacy-policy": 1
+        },
+        "Country": {
+          "US": 21,
+          "RO": 38,
+          "NG": 3,
+          "IN": 3,
+          "BG": 6,
+          "CA": 3,
+          "IE": 1,
+          "DE": 1,
+          "IT": 1
+        },
+        "ReferrerType": {
+          "Link": 44,
+          "__NULL__": 18,
+          "Internal": 8,
+          "Search": 5,
+          "Social": 2
+        },
+        "Browser": {
+          "Chrome": 17,
+          "Chrome Mobile": 41,
+          "Facebook App": 6,
+          "Safari mobile": 7,
+          "Microsoft Edge": 2,
+          "Android WebView": 1,
+          "Google App": 2,
+          "Mobile Samsung Browser": 1
+        }
+      }
+    },
+    "2026-11-04": {
+      "sessionCount": 68,
+      "visitorCount": 63,
+      "pageviewsCount": 105,
+      "visitDuration": 72949,
+      "engagementDuration": 23373,
+      "frictionScorePerSession": 0.514705882352941,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 43,
+          "Desktop": 25
+        },
+        "EntryPage": {
+          "/": 54,
+          "/franchise-management-software": 1,
+          "/franchisee": 2,
+          "/see-a-demo": 1,
+          "/employment": 2,
+          "/franchise-solutions": 1,
+          "/brandwide-ai": 1,
+          "/tools-to-increase-franchisee-sales-2": 3,
+          "/blog/importance-of-franchise-marketing-in-a-franchise-business": 1,
+          "/blog/meet-ria-ai-franchise-sales-assistant": 1,
+          "__OTHER__": 1
+        },
+        "Country": {
+          "US": 32,
+          "RO": 24,
+          "NG": 3,
+          "IN": 4,
+          "CA": 1,
+          "GB": 1,
+          "PK": 1,
+          "CN": 2
+        },
+        "ReferrerType": {
+          "Link": 34,
+          "__NULL__": 19,
+          "Internal": 6,
+          "Search": 9
+        },
+        "Browser": {
+          "Chrome": 24,
+          "Chrome Mobile": 25,
+          "Facebook App": 8,
+          "Safari mobile": 3,
+          "Microsoft Edge": 1,
+          "Instagram App": 3,
+          "Mobile QQbrowser": 2,
+          "TikTok App": 1,
+          "Opera": 1
+        }
+      }
+    },
+    "2026-11-05": {
+      "sessionCount": 43,
+      "visitorCount": 43,
+      "pageviewsCount": 55,
+      "visitDuration": 106560,
+      "engagementDuration": 26069,
+      "frictionScorePerSession": 0.16279069767441862,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 35,
+          "Desktop": 8
+        },
+        "EntryPage": {
+          "/": 38,
+          "/franchise-management-software": 1,
+          "/see-a-demo": 1,
+          "/blog/what-is-franchise-management": 1,
+          "/blog/what-is-franchise-development": 1,
+          "__OTHER__": 1
+        },
+        "Country": {
+          "US": 15,
+          "RO": 10,
+          "NG": 12,
+          "CA": 4,
+          "PH": 1,
+          "__OTHER__": 1
+        },
+        "ReferrerType": {
+          "Link": 27,
+          "__NULL__": 11,
+          "Internal": 3,
+          "Search": 2
+        },
+        "Browser": {
+          "Chrome": 8,
+          "Chrome Mobile": 14,
+          "Facebook App": 11,
+          "Safari mobile": 4,
+          "Android WebView": 4,
+          "Google App": 1,
+          "LinkedIn App": 1
+        }
+      }
+    },
+    "2026-11-06": {
+      "sessionCount": 59,
+      "visitorCount": 59,
+      "pageviewsCount": 89,
+      "visitDuration": 104466,
+      "engagementDuration": 28832,
+      "frictionScorePerSession": 0.5762711864406781,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 46,
+          "Desktop": 13
+        },
+        "EntryPage": {
+          "/": 55,
+          "/contact": 1,
+          "/blog/what-is-franchise-management": 1,
+          "/blog/importance-of-franchise-marketing-in-a-franchise-business": 1,
+          "__OTHER__": 1
+        },
+        "Country": {
+          "US": 24,
+          "RO": 12,
+          "NG": 18,
+          "IN": 1,
+          "GB": 1,
+          "AU": 1,
+          "EG": 2
+        },
+        "ReferrerType": {
+          "Link": 41,
+          "__NULL__": 13,
+          "Internal": 2,
+          "Search": 3
+        },
+        "Browser": {
+          "Chrome": 13,
+          "Chrome Mobile": 29,
+          "Facebook App": 7,
+          "Safari mobile": 4,
+          "Android WebView": 1,
+          "Instagram App": 2,
+          "Google App": 2,
+          "LinkedIn App": 1
+        }
+      }
+    },
+    "2026-11-07": {
+      "sessionCount": 26,
+      "visitorCount": 26,
+      "pageviewsCount": 28,
+      "visitDuration": 33571,
+      "engagementDuration": 22748,
+      "frictionScorePerSession": 0,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 24,
+          "Desktop": 1,
+          "Tablet": 1
+        },
+        "EntryPage": {
+          "/": 26
+        },
+        "Country": {
+          "US": 13,
+          "NG": 12,
+          "GB": 1
+        },
+        "ReferrerType": {
+          "Link": 19,
+          "__NULL__": 6,
+          "Internal": 1
+        },
+        "Browser": {
+          "Chrome": 1,
+          "Chrome Mobile": 14,
+          "Facebook App": 4,
+          "Safari mobile": 6,
+          "Google App": 1
+        }
+      }
+    },
+    "2026-11-08": {
+      "sessionCount": 36,
+      "visitorCount": 36,
+      "pageviewsCount": 47,
+      "visitDuration": 75900,
+      "engagementDuration": 23252,
+      "frictionScorePerSession": 0.38888888888888884,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 30,
+          "Desktop": 6
+        },
+        "EntryPage": {
+          "/": 30,
+          "/franchise-management-software": 1,
+          "/blog/importance-of-franchise-marketing-in-a-franchise-business": 1,
+          "__OTHER__": 4
+        },
+        "Country": {
+          "US": 18,
+          "RO": 16,
+          "NG": 2
+        },
+        "ReferrerType": {
+          "Link": 27,
+          "__NULL__": 6,
+          "Internal": 2,
+          "Search": 1
+        },
+        "Browser": {
+          "Chrome": 7,
+          "Chrome Mobile": 15,
+          "Facebook App": 7,
+          "Safari mobile": 2,
+          "Google App": 2,
+          "Mobile Samsung Browser": 1,
+          "LinkedIn App": 1,
+          "TikTok App": 1
+        }
+      }
+    },
+    "2026-11-09": {
+      "sessionCount": 23,
+      "visitorCount": 23,
+      "pageviewsCount": 33,
+      "visitDuration": 39128,
+      "engagementDuration": 22667,
+      "frictionScorePerSession": 0.21739130434782608,
+      "dimensions": {
+        "DeviceType": {
+          "Phone": 22,
+          "Desktop": 1
+        },
+        "EntryPage": {
+          "/": 23
+        },
+        "Country": {
+          "US": 5,
+          "RO": 11,
+          "NG": 1,
+          "BG": 4,
+          "CA": 1,
+          "EG": 1
+        },
+        "ReferrerType": {
+          "Link": 19,
+          "__NULL__": 1,
+          "Internal": 3
+        },
+        "Browser": {
+          "Chrome": 1,
+          "Chrome Mobile": 18,
+          "Facebook App": 3,
+          "Instagram App": 1
         }
       }
     }
   },
   "recordings": [
     {
-      "id": "2df1de107af0932863590811b305e5c8",
+      "id": "faa5ec62cf0c5bb87f3321d5d3d69367",
       "token": "",
-      "created": "2026-10-26T00:44:20.256+00:00",
-      "lastActivity": "2026-10-26T00:44:30.256+00:00",
+      "created": "2026-11-09T14:34:47.564+00:00",
+      "lastActivity": "2026-11-09T14:35:21.383+00:00",
       "pages": 1,
-      "duration": 10000,
-      "engagementTime": 5006,
-      "friction": 5,
+      "duration": 33819,
+      "engagementTime": 13013,
+      "friction": 0,
       "country": "US",
-      "region": "Virginia",
-      "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
-      "browser": "Chrome",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "148.0.0.0",
-      "os": "Windows",
-      "osVersion": "10",
-      "device": "Desktop",
-      "referrer": "",
-      "screenRes": "1800x1125",
-      "entry": "https://meetbrandwide.com/franchise-crm-solution",
-      "entryPage": "/franchise-crm-solution",
+      "region": "Maryland",
+      "lang": "en-US,en;q=0.9,es-US;q=0.8,es;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 17; SM-S731U Build/CP2A.260605.016) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.70 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/585.0.0.47.54;IABMV/1;]",
+      "browser": "Facebook App",
+      "simplifiedBrowser": "Facebook App",
+      "browserVersion": "585.0.0.47.54",
+      "os": "Android",
+      "osVersion": "17",
+      "device": "Phone",
+      "referrer": "https://ozenlift.com",
+      "referrerType": "Link",
+      "screenRes": "320x694",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMI4Oqy4I37lwMVp-7jBx1cuDztEAEYASAAEgIEYfD_BwE",
+      "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/2df1de107af0932863590811b305e5c8/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/2df1de107af0932863590811b305e5c8/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/faa5ec62cf0c5bb87f3321d5d3d69367/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/faa5ec62cf0c5bb87f3321d5d3d69367/play"
     },
     {
-      "id": "c102f103ae5e5cb1069d1ec993d91b94",
+      "id": "8e7116e8a3dd39aaec4ffd223016129a",
       "token": "",
-      "created": "2026-10-25T22:05:53.173+00:00",
-      "lastActivity": "2026-10-25T22:05:54.129+00:00",
+      "created": "2026-11-09T13:41:44.41+00:00",
+      "lastActivity": "2026-11-09T13:42:27.744+00:00",
+      "pages": 4,
+      "duration": 43334,
+      "engagementTime": 43882,
+      "friction": 1,
+      "country": "EG",
+      "region": "",
+      "lang": "en-US,en;q=0.9",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "browser": "Chrome",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Windows",
+      "osVersion": "10",
+      "device": "Desktop",
+      "referrer": "",
+      "screenRes": "1600x900",
+      "entry": "https://meetbrandwide.com/",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/8e7116e8a3dd39aaec4ffd223016129a/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/8e7116e8a3dd39aaec4ffd223016129a/play"
+    },
+    {
+      "id": "08d17b5dac0aa1d919c7e8c72b692dc3",
+      "token": "",
+      "created": "2026-11-09T12:03:58.105+00:00",
+      "lastActivity": "2026-11-09T12:04:34.751+00:00",
       "pages": 1,
-      "duration": 956,
-      "engagementTime": 956,
+      "duration": 36646,
+      "engagementTime": 21123,
       "friction": 0,
       "country": "US",
-      "region": "Maryland",
+      "region": "Massachusetts",
+      "lang": "es-US,es;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-S156V Build/BP4A.251205.006; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/157.0.8103.31 Mobile Safari/537.36 Instagram 454.0.0.54.77 Android (36/16; 450dpi; 1080x2340; samsung; SM-S156V; a15x; mt6835; e",
+      "browser": "Instagram App",
+      "simplifiedBrowser": "Instagram App",
+      "browserVersion": "454.0.0.54.77",
+      "os": "Android",
+      "osVersion": "16",
+      "device": "Phone",
+      "referrer": "https://googleads.g.doubleclick.net",
+      "referrerType": "Link",
+      "screenRes": "384x832",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMI48Cbhuz6lwMVVOL9BR0FAjs5EAEYASAAEgLIHfD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/08d17b5dac0aa1d919c7e8c72b692dc3/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/08d17b5dac0aa1d919c7e8c72b692dc3/play"
+    },
+    {
+      "id": "18cc344e7fd7f52cd8dae8caf1e3373e",
+      "token": "",
+      "created": "2026-11-09T11:29:35.543+00:00",
+      "lastActivity": "2026-11-09T11:30:43.596+00:00",
+      "pages": 1,
+      "duration": 68053,
+      "engagementTime": 26258,
+      "friction": 0,
+      "country": "US",
+      "region": "Virginia",
       "lang": "en-US,en;q=0.9",
+      "userAgent": "Mozilla/5.0 (Linux; Android 15; B1660V Build/AP3A.240905.015.A2) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/157.0.8103.34 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/586.0.0.52.53;IABMV/1;]",
+      "browser": "Facebook App",
+      "simplifiedBrowser": "Facebook App",
+      "browserVersion": "586.0.0.52.53",
+      "os": "Android",
+      "osVersion": "15",
+      "device": "Phone",
+      "referrer": "https://micronewz.com",
+      "referrerType": "Link",
+      "screenRes": "444x985",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMIxZ_greT6lwMVjz6zAB2RZBR9EAEYASAAEgLmZPD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/18cc344e7fd7f52cd8dae8caf1e3373e/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/18cc344e7fd7f52cd8dae8caf1e3373e/play"
+    },
+    {
+      "id": "ffb80d6e069c55d498a720ea1a2153ac",
+      "token": "",
+      "created": "2026-11-09T09:57:57.687+00:00",
+      "lastActivity": "2026-11-09T09:57:59.123+00:00",
+      "pages": 1,
+      "duration": 1436,
+      "engagementTime": 1436,
+      "friction": 0,
+      "country": "BG",
+      "region": "",
+      "lang": "bg-BG,bg;q=0.9",
       "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
       "browser": "Chrome Mobile",
       "simplifiedBrowser": "Chrome",
@@ -5118,211 +5878,213 @@
       "os": "Android",
       "osVersion": "10",
       "device": "Phone",
-      "referrer": "",
-      "screenRes": "360x780",
-      "entry": "https://meetbrandwide.com/",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/c102f103ae5e5cb1069d1ec993d91b94/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/c102f103ae5e5cb1069d1ec993d91b94/play"
-    },
-    {
-      "id": "4f4ba2cff4c9ff7044745b9ae6ca5503",
-      "token": "",
-      "created": "2026-10-25T21:28:30.29+00:00",
-      "lastActivity": "2026-10-25T21:28:32.425+00:00",
-      "pages": 1,
-      "duration": 2135,
-      "engagementTime": 2135,
-      "friction": 0,
-      "country": "US",
-      "region": "New York",
-      "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.1 Mobile/15E148 Safari/604.1",
-      "browser": "Safari mobile",
-      "simplifiedBrowser": "Safari",
-      "browserVersion": "26.6.1",
-      "os": "iOS",
-      "osVersion": "18",
-      "device": "Phone",
-      "referrer": "",
-      "screenRes": "414x896",
-      "entry": "https://meetbrandwide.com/",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/4f4ba2cff4c9ff7044745b9ae6ca5503/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/4f4ba2cff4c9ff7044745b9ae6ca5503/play"
-    },
-    {
-      "id": "1968cce4a039169643f7ad0bcda815b0",
-      "token": "",
-      "created": "2026-10-25T15:47:42.92+00:00",
-      "lastActivity": "2026-10-25T16:23:33.545+00:00",
-      "pages": 1,
-      "duration": 2150625,
-      "engagementTime": 54479,
-      "friction": 0,
-      "country": "US",
-      "region": "Georgia",
-      "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
-      "browser": "Chrome",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "155.0.0.0",
-      "os": "Windows",
-      "osVersion": "10",
-      "device": "Desktop",
-      "referrer": "https://www.google.com",
-      "referrerType": "Search",
-      "screenRes": "1707x1067",
-      "entry": "https://meetbrandwide.com/franchise-management-software-integrations/",
-      "entryPage": "/franchise-management-software-integrations",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/1968cce4a039169643f7ad0bcda815b0/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/1968cce4a039169643f7ad0bcda815b0/play"
-    },
-    {
-      "id": "20a2df41b6076ea1c44e597be2f5c544",
-      "token": "",
-      "created": "2026-10-25T14:19:17.923+00:00",
-      "lastActivity": "2026-10-25T14:19:24.554+00:00",
-      "pages": 1,
-      "duration": 6631,
-      "engagementTime": 6631,
-      "friction": 0,
-      "country": "US",
-      "region": "Mississippi",
-      "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (Linux; Android 13; moto g play - 2023 Build/T3SGS33.165-46-3-2-10-1-14) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/155.0.8059.43 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/584.0.0.51.56;IABMV/1;]",
-      "browser": "Facebook App",
-      "simplifiedBrowser": "Facebook App",
-      "browserVersion": "584.0.0.51.56",
-      "os": "Android",
-      "osVersion": "13",
-      "device": "Phone",
-      "referrer": "https://f33d6e3c666e92860ebb32c54a3f274e.safeframe.googlesyndication.com",
+      "referrer": "https://timplie.com",
       "referrerType": "Link",
       "screenRes": "412x915",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMI6OTMqK7VlwMVJLrKAB1z3CXxEAEYASAAEgJjMvD_BwE",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIt_CU8M_6lwMVP9eOCR0G7iC1EAEYASAAEgJeYfD_BwE",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/20a2df41b6076ea1c44e597be2f5c544/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/20a2df41b6076ea1c44e597be2f5c544/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/ffb80d6e069c55d498a720ea1a2153ac/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/ffb80d6e069c55d498a720ea1a2153ac/play"
     },
     {
-      "id": "9492d987ea343e43a4535e35a479b671",
+      "id": "f704a05ab5fd2810570fbddf155c8425",
       "token": "",
-      "created": "2026-10-25T11:52:42.233+00:00",
-      "lastActivity": "2026-10-25T11:52:49.688+00:00",
+      "created": "2026-11-09T09:45:30.842+00:00",
+      "lastActivity": "2026-11-09T09:45:36.474+00:00",
       "pages": 1,
-      "duration": 7455,
-      "engagementTime": 7455,
+      "duration": 5632,
+      "engagementTime": 5630,
       "friction": 0,
-      "country": "US",
-      "region": "New York",
-      "lang": "en-US,en;q=0.9,el-GR;q=0.8,el;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A166U Build/BP2A.250605.031.A3) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/152.0.7977.72 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/577.0.0.50.72;IABMV/1;]",
-      "browser": "Facebook App",
-      "simplifiedBrowser": "Facebook App",
-      "browserVersion": "577.0.0.50.72",
+      "country": "BG",
+      "region": "",
+      "lang": "bg-BG,bg;q=0.9",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
       "os": "Android",
-      "osVersion": "16",
+      "osVersion": "10",
       "device": "Phone",
-      "referrer": "https://763656d8785961727b21ed294d163784.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "320x694",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMIlvmhyY3VlwMV6RmyAx1VOih1EAEYASAAEgIIG_D_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/9492d987ea343e43a4535e35a479b671/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/9492d987ea343e43a4535e35a479b671/play"
-    },
-    {
-      "id": "d91e03cfb42d1b7dc1cb8929c08ebb41",
-      "token": "",
-      "created": "2026-10-25T10:35:07.729+00:00",
-      "lastActivity": "2026-10-25T10:35:31.267+00:00",
-      "pages": 1,
-      "duration": 23538,
-      "engagementTime": 23499,
-      "friction": 0,
-      "country": "US",
-      "region": "Hawaii",
-      "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A356U Build/BP4A.251205.006; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.51 Mobile Safari/537.36 Instagram 452.1.0.54.64 Android (36/16; 450dpi; 1080x2340; samsung; SM-A356U; a35x; s5e8835; ",
-      "browser": "Instagram App",
-      "simplifiedBrowser": "Instagram App",
-      "browserVersion": "452.1.0.54.64",
-      "os": "Android",
-      "osVersion": "16",
-      "device": "Phone",
-      "referrer": "https://710273cf117046b870dbfd6591808d31.safeframe.googlesyndication.com",
+      "referrer": "https://timplie.com",
       "referrerType": "Link",
       "screenRes": "384x832",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMI7pHS5fvUlwMVYZHuAR0I8SMrEAEYASAAEgKnTfD_BwE",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI4N2Tjc36lwMVqb0KCR3kxRQFEAEYASAAEgLPsPD_BwE",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/d91e03cfb42d1b7dc1cb8929c08ebb41/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/d91e03cfb42d1b7dc1cb8929c08ebb41/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/f704a05ab5fd2810570fbddf155c8425/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/f704a05ab5fd2810570fbddf155c8425/play"
     },
     {
-      "id": "8047b0ffc03cfebe985c422d2c19620e",
+      "id": "467d0ff68d66e6c843814c8fcbdb564a",
       "token": "",
-      "created": "2026-10-25T10:29:06.644+00:00",
-      "lastActivity": "2026-10-25T10:29:26.645+00:00",
+      "created": "2026-11-09T09:37:15.017+00:00",
+      "lastActivity": "2026-11-09T09:37:18.189+00:00",
       "pages": 1,
-      "duration": 20001,
-      "engagementTime": 13605,
+      "duration": 3172,
+      "engagementTime": 3172,
       "friction": 0,
-      "country": "US",
-      "region": "Oklahoma",
+      "country": "NG",
+      "region": "",
       "lang": "en-US,en;q=0.9",
-      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A166U Build/BP4A.251205.006) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.51 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/584.0.0.51.56;IABMV/1;]",
-      "browser": "Facebook App",
-      "simplifiedBrowser": "Facebook App",
-      "browserVersion": "584.0.0.51.56",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "151.0.0.0",
       "os": "Android",
-      "osVersion": "16",
+      "osVersion": "10",
       "device": "Phone",
-      "referrer": "https://ozenlift.com",
-      "referrerType": "Link",
-      "screenRes": "384x832",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMIofbd8PrUlwMVRaU2Bx17wxhnEAEYASAAEgJopvD_BwE",
+      "referrer": "https://meetbrandwide.com",
+      "referrerType": "Internal",
+      "screenRes": "360x806",
+      "entry": "https://meetbrandwide.com/?gbraid=0AAAAAD_qlIB0mOqJEBJgst8Jcw1qdo655&gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI8-rlmMv6lwMVIX1BAB0F0CHLEAEYASAAEgKunfD_BwE",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/8047b0ffc03cfebe985c422d2c19620e/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/8047b0ffc03cfebe985c422d2c19620e/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/467d0ff68d66e6c843814c8fcbdb564a/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/467d0ff68d66e6c843814c8fcbdb564a/play"
     },
     {
-      "id": "05310e2980b908bc49996cf2329b38cc",
+      "id": "6da6de3e731471b7dc01b874f0bb387d",
       "token": "",
-      "created": "2026-10-25T09:52:28.92+00:00",
-      "lastActivity": "2026-10-25T09:52:29.551+00:00",
+      "created": "2026-11-09T09:19:53.255+00:00",
+      "lastActivity": "2026-11-09T09:20:51.991+00:00",
       "pages": 1,
-      "duration": 631,
-      "engagementTime": 631,
+      "duration": 58736,
+      "engagementTime": 43743,
       "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "360x780",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIn42sqcf6lwMVeAMUBh2P_hCBEAEYASAAEgJ_3_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6da6de3e731471b7dc01b874f0bb387d/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6da6de3e731471b7dc01b874f0bb387d/play"
+    },
+    {
+      "id": "20bb9740473cbfedd81e7bb58e6bc4d8",
+      "token": "",
+      "created": "2026-11-09T08:50:38.909+00:00",
+      "lastActivity": "2026-11-09T08:52:13.162+00:00",
+      "pages": 2,
+      "duration": 94253,
+      "engagementTime": 32679,
+      "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://db585c5df8c0dd8d80d2e6706aec9954.safeframe.googlesyndication.com",
+      "referrerType": "Link",
+      "screenRes": "360x780",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMItqXg5MD6lwMV-yMGBB0fXAH4EAEYASAAEgLgnPD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/20bb9740473cbfedd81e7bb58e6bc4d8/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/20bb9740473cbfedd81e7bb58e6bc4d8/play"
+    },
+    {
+      "id": "2391331938ad736564aa19d4c37bff03",
+      "token": "",
+      "created": "2026-11-09T08:48:49.237+00:00",
+      "lastActivity": "2026-11-09T08:49:23.324+00:00",
+      "pages": 2,
+      "duration": 34087,
+      "engagementTime": 37501,
+      "friction": 1,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7,sv;q=0.6",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://meetbrandwide.com",
+      "referrerType": "Internal",
+      "screenRes": "360x780",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIzbb5u8D6lwMVSkhBAh1M9CBFEAEYASAAEgKLmPD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/2391331938ad736564aa19d4c37bff03/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/2391331938ad736564aa19d4c37bff03/play"
+    },
+    {
+      "id": "9cbdc3db2fe77719dd9fd3bf23e5729f",
+      "token": "",
+      "created": "2026-11-09T08:44:14.097+00:00",
+      "lastActivity": "2026-11-09T08:44:14.373+00:00",
+      "pages": 1,
+      "duration": 276,
+      "engagementTime": 276,
+      "friction": 0,
+      "country": "BG",
+      "region": "",
+      "lang": "bg-BG,bg;q=0.9",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "360x820",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIkJKOsb_6lwMVrpMKCR0YGw_PEAEYASAAEgLO9_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/9cbdc3db2fe77719dd9fd3bf23e5729f/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/9cbdc3db2fe77719dd9fd3bf23e5729f/play"
+    },
+    {
+      "id": "2bb2d1da9977d40648a9daf0ffd31413",
+      "token": "",
+      "created": "2026-11-09T08:40:53.303+00:00",
+      "lastActivity": "2026-11-09T08:41:00.257+00:00",
+      "pages": 1,
+      "duration": 6954,
+      "engagementTime": 6902,
+      "friction": 1,
       "country": "RO",
       "region": "",
       "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -5333,432 +6095,277 @@
       "os": "Android",
       "osVersion": "10",
       "device": "Phone",
-      "referrer": "https://fbc9e4bc333805b892d8a9557ce3dc26.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "360x820",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIj7-z2PLUlwMVh9F7AB1gCTdyEAEYASAAEgJL9fD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/05310e2980b908bc49996cf2329b38cc/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/05310e2980b908bc49996cf2329b38cc/play"
-    },
-    {
-      "id": "73211bce658a7bca76da1b552ea80b92",
-      "token": "",
-      "created": "2026-10-25T09:50:39.836+00:00",
-      "lastActivity": "2026-10-25T09:50:52.751+00:00",
-      "pages": 2,
-      "duration": 12915,
-      "engagementTime": 17931,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "147.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://41bd93f834ad4667acd5101ffd382c7c.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "412x869",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIl-_tpfLUlwMVUO8NCR0Tiy16EAEYASAAEgI69_D_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/73211bce658a7bca76da1b552ea80b92/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/73211bce658a7bca76da1b552ea80b92/play"
-    },
-    {
-      "id": "3c813741558b9742fdc27a94d19afcc9",
-      "token": "",
-      "created": "2026-10-25T09:32:12.76+00:00",
-      "lastActivity": "2026-10-25T09:32:30.164+00:00",
-      "pages": 2,
-      "duration": 17404,
-      "engagementTime": 20515,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "155.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://6483dc3d66bc13eb2ee844109776414c.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "400x867",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIyY-2k-7UlwMVyit7BB2bzCmZEAEYASAAEgIZd_D_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/3c813741558b9742fdc27a94d19afcc9/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/3c813741558b9742fdc27a94d19afcc9/play"
-    },
-    {
-      "id": "c7c3e7c6415eddcb649924358c7211b1",
-      "token": "",
-      "created": "2026-10-25T09:23:25.561+00:00",
-      "lastActivity": "2026-10-25T09:23:29.268+00:00",
-      "pages": 1,
-      "duration": 3707,
-      "engagementTime": 3707,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "154.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://d6fbb71f75125e0198b81618d0591b53.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "393x873",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIysKNmuzUlwMVTR17BB3tlhlCEAEYASAAEgJUsfD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/c7c3e7c6415eddcb649924358c7211b1/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/c7c3e7c6415eddcb649924358c7211b1/play"
-    },
-    {
-      "id": "24bb9f99f5fc18522cd8649384d525d8",
-      "token": "",
-      "created": "2026-10-25T09:06:10.484+00:00",
-      "lastActivity": "2026-10-25T09:06:51.926+00:00",
-      "pages": 2,
-      "duration": 41442,
-      "engagementTime": 46255,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "154.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://ac74ef10fbe2522b387acd08b44f13a4.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "320x717",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI-Yz3pujUlwMV0lSeBh2oRTB6EAEYASAAEgIy-PD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/24bb9f99f5fc18522cd8649384d525d8/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/24bb9f99f5fc18522cd8649384d525d8/play"
-    },
-    {
-      "id": "1766496f2bf74be00ed7d07f191c3351",
-      "token": "",
-      "created": "2026-10-25T09:01:36.015+00:00",
-      "lastActivity": "2026-10-25T09:01:46.864+00:00",
-      "pages": 1,
-      "duration": 10849,
-      "engagementTime": 10382,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "155.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://f6f50a0169fbe2b5c2df8853afb72db5.safeframe.googlesyndication.com",
+      "referrer": "https://ab0f072ca8f3b3017c873e94a66f300b.safeframe.googlesyndication.com",
       "referrerType": "Link",
       "screenRes": "384x832",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIttybpOfUlwMVjNQNCR16rTdVEAEYASAAEgIri_D_BwE",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIjPWI1776lwMV1NGOCR0hUCw5EAEYASAAEgJ0XvD_BwE",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/1766496f2bf74be00ed7d07f191c3351/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/1766496f2bf74be00ed7d07f191c3351/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/2bb2d1da9977d40648a9daf0ffd31413/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/2bb2d1da9977d40648a9daf0ffd31413/play"
     },
     {
-      "id": "cdabce989bba67b523a28d6eb200060d",
+      "id": "6d58b29e6a7a3d3d0c64def40705886b",
       "token": "",
-      "created": "2026-10-25T08:44:45.942+00:00",
-      "lastActivity": "2026-10-25T08:45:23.596+00:00",
-      "pages": 1,
-      "duration": 37654,
-      "engagementTime": 33770,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "155.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://0970b82ae53c7a76f444950234fb1e69.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "330x732",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIp9XgwePUlwMVR-gNCR3agANQEAEYASAAEgKIBvD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/cdabce989bba67b523a28d6eb200060d/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/cdabce989bba67b523a28d6eb200060d/play"
-    },
-    {
-      "id": "e53ccb8dae211bed99aca98767c12749",
-      "token": "",
-      "created": "2026-10-25T08:40:10.703+00:00",
-      "lastActivity": "2026-10-25T08:41:00.704+00:00",
-      "pages": 1,
-      "duration": 50001,
-      "engagementTime": 31493,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/30.0 Chrome/143.0.0.0 Mobile Safari/537.36",
-      "browser": "Mobile Samsung Browser",
-      "simplifiedBrowser": "Samsung Internet",
-      "browserVersion": "30.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://46cb52a04881539a2be26cef2d36654a.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "320x694",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIpaeHxuLUlwMVp3H2CB22ySO9EAEYASAAEgJdtvD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/e53ccb8dae211bed99aca98767c12749/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/e53ccb8dae211bed99aca98767c12749/play"
-    },
-    {
-      "id": "c9e502751acda9eec9c83914e19c5235",
-      "token": "",
-      "created": "2026-10-25T08:35:27.494+00:00",
-      "lastActivity": "2026-10-25T08:35:28.181+00:00",
-      "pages": 1,
-      "duration": 687,
-      "engagementTime": 687,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "155.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://5fc74516b766ed28284b11bded945541.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "393x873",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIq8_TvuHUlwMVvQF7BB1SehUcEAEYASAAEgK_VfD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/c9e502751acda9eec9c83914e19c5235/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/c9e502751acda9eec9c83914e19c5235/play"
-    },
-    {
-      "id": "bfcb16e7d0e5cd558e0d3bdec4f12ce1",
-      "token": "",
-      "created": "2026-10-25T08:32:26.481+00:00",
-      "lastActivity": "2026-10-25T08:33:16.69+00:00",
-      "pages": 1,
-      "duration": 50209,
-      "engagementTime": 16176,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "154.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://e31102de1d2dfde26b9735a738a1b14d.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "350x776",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIhPWZ4ODUlwMVHMxFCR2EpiqrEAEYASAAEgIkCfD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/bfcb16e7d0e5cd558e0d3bdec4f12ce1/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/bfcb16e7d0e5cd558e0d3bdec4f12ce1/play"
-    },
-    {
-      "id": "05cfb273574894590ae1900da1542349",
-      "token": "",
-      "created": "2026-10-25T08:32:06.886+00:00",
-      "lastActivity": "2026-10-25T08:32:30.509+00:00",
+      "created": "2026-11-09T08:40:34.697+00:00",
+      "lastActivity": "2026-11-09T08:41:27.316+00:00",
       "pages": 2,
-      "duration": 23623,
-      "engagementTime": 21876,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "155.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://19cdd271314ba55c7d1913ce05e7cfdb.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "360x780",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIypXX3eDUlwMVbOsNCR3g1CdFEAEYASAAEgJQI_D_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/05cfb273574894590ae1900da1542349/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/05cfb273574894590ae1900da1542349/play"
-    },
-    {
-      "id": "e82e27dec71401c03e90ff67e4cbf336",
-      "token": "",
-      "created": "2026-10-25T08:30:12.733+00:00",
-      "lastActivity": "2026-10-25T08:30:24.291+00:00",
-      "pages": 1,
-      "duration": 11558,
-      "engagementTime": 11556,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 12; Redmi Note 9 Pro Build/SKQ1.211019.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.51 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/584.0.0.51.56;IABMV/1;]",
-      "browser": "Facebook App",
-      "simplifiedBrowser": "Facebook App",
-      "browserVersion": "584.0.0.51.56",
-      "os": "Android",
-      "osVersion": "12",
-      "device": "Phone",
-      "referrer": "https://dc41ccd18e119ea575840a8cff8203d5.safeframe.googlesyndication.com",
-      "referrerType": "Link",
-      "screenRes": "393x873",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI0vOgp-DUlwMVEoRQBh1wETh1EAEYASAAEgLbSPD_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/e82e27dec71401c03e90ff67e4cbf336/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/e82e27dec71401c03e90ff67e4cbf336/play"
-    },
-    {
-      "id": "0a917a3fd1837684fdd02d840472e6c4",
-      "token": "",
-      "created": "2026-10-25T08:25:34.49+00:00",
-      "lastActivity": "2026-10-25T08:26:50.678+00:00",
-      "pages": 3,
-      "duration": 76188,
-      "engagementTime": 73389,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "154.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://primaveradigital.net",
-      "referrerType": "Link",
-      "screenRes": "360x800",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI6aDBld_UlwMVMD1VCB2RSDs7EAEYASAAEgIqo_D_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/0a917a3fd1837684fdd02d840472e6c4/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/0a917a3fd1837684fdd02d840472e6c4/play"
-    },
-    {
-      "id": "a3ee180c0f028b0fba7d6914c240aad4",
-      "token": "",
-      "created": "2026-10-25T08:24:31.774+00:00",
-      "lastActivity": "2026-10-25T08:24:36.904+00:00",
-      "pages": 1,
-      "duration": 5130,
-      "engagementTime": 5130,
-      "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
-      "browser": "Chrome Mobile",
-      "simplifiedBrowser": "Chrome",
-      "browserVersion": "154.0.0.0",
-      "os": "Android",
-      "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://primaveradigital.net",
-      "referrerType": "Link",
-      "screenRes": "370x813",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIk9WRhd_UlwMVNA6MBh01VQTEEAEYASAAEgJ4G_D_BwE",
-      "entryPage": "/",
-      "watched": false,
-      "starred": false,
-      "gdpr": false,
-      "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/a3ee180c0f028b0fba7d6914c240aad4/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/a3ee180c0f028b0fba7d6914c240aad4/play"
-    },
-    {
-      "id": "6bd4a9a7ff8a8d27f49505abafebae45",
-      "token": "",
-      "created": "2026-10-25T08:23:08.472+00:00",
-      "lastActivity": "2026-10-25T08:23:21.668+00:00",
-      "pages": 1,
-      "duration": 13196,
-      "engagementTime": 13195,
+      "duration": 52619,
+      "engagementTime": 46552,
       "friction": 1,
       "country": "RO",
       "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://meetbrandwide.com",
+      "referrerType": "Internal",
+      "screenRes": "360x780",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIh5L8yb76lwMVkoWDBx3rdinPEAEYASAAEgKZN_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6d58b29e6a7a3d3d0c64def40705886b/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6d58b29e6a7a3d3d0c64def40705886b/play"
+    },
+    {
+      "id": "0745976ebb63d6d7627795528e3f761f",
+      "token": "",
+      "created": "2026-11-09T08:38:28.389+00:00",
+      "lastActivity": "2026-11-09T08:38:55.774+00:00",
+      "pages": 2,
+      "duration": 27385,
+      "engagementTime": 27488,
+      "friction": 0,
+      "country": "BG",
+      "region": "",
+      "lang": "bg-BG,bg;q=0.9,en;q=0.8",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "393x873",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIpdfrh776lwMVpiYGBB1_TTKHEAEYASAAEgL_0_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/0745976ebb63d6d7627795528e3f761f/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/0745976ebb63d6d7627795528e3f761f/play"
+    },
+    {
+      "id": "691d7c5fa0628a18ad91b5816d5715de",
+      "token": "",
+      "created": "2026-11-09T08:30:33.307+00:00",
+      "lastActivity": "2026-11-09T08:33:50.534+00:00",
+      "pages": 2,
+      "duration": 197227,
+      "engagementTime": 32127,
+      "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "320x694",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMInp-7rrz6lwMV4g9eAR3OrQ9rEAEYASAAEgKSx_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/691d7c5fa0628a18ad91b5816d5715de/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/691d7c5fa0628a18ad91b5816d5715de/play"
+    },
+    {
+      "id": "f48b05577d7a95eb2761f4a46a05f119",
+      "token": "",
+      "created": "2026-11-09T08:25:23.884+00:00",
+      "lastActivity": "2026-11-09T08:25:50.536+00:00",
+      "pages": 1,
+      "duration": 26652,
+      "engagementTime": 26563,
+      "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "137.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "360x800",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI9ez4k7v6lwMV104cAh2NLBQzEAEYASAAEgKOMfD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/f48b05577d7a95eb2761f4a46a05f119/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/f48b05577d7a95eb2761f4a46a05f119/play"
+    },
+    {
+      "id": "fe70e3f0eb5b7393491cbf1b87513dd2",
+      "token": "",
+      "created": "2026-11-09T08:24:36.316+00:00",
+      "lastActivity": "2026-11-09T08:24:55.12+00:00",
+      "pages": 2,
+      "duration": 18804,
+      "engagementTime": 23591,
+      "friction": 1,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://4cac0a3263d84975a88f6f18e677ddac.safeframe.googlesyndication.com",
+      "referrerType": "Link",
+      "screenRes": "360x800",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI3c6zgLv6lwMVuVkWAh1N0iHqEAEYASAAEgKoIvD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/fe70e3f0eb5b7393491cbf1b87513dd2/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/fe70e3f0eb5b7393491cbf1b87513dd2/play"
+    },
+    {
+      "id": "87a76122323a7d0e20d7060f17f4b42d",
+      "token": "",
+      "created": "2026-11-09T08:19:14.842+00:00",
+      "lastActivity": "2026-11-09T08:19:40.3+00:00",
+      "pages": 1,
+      "duration": 25458,
+      "engagementTime": 20656,
+      "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A155F Build/BP4A.251205.006) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/157.0.8103.34 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/586.0.0.52.53;IABMV/1;]",
+      "browser": "Facebook App",
+      "simplifiedBrowser": "Facebook App",
+      "browserVersion": "586.0.0.52.53",
+      "os": "Android",
+      "osVersion": "16",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "412x892",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI4M_r47n6lwMVnS17BB1yzTugEAEYASAAEgIop_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/87a76122323a7d0e20d7060f17f4b42d/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/87a76122323a7d0e20d7060f17f4b42d/play"
+    },
+    {
+      "id": "8de45ee9d6058edf5209f2cb331ec178",
+      "token": "",
+      "created": "2026-11-09T08:13:58.311+00:00",
+      "lastActivity": "2026-11-09T08:14:49.106+00:00",
+      "pages": 1,
+      "duration": 50795,
+      "engagementTime": 25982,
+      "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://timplie.com",
+      "referrerType": "Link",
+      "screenRes": "360x800",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIsO6907j6lwMVHnj2CB129TPjEAEYASAAEgKVYfD_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/8de45ee9d6058edf5209f2cb331ec178/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/8de45ee9d6058edf5209f2cb331ec178/play"
+    },
+    {
+      "id": "afe72e74f5557849915e7899da97c540",
+      "token": "",
+      "created": "2026-11-09T08:09:26.278+00:00",
+      "lastActivity": "2026-11-09T08:10:05.108+00:00",
+      "pages": 2,
+      "duration": 38830,
+      "engagementTime": 19957,
+      "friction": 0,
+      "country": "RO",
+      "region": "",
+      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "156.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://e7592c5499b09d4155776243aab9069b.safeframe.googlesyndication.com",
+      "referrerType": "Link",
+      "screenRes": "320x717",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIoNPCzrf6lwMV5ikGAB2U7yv8EAEYASAAEgKaS_D_BwE",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/afe72e74f5557849915e7899da97c540/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/afe72e74f5557849915e7899da97c540/play"
+    },
+    {
+      "id": "87888720ec049f3890b6cf60050c0cd3",
+      "token": "",
+      "created": "2026-11-09T03:42:02.453+00:00",
+      "lastActivity": "2026-11-09T03:42:05.681+00:00",
+      "pages": 1,
+      "duration": 3228,
+      "engagementTime": 3228,
+      "friction": 0,
+      "country": "US",
+      "region": "Alabama",
       "lang": "en-US,en;q=0.9",
       "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
       "browser": "Chrome Mobile",
@@ -5767,30 +6374,61 @@
       "os": "Android",
       "osVersion": "10",
       "device": "Phone",
-      "referrer": "https://primaveradigital.net",
+      "referrer": "https://www.capterra.com",
       "referrerType": "Link",
-      "screenRes": "458x732",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMI3JnU3t7UlwMVgPYRCB3VwQBJEAEYASAAEgL3CvD_BwE",
+      "screenRes": "360x780",
+      "entry": "https://meetbrandwide.com/?utm_medium=Franchise+Resources%3A&utm_term=Listing+Advertisement&utm_source=capterra&gdmcid=ae111c56-2f17-4331-928d-15895d661a85",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6bd4a9a7ff8a8d27f49505abafebae45/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/6bd4a9a7ff8a8d27f49505abafebae45/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/87888720ec049f3890b6cf60050c0cd3/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/87888720ec049f3890b6cf60050c0cd3/play"
     },
     {
-      "id": "fdc97821e497a17c29b1e138ff5e7ca3",
+      "id": "fe59728fb5f9cba45b9787ea6f41e341",
       "token": "",
-      "created": "2026-10-25T08:18:50.822+00:00",
-      "lastActivity": "2026-10-25T08:20:20.66+00:00",
+      "created": "2026-11-09T02:03:10.126+00:00",
+      "lastActivity": "2026-11-09T02:04:16.723+00:00",
       "pages": 1,
-      "duration": 89838,
-      "engagementTime": 79611,
+      "duration": 66597,
+      "engagementTime": 53640,
       "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+      "country": "US",
+      "region": "Pennsylvania",
+      "lang": "en-US,en;q=0.9,ka;q=0.8,ru;q=0.7",
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+      "browser": "Chrome Mobile",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "151.0.0.0",
+      "os": "Android",
+      "osVersion": "10",
+      "device": "Phone",
+      "referrer": "https://www.capterra.com",
+      "referrerType": "Link",
+      "screenRes": "412x922",
+      "entry": "https://meetbrandwide.com/?utm_medium=Franchise+Resources%3A&utm_term=Listing+Advertisement&utm_source=capterra&gdmcid=957f9b2c-431e-44fb-8bd1-948bb3649eef",
+      "entryPage": "/",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/fe59728fb5f9cba45b9787ea6f41e341/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/fe59728fb5f9cba45b9787ea6f41e341/play"
+    },
+    {
+      "id": "4e5c30474153c7d4c10acc358554f9bf",
+      "token": "",
+      "created": "2026-11-09T01:22:38.441+00:00",
+      "lastActivity": "2026-11-09T01:22:44.39+00:00",
+      "pages": 1,
+      "duration": 5949,
+      "engagementTime": 5949,
+      "friction": 0,
+      "country": "CA",
+      "region": "Ontario",
+      "lang": "en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
       "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
       "browser": "Chrome Mobile",
       "simplifiedBrowser": "Chrome",
@@ -5798,181 +6436,235 @@
       "os": "Android",
       "osVersion": "10",
       "device": "Phone",
-      "referrer": "https://dad219f36a3e62e2bd546486d9f4fb3a.safeframe.googlesyndication.com",
+      "referrer": "https://www.capterra.com",
       "referrerType": "Link",
-      "screenRes": "360x800",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMItoCL0t3UlwMVRNENCR1aewYhEAEYASAAEgJRnvD_BwE",
+      "screenRes": "320x712",
+      "entry": "https://meetbrandwide.com/?utm_medium=Franchise+Resources%3A&utm_term=Listing+Advertisement&utm_source=capterra&gdmcid=b6e4639e-f988-4fa1-9dfe-0ef526426838",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/fdc97821e497a17c29b1e138ff5e7ca3/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/fdc97821e497a17c29b1e138ff5e7ca3/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/4e5c30474153c7d4c10acc358554f9bf/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/4e5c30474153c7d4c10acc358554f9bf/play"
     },
     {
-      "id": "556470a9ede16979c0462a7519cbb56a",
+      "id": "887fbd8433a06ac24f702db8cd89e059",
       "token": "",
-      "created": "2026-10-25T08:14:25.528+00:00",
-      "lastActivity": "2026-10-25T08:14:27.407+00:00",
+      "created": "2026-11-08T20:58:20.736+00:00",
+      "lastActivity": "2026-11-08T20:58:30.737+00:00",
       "pages": 1,
-      "duration": 1879,
-      "engagementTime": 1879,
+      "duration": 10001,
+      "engagementTime": 5005,
       "friction": 0,
-      "country": "RO",
-      "region": "",
-      "lang": "ro-RO,ro;q=0.9,it-SM;q=0.8,it;q=0.7,fr-BE;q=0.6,fr;q=0.5,en-US;q=0.4,en;q=0.3",
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.0.0 Mobile Safari/537.36 Instagram 452.1.0.53.64 Android (37/17; 450dpi; 1080x2340; samsung; SM-S938B; pa3q; qcom; ro_RO; 1096920925; IABMV/1)",
-      "browser": "Instagram App",
-      "simplifiedBrowser": "Instagram App",
-      "browserVersion": "452.1.0.53.64",
-      "os": "Android",
+      "country": "US",
+      "region": "Illinois",
+      "lang": "en-US,en;q=0.9",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "browser": "Chrome",
+      "simplifiedBrowser": "Chrome",
+      "browserVersion": "146.0.0.0",
+      "os": "Windows",
       "osVersion": "10",
-      "device": "Phone",
-      "referrer": "https://13f1724523f15a14ca3de9a9d5803217.safeframe.googlesyndication.com",
+      "device": "Desktop",
+      "referrer": "https://www.aocr.org",
       "referrerType": "Link",
-      "screenRes": "384x832",
-      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=23481354662&gclid=EAIaIQobChMIxcai4NzUlwMVNIQ3CB1QEAP6EAEYASAAEgK9WvD_BwE",
+      "screenRes": "800x600",
+      "entry": "https://meetbrandwide.com/blog/use-of-franchise-management-software-to-manage-franchisors-royalty/",
+      "entryPage": "/blog/use-of-franchise-management-software-to-manage-franchisors-royalty",
+      "watched": false,
+      "starred": false,
+      "gdpr": false,
+      "beingProcessed": false,
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/887fbd8433a06ac24f702db8cd89e059/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/887fbd8433a06ac24f702db8cd89e059/play"
+    },
+    {
+      "id": "1e905ad69761f8e86627a36b6d75972d",
+      "token": "",
+      "created": "2026-11-08T19:33:21.589+00:00",
+      "lastActivity": "2026-11-08T19:35:36.856+00:00",
+      "pages": 3,
+      "duration": 135267,
+      "engagementTime": 81232,
+      "friction": 0,
+      "country": "US",
+      "region": "Alabama",
+      "lang": "en-US,en;q=0.9",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-S166V Build/BP4A.251205.006) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/157.0.8103.34 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/586.0.0.52.53;IABMV/1;]",
+      "browser": "Facebook App",
+      "simplifiedBrowser": "Facebook App",
+      "browserVersion": "586.0.0.52.53",
+      "os": "Android",
+      "osVersion": "16",
+      "device": "Phone",
+      "referrer": "https://informacaoagora.com",
+      "referrerType": "Link",
+      "screenRes": "320x694",
+      "entry": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMIgKzQ0I75lwMVzwVpCR3hBi8UEAEYASAAEgIwGvD_BwE",
       "entryPage": "/",
       "watched": false,
       "starred": false,
       "gdpr": false,
       "beingProcessed": false,
-      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/556470a9ede16979c0462a7519cbb56a/play",
-      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/556470a9ede16979c0462a7519cbb56a/play"
+      "playbackUrl": "https://app.mouseflow.com/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/1e905ad69761f8e86627a36b6d75972d/play",
+      "playbackPath": "/websites/e4495438-587e-42d7-95f7-b371c838c0ab/recordings/1e905ad69761f8e86627a36b6d75972d/play"
     }
   ],
   "pages": [
     {
       "displayUrl": "/",
-      "uri": "https://meetbrandwide.com/",
+      "uri": "https://meetbrandwide.com/?gad_source=5&gad_campaignid=20838379875&gclid=EAIaIQobChMI4Oqy4I37lwMVp-7jBx1cuDztEAEYASAAEgIEYfD_BwE",
       "starred": false,
       "title": "Franchise Management Software & CRM Platform | BrandWide",
-      "views": 3800,
-      "visitTime": 67424,
-      "engagementTime": 23341,
-      "clicks": 5353,
-      "friction": 0.22289474,
-      "renderTime": 1477,
-      "scroll": 22,
-      "fold": 748,
-      "height": 16427,
-      "size": 439837,
+      "views": 4508,
+      "visitTime": 57123,
+      "engagementTime": 20700,
+      "clicks": 5103,
+      "friction": 0.16947648,
+      "renderTime": 1567,
+      "scroll": 20,
+      "fold": 776,
+      "height": 16050,
+      "size": 443776,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
       "exitPercentage": 0,
       "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 601,
-      "frictionEventsCount": 1400
+      "pageviewsWithFrictionCount": 569,
+      "frictionEventsCount": 1181
     },
     {
       "displayUrl": "/franchise-management-software",
       "uri": "https://meetbrandwide.com/franchise-management-software/",
       "starred": false,
-      "title": "Best Franchise Management Software | BrandWide",
-      "views": 462,
-      "visitTime": 41012,
-      "engagementTime": 6351,
-      "clicks": 81,
-      "friction": 0.023809524,
-      "renderTime": 849,
-      "scroll": 10,
-      "fold": 758,
-      "height": 9763,
-      "size": 356634,
+      "title": "Franchise Marketing & Operations Software | BrandWide",
+      "views": 482,
+      "visitTime": 40542,
+      "engagementTime": 6155,
+      "clicks": 69,
+      "friction": 0.014522822,
+      "renderTime": 911,
+      "scroll": 9,
+      "fold": 749,
+      "height": 10799,
+      "size": 353850,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
       "exitPercentage": 0,
       "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 4,
-      "frictionEventsCount": 11
+      "pageviewsWithFrictionCount": 3,
+      "frictionEventsCount": 9
     },
     {
       "displayUrl": "/request-a-demo",
       "uri": "https://meetbrandwide.com/request-a-demo/",
       "starred": false,
       "title": "Request a Demo - BrandWide",
-      "views": 180,
-      "visitTime": 148835,
-      "engagementTime": 52413,
-      "clicks": 628,
-      "friction": 0.3,
-      "renderTime": 1229,
-      "scroll": 64,
-      "fold": 725,
-      "height": 3698,
-      "size": 191298,
+      "views": 169,
+      "visitTime": 147084,
+      "engagementTime": 50337,
+      "clicks": 569,
+      "friction": 0.32544377,
+      "renderTime": 1201,
+      "scroll": 62,
+      "fold": 718,
+      "height": 3662,
+      "size": 191754,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
       "exitPercentage": 0,
       "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 28,
+      "pageviewsWithFrictionCount": 29,
       "frictionEventsCount": 54
-    },
-    {
-      "displayUrl": "/franchise-marketing-automation",
-      "uri": "https://meetbrandwide.com/franchise-marketing-automation/",
-      "starred": false,
-      "title": "Franchise Marketing Automation to Manage Franchisees | BrandWide",
-      "views": 141,
-      "visitTime": 42467,
-      "engagementTime": 7448,
-      "clicks": 40,
-      "friction": 0.06382979,
-      "renderTime": 586,
-      "scroll": 17,
-      "fold": 845,
-      "height": 6167,
-      "size": 352230,
-      "totalSessions": 0,
-      "entry": 0,
-      "exit": 0,
-      "exitPercentage": 0,
-      "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 4,
-      "frictionEventsCount": 4
     },
     {
       "displayUrl": "/see-a-demo",
       "uri": "https://meetbrandwide.com/see-a-demo/",
       "starred": false,
       "title": "See a Demo - BrandWide",
-      "views": 138,
-      "visitTime": 49885,
-      "engagementTime": 12726,
-      "clicks": 157,
-      "friction": 0.08695652,
-      "renderTime": 473,
+      "views": 153,
+      "visitTime": 54924,
+      "engagementTime": 15456,
+      "clicks": 179,
+      "friction": 0.08496732,
+      "renderTime": 508,
       "scroll": 38,
-      "fold": 816,
-      "height": 3297,
-      "size": 284492,
+      "fold": 798,
+      "height": 3554,
+      "size": 281198,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
       "exitPercentage": 0,
       "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 8,
-      "frictionEventsCount": 13
+      "pageviewsWithFrictionCount": 9,
+      "frictionEventsCount": 24
+    },
+    {
+      "displayUrl": "/franchise-marketing-automation",
+      "uri": "https://meetbrandwide.com/franchise-marketing-automation/",
+      "starred": false,
+      "title": "Franchise Marketing Automation to Manage Franchisees | BrandWide",
+      "views": 129,
+      "visitTime": 43280,
+      "engagementTime": 7451,
+      "clicks": 32,
+      "friction": 0.062015504,
+      "renderTime": 580,
+      "scroll": 17,
+      "fold": 831,
+      "height": 6324,
+      "size": 346152,
+      "totalSessions": 0,
+      "entry": 0,
+      "exit": 0,
+      "exitPercentage": 0,
+      "entryPercentage": 0,
+      "pageviewsWithFrictionCount": 2,
+      "frictionEventsCount": 2
+    },
+    {
+      "displayUrl": "/more-info",
+      "uri": "https://meetbrandwide.com/more-info/",
+      "starred": false,
+      "title": "Request More Information - BrandWide",
+      "views": 128,
+      "visitTime": 26240,
+      "engagementTime": 17507,
+      "clicks": 272,
+      "friction": 0.3203125,
+      "renderTime": 391,
+      "scroll": 42,
+      "fold": 769,
+      "height": 3604,
+      "size": 206472,
+      "totalSessions": 0,
+      "entry": 0,
+      "exit": 0,
+      "exitPercentage": 0,
+      "entryPercentage": 0,
+      "pageviewsWithFrictionCount": 16,
+      "frictionEventsCount": 55
     },
     {
       "displayUrl": "/franchise-management-software-pricing",
       "uri": "https://meetbrandwide.com/franchise-management-software-pricing/",
       "starred": false,
       "title": "BrandWide Pricing | Franchise Management Software Cost",
-      "views": 134,
-      "visitTime": 135030,
-      "engagementTime": 24873,
-      "clicks": 274,
-      "friction": 0.18656716,
-      "renderTime": 583,
-      "scroll": 42,
-      "fold": 843,
-      "height": 7022,
-      "size": 327392,
+      "views": 123,
+      "visitTime": 119442,
+      "engagementTime": 25405,
+      "clicks": 270,
+      "friction": 0.19512194,
+      "renderTime": 537,
+      "scroll": 45,
+      "fold": 842,
+      "height": 6752,
+      "size": 324603,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
@@ -5982,43 +6674,20 @@
       "frictionEventsCount": 39
     },
     {
-      "displayUrl": "/more-info",
-      "uri": "https://meetbrandwide.com/more-info/",
-      "starred": false,
-      "title": "Request More Information - BrandWide",
-      "views": 128,
-      "visitTime": 30288,
-      "engagementTime": 19576,
-      "clicks": 294,
-      "friction": 0.34375,
-      "renderTime": 388,
-      "scroll": 45,
-      "fold": 772,
-      "height": 3538,
-      "size": 205708,
-      "totalSessions": 0,
-      "entry": 0,
-      "exit": 0,
-      "exitPercentage": 0,
-      "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 17,
-      "frictionEventsCount": 62
-    },
-    {
       "displayUrl": "/franchisee",
       "uri": "https://meetbrandwide.com/franchisee/",
       "starred": false,
       "title": "Franchisee Software Tools | BrandWide Business-In-A-Box",
-      "views": 92,
-      "visitTime": 54310,
-      "engagementTime": 6428,
-      "clicks": 21,
-      "friction": 0.010869565,
-      "renderTime": 920,
+      "views": 99,
+      "visitTime": 50776,
+      "engagementTime": 6288,
+      "clicks": 22,
+      "friction": 0.01010101,
+      "renderTime": 1112,
       "scroll": 21,
-      "fold": 898,
-      "height": 5541,
-      "size": 210023,
+      "fold": 908,
+      "height": 5522,
+      "size": 211816,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
@@ -6032,46 +6701,46 @@
       "uri": "https://meetbrandwide.com/franchise-onboarding-system/",
       "starred": false,
       "title": "Franchise LMS USA - Franchise Onboarding System Training | BrandWide",
-      "views": 89,
-      "visitTime": 126650,
-      "engagementTime": 19871,
-      "clicks": 139,
-      "friction": 0.2247191,
-      "renderTime": 723,
-      "scroll": 39,
-      "fold": 838,
-      "height": 5618,
-      "size": 312948,
+      "views": 84,
+      "visitTime": 132890,
+      "engagementTime": 19959,
+      "clicks": 129,
+      "friction": 0.21428572,
+      "renderTime": 704,
+      "scroll": 38,
+      "fold": 836,
+      "height": 5739,
+      "size": 313217,
+      "totalSessions": 0,
+      "entry": 0,
+      "exit": 0,
+      "exitPercentage": 0,
+      "entryPercentage": 0,
+      "pageviewsWithFrictionCount": 8,
+      "frictionEventsCount": 15
+    },
+    {
+      "displayUrl": "/franchise-crm",
+      "uri": "https://meetbrandwide.com/franchise-crm/",
+      "starred": false,
+      "title": "Franchise CRM & FranDev Software",
+      "views": 72,
+      "visitTime": 89818,
+      "engagementTime": 27382,
+      "clicks": 91,
+      "friction": 0.31944445,
+      "renderTime": 462,
+      "scroll": 31,
+      "fold": 803,
+      "height": 11015,
+      "size": 407739,
       "totalSessions": 0,
       "entry": 0,
       "exit": 0,
       "exitPercentage": 0,
       "entryPercentage": 0,
       "pageviewsWithFrictionCount": 9,
-      "frictionEventsCount": 16
-    },
-    {
-      "displayUrl": "/franchise-solutions",
-      "uri": "https://meetbrandwide.com/franchise-solutions/",
-      "starred": false,
-      "title": "Franchise Solutions - All in One Franchise Management Software",
-      "views": 81,
-      "visitTime": 41138,
-      "engagementTime": 8660,
-      "clicks": 35,
-      "friction": 0.09876543,
-      "renderTime": 619,
-      "scroll": 22,
-      "fold": 821,
-      "height": 4496,
-      "size": 305082,
-      "totalSessions": 0,
-      "entry": 0,
-      "exit": 0,
-      "exitPercentage": 0,
-      "entryPercentage": 0,
-      "pageviewsWithFrictionCount": 2,
-      "frictionEventsCount": 2
+      "frictionEventsCount": 24
     }
   ],
   "syncs": [
@@ -6092,6 +6761,12 @@
       "daysWritten": 91,
       "from": "2026-07-28",
       "to": "2026-10-26"
+    },
+    {
+      "at": "2026-11-09T16:10:22.815Z",
+      "daysWritten": 91,
+      "from": "2026-08-11",
+      "to": "2026-11-09"
     }
   ]
 }
