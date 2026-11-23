@@ -1,0 +1,1198 @@
+{
+  "date": "2026-11-23",
+  "country": "us",
+  "source": "Ahrefs API v3 (Site Explorer), pulled via the Ahrefs MCP connector",
+  "self": "meetbrandwide.com",
+  "note": "Competitor keyword sets are limited to non-branded terms with volume >= 50 for FranConnect and Delightree, whose full keyword sets are much larger. Brandwide and FranchiseSoft are captured in full. HolaTeams has no ranking organic keywords in Ahrefs, so it appears in the authority comparison only.",
+  "domains": [
+    {
+      "domain": "meetbrandwide.com",
+      "label": "Brandwide",
+      "self": true,
+      "orgKeywords": 27,
+      "orgTop3": 17,
+      "orgTraffic": 421,
+      "domainRating": 38,
+      "ahrefsRank": 1815533,
+      "backlinks": 5573,
+      "referringDomains": 2245,
+      "backlinksAllTime": 71064,
+      "referringDomainsAllTime": 8946,
+      "orgValueUsd": 3180.7,
+      "keywordsCaptured": 26
+    },
+    {
+      "domain": "franchisesoft.com",
+      "label": "FranchiseSoft",
+      "self": false,
+      "orgKeywords": 35,
+      "orgTop3": 28,
+      "orgTraffic": 845,
+      "domainRating": 25,
+      "ahrefsRank": 6971449,
+      "backlinks": 1975,
+      "referringDomains": 1095,
+      "backlinksAllTime": 49010,
+      "referringDomainsAllTime": 2710,
+      "orgValueUsd": 5483.78,
+      "keywordsCaptured": 34
+    },
+    {
+      "domain": "franconnect.com",
+      "label": "FranConnect",
+      "self": false,
+      "orgKeywords": 296,
+      "orgTop3": 158,
+      "orgTraffic": 3539,
+      "domainRating": 57,
+      "ahrefsRank": 368645,
+      "backlinks": 54638,
+      "referringDomains": 3434,
+      "backlinksAllTime": 5212207,
+      "referringDomainsAllTime": 8103,
+      "orgValueUsd": 9157.94,
+      "keywordsCaptured": 26
+    },
+    {
+      "domain": "delightree.com",
+      "label": "Delightree",
+      "self": false,
+      "orgKeywords": 76,
+      "orgTop3": 16,
+      "orgTraffic": 1658,
+      "domainRating": 32,
+      "ahrefsRank": 3314314,
+      "backlinks": 2826,
+      "referringDomains": 1227,
+      "backlinksAllTime": 259200,
+      "referringDomainsAllTime": 2199,
+      "orgValueUsd": 3722.72,
+      "keywordsCaptured": 18
+    },
+    {
+      "domain": "holateams.com",
+      "label": "HolaTeams",
+      "self": false,
+      "orgKeywords": 0,
+      "orgTop3": 0,
+      "orgTraffic": 0,
+      "domainRating": 3.5,
+      "ahrefsRank": 38049943,
+      "backlinks": 2009,
+      "referringDomains": 1109,
+      "backlinksAllTime": 2539,
+      "referringDomainsAllTime": 1410,
+      "orgValueUsd": 0,
+      "keywordsCaptured": 0
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "store layout",
+      "volume": 1800,
+      "keywordDifficulty": 5,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/store-layout-types/",
+          "traffic": 24
+        }
+      }
+    },
+    {
+      "keyword": "royalty fee",
+      "volume": 600,
+      "keywordDifficulty": 8,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 10
+        }
+      }
+    },
+    {
+      "keyword": "franchise management software",
+      "volume": 500,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 61
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 159
+        },
+        "delightree.com": {
+          "position": 3,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 59
+        }
+      }
+    },
+    {
+      "keyword": "franchise software",
+      "volume": 500,
+      "keywordDifficulty": 36,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 39
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 130
+        },
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/",
+          "traffic": 47
+        },
+        "delightree.com": {
+          "position": 10,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 10
+        }
+      }
+    },
+    {
+      "keyword": "franchise email marketing",
+      "volume": 450,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "franconnect.com": {
+          "position": 7,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/effective-email-marketing-for-franchise-development-success/",
+          "traffic": 17
+        }
+      }
+    },
+    {
+      "keyword": "what is a royalty fee",
+      "volume": 400,
+      "keywordDifficulty": 12,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 28
+        }
+      }
+    },
+    {
+      "keyword": "franchise management",
+      "volume": 300,
+      "keywordDifficulty": 19,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 10
+        }
+      }
+    },
+    {
+      "keyword": "royalty fees",
+      "volume": 300,
+      "keywordDifficulty": 4,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 13
+        }
+      }
+    },
+    {
+      "keyword": "franchise management system",
+      "volume": 250,
+      "keywordDifficulty": 5,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 7
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 55
+        },
+        "franconnect.com": {
+          "position": 6,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/best-franchise-management-software/",
+          "traffic": 10
+        }
+      }
+    },
+    {
+      "keyword": "franchise crm",
+      "volume": 250,
+      "keywordDifficulty": 4,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 12
+        },
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/platform-overview/sales/",
+          "traffic": 67
+        }
+      }
+    },
+    {
+      "keyword": "franchise lead generation",
+      "volume": 250,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-lead-generation/",
+          "traffic": 23
+        }
+      }
+    },
+    {
+      "keyword": "drive thru coffee franchise",
+      "volume": 250,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/drive-thru-coffee-is-the-fastest-growing-segment-in-franchising/",
+          "traffic": 12
+        }
+      }
+    },
+    {
+      "keyword": "pet franchise",
+      "volume": 250,
+      "keywordDifficulty": 52,
+      "ranks": {
+        "delightree.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.delightree.com/industries/pet-services",
+          "traffic": 6
+        }
+      }
+    },
+    {
+      "keyword": "franchise operations software",
+      "volume": 200,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 64
+        },
+        "delightree.com": {
+          "position": 4,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 17
+        }
+      }
+    },
+    {
+      "keyword": "software for franchise management",
+      "volume": 200,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 10
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 50
+        }
+      }
+    },
+    {
+      "keyword": "restaurant franchise management software",
+      "volume": 200,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 7
+        }
+      }
+    },
+    {
+      "keyword": "franchisee management system",
+      "volume": 200,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 3
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 42
+        }
+      }
+    },
+    {
+      "keyword": "franchise solutions",
+      "volume": 200,
+      "keywordDifficulty": 12,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 4,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/franchise-solutions/",
+          "traffic": 16
+        }
+      }
+    },
+    {
+      "keyword": "franchise marketing solutions",
+      "volume": 200,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 2,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/franchise-marketing/",
+          "traffic": 2
+        }
+      }
+    },
+    {
+      "keyword": "franchise mapping",
+      "volume": 200,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-territory-mapping/",
+          "traffic": 10
+        }
+      }
+    },
+    {
+      "keyword": "pet care franchises",
+      "volume": 200,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "delightree.com": {
+          "position": 6,
+          "kind": "organic",
+          "url": "https://www.delightree.com/industries/pet-services",
+          "traffic": 14
+        }
+      }
+    },
+    {
+      "keyword": "franchisor management software",
+      "volume": 150,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 2,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 20
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 50
+        },
+        "delightree.com": {
+          "position": 4,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 13
+        }
+      }
+    },
+    {
+      "keyword": "franchise manager",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 4,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/blog/what-is-franchise-management/",
+          "traffic": 13
+        }
+      }
+    },
+    {
+      "keyword": "franchise platform",
+      "volume": 150,
+      "keywordDifficulty": 79,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 5,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 13
+        },
+        "franconnect.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/",
+          "traffic": 63
+        }
+      }
+    },
+    {
+      "keyword": "best franchise management software",
+      "volume": 150,
+      "keywordDifficulty": 19,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 12
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 8
+        },
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/best-franchise-management-software/",
+          "traffic": 14
+        }
+      }
+    },
+    {
+      "keyword": "best franchise software",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 10
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 1
+        },
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/best-franchise-management-software/",
+          "traffic": 30
+        },
+        "delightree.com": {
+          "position": 3,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 12
+        }
+      }
+    },
+    {
+      "keyword": "franchise crm software",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 2,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/what-is-the-best-franchise-crm-software/",
+          "traffic": 27
+        }
+      }
+    },
+    {
+      "keyword": "what are royalty fees",
+      "volume": 150,
+      "keywordDifficulty": 6,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 40
+        }
+      }
+    },
+    {
+      "keyword": "franchise sales lead generation",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "franconnect.com": {
+          "position": 2,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/franchise-lead-generation/",
+          "traffic": 17
+        }
+      }
+    },
+    {
+      "keyword": "franchise territory mapping",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-territory-mapping/",
+          "traffic": 9
+        }
+      }
+    },
+    {
+      "keyword": "franchise training software",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "delightree.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.delightree.com/resources/best-franchise-training-software",
+          "traffic": 6
+        }
+      }
+    },
+    {
+      "keyword": "franchise lms",
+      "volume": 150,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "delightree.com": {
+          "position": 8,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/franchise-training-is-broken",
+          "traffic": 6
+        }
+      }
+    },
+    {
+      "keyword": "pet store franchise",
+      "volume": 150,
+      "keywordDifficulty": 34,
+      "ranks": {
+        "delightree.com": {
+          "position": 10,
+          "kind": "organic",
+          "url": "https://www.delightree.com/industries/pet-services",
+          "traffic": 4
+        }
+      }
+    },
+    {
+      "keyword": "franchise management app",
+      "volume": 100,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 35
+        },
+        "franchisesoft.com": {
+          "position": 2,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 14
+        },
+        "delightree.com": {
+          "position": 9,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 3
+        }
+      }
+    },
+    {
+      "keyword": "franchisee management software",
+      "volume": 100,
+      "keywordDifficulty": 4,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 11
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 26
+        }
+      }
+    },
+    {
+      "keyword": "franchise development software",
+      "volume": 100,
+      "keywordDifficulty": 5,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 5,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 8
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 38
+        },
+        "franconnect.com": {
+          "position": 3,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/best-franchise-management-software/",
+          "traffic": 12
+        }
+      }
+    },
+    {
+      "keyword": "franchise development process",
+      "volume": 100,
+      "keywordDifficulty": 4,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 8,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/blog/what-is-franchise-development/",
+          "traffic": 5
+        }
+      }
+    },
+    {
+      "keyword": "franchise intranet software",
+      "volume": 100,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 9,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 3
+        },
+        "franchisesoft.com": {
+          "position": 7,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/digital-library/",
+          "traffic": 4
+        }
+      }
+    },
+    {
+      "keyword": "software franchises",
+      "volume": 100,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 0
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 9
+        }
+      }
+    },
+    {
+      "keyword": "franchise business intelligence software",
+      "volume": 100,
+      "keywordDifficulty": 6,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 7,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 5
+        }
+      }
+    },
+    {
+      "keyword": "franchise onboarding process",
+      "volume": 100,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 9,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/franchisee-onboarding/",
+          "traffic": 4
+        }
+      }
+    },
+    {
+      "keyword": "software franchise",
+      "volume": 100,
+      "keywordDifficulty": 4,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 8,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 4
+        }
+      }
+    },
+    {
+      "keyword": "royalty franchise",
+      "volume": 100,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 13
+        }
+      }
+    },
+    {
+      "keyword": "franchise industry trends",
+      "volume": 100,
+      "keywordDifficulty": 8,
+      "ranks": {
+        "delightree.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.delightree.com/resources/current-trends-in-the-franchising-industry",
+          "traffic": 1
+        }
+      }
+    },
+    {
+      "keyword": "franchising software",
+      "volume": 90,
+      "keywordDifficulty": 7,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 8
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 13
+        }
+      }
+    },
+    {
+      "keyword": "franchise software systems",
+      "volume": 90,
+      "keywordDifficulty": 30,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 34
+        },
+        "delightree.com": {
+          "position": 3,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 11
+        }
+      }
+    },
+    {
+      "keyword": "franchise systems",
+      "volume": 90,
+      "keywordDifficulty": 7,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 9,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 2
+        }
+      }
+    },
+    {
+      "keyword": "crm for franchises",
+      "volume": 90,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/platform-overview/sales/",
+          "traffic": 12
+        }
+      }
+    },
+    {
+      "keyword": "franchise management solutions",
+      "volume": 80,
+      "keywordDifficulty": 36,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 4,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 7
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 26
+        }
+      }
+    },
+    {
+      "keyword": "franchisor software",
+      "volume": 80,
+      "keywordDifficulty": 37,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 10,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 2
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 18
+        },
+        "delightree.com": {
+          "position": 6,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 6
+        }
+      }
+    },
+    {
+      "keyword": "what is royalty fee",
+      "volume": 80,
+      "keywordDifficulty": 8,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 17
+        }
+      }
+    },
+    {
+      "keyword": "royalty fee franchise",
+      "volume": 70,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 19
+        }
+      }
+    },
+    {
+      "keyword": "server training manual",
+      "volume": 70,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "delightree.com": {
+          "position": 3,
+          "kind": "ai_overview",
+          "url": "https://www.delightree.com/resources/basics-of-a-restaurant-server-training-programme",
+          "traffic": 2
+        }
+      }
+    },
+    {
+      "keyword": "pet related franchises",
+      "volume": 70,
+      "keywordDifficulty": 31,
+      "ranks": {
+        "delightree.com": {
+          "position": 9,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources",
+          "traffic": 2
+        }
+      }
+    },
+    {
+      "keyword": "franchise lead management software",
+      "volume": 60,
+      "keywordDifficulty": 5,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 5,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 4
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 21
+        },
+        "delightree.com": {
+          "position": 7,
+          "kind": "organic",
+          "url": "https://www.delightree.com/resources/best-franchise-management-software",
+          "traffic": 3
+        }
+      }
+    },
+    {
+      "keyword": "what is franchise development",
+      "volume": 60,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/blog/what-is-franchise-development/",
+          "traffic": 3
+        }
+      }
+    },
+    {
+      "keyword": "franchise business software",
+      "volume": 60,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 21
+        }
+      }
+    },
+    {
+      "keyword": "crm franchise",
+      "volume": 60,
+      "keywordDifficulty": 2,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 1
+        }
+      }
+    },
+    {
+      "keyword": "what is a royalty fee in franchising",
+      "volume": 60,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 15
+        }
+      }
+    },
+    {
+      "keyword": "franchise royalty",
+      "volume": 60,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://www.franconnect.com/franchise-royalty-fee-calculation/",
+          "traffic": 13
+        }
+      }
+    },
+    {
+      "keyword": "franchise lead generation companies",
+      "volume": 60,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "franconnect.com": {
+          "position": 2,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/franchise-lead-generation/",
+          "traffic": 9
+        }
+      }
+    },
+    {
+      "keyword": "franchise management systems",
+      "volume": 50,
+      "keywordDifficulty": 38,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://meetbrandwide.com/",
+          "traffic": 2
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 4
+        }
+      }
+    },
+    {
+      "keyword": "franchise connect",
+      "volume": 50,
+      "keywordDifficulty": 54,
+      "ranks": {
+        "franconnect.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://www.franconnect.com/",
+          "traffic": 11
+        }
+      }
+    },
+    {
+      "keyword": "pet care franchise",
+      "volume": 50,
+      "keywordDifficulty": 3,
+      "ranks": {
+        "delightree.com": {
+          "position": 5,
+          "kind": "organic",
+          "url": "https://www.delightree.com/industries/pet-services",
+          "traffic": 3
+        }
+      }
+    },
+    {
+      "keyword": "managing franchisees",
+      "volume": 40,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 4,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/blog/5-components-of-successful-franchise-management/",
+          "traffic": 4
+        },
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 8
+        }
+      }
+    },
+    {
+      "keyword": "management of franchise",
+      "volume": 20,
+      "keywordDifficulty": 0,
+      "ranks": {
+        "meetbrandwide.com": {
+          "position": 7,
+          "kind": "organic",
+          "url": "https://meetbrandwide.com/blog/what-is-franchise-management/",
+          "traffic": 1
+        }
+      }
+    },
+    {
+      "keyword": "franchise sales crm",
+      "volume": 20,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 2,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/franchise-sales-crm/",
+          "traffic": 3
+        }
+      }
+    },
+    {
+      "keyword": "franchise app",
+      "volume": 20,
+      "keywordDifficulty": 1,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 1,
+          "kind": "ai_overview",
+          "url": "https://franchisesoft.com/",
+          "traffic": 0
+        }
+      }
+    },
+    {
+      "keyword": "logiciel franchise",
+      "volume": 0,
+      "keywordDifficulty": 36,
+      "ranks": {
+        "franchisesoft.com": {
+          "position": 10,
+          "kind": "organic",
+          "url": "https://franchisesoft.com/",
+          "traffic": 0
+        }
+      }
+    }
+  ]
+}

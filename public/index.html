@@ -99,6 +99,15 @@
           </select>
         </div>
 
+        <div class="field">
+          <label class="field__label" for="audience-select">Audience</label>
+          <select id="audience-select" aria-label="Audience filter">
+            <option value="us-ca" selected>US + Canada</option>
+            <option value="us">United States only</option>
+            <option value="all">All countries</option>
+          </select>
+        </div>
+
         <div class="field" id="custom-start-field" hidden>
           <label class="field__label" for="custom-start">From</label>
           <input type="date" id="custom-start">
@@ -131,6 +140,7 @@
       <span class="pill" id="status-ga4"><span class="pill__dot"></span> GA4</span>
       <span class="pill" id="status-gsc"><span class="pill__dot"></span> Search Console</span>
       <span class="pill" id="status-mouseflow"><span class="pill__dot"></span> Mouseflow</span>
+      <span class="pill" id="status-audience" hidden><span class="pill__dot"></span></span>
       <span class="status-strip__note" id="range-note">—</span>
     </div>
 
@@ -391,7 +401,7 @@
             <div class="setup-step">
               <h3>3. Set the variable</h3>
               <ul>
-                <li><code>GSC_SITE_URL</code> — either <code>sc-domain:brandwide.com</code> or the exact URL-prefix property</li>
+                <li><code>GSC_SITE_URL</code> — either <code>sc-domain:meetbrandwide.com</code> or the exact URL-prefix property</li>
               </ul>
               <p>Search Console finalises data about 2–3 days behind, so the most recent days may look light.</p>
             </div>

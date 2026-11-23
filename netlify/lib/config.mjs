@@ -96,7 +96,7 @@ export function gscConfig() {
       siteUrl: null,
       problem:
         `GSC_SITE_URL is set to "${raw}", which matches neither Search Console ` +
-        'property format. Use "sc-domain:brandwide.com" for a domain property, ' +
+        'property format. Use "sc-domain:meetbrandwide.com" for a domain property, ' +
         'or the full URL including protocol for a URL-prefix property.',
     };
   }

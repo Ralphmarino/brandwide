@@ -109,8 +109,23 @@ async function request(path, params, signal) {
   return payload;
 }
 
-export const fetchGa4 = (range, signal) =>
-  request('/api/ga4', { ...range, limit: 10 }, signal);
+/**
+ * `audience` narrows the report to specific countries and/or channels.
+ * `countries: []` is sent as the literal "all", because an absent parameter
+ * means "use the default" server-side — omitting it would silently reinstate
+ * the US/Canada default when the user had cleared the filter.
+ */
+export const fetchGa4 = (range, audience, signal) =>
+  request(
+    '/api/ga4',
+    {
+      ...range,
+      limit: 10,
+      countries: audience?.countries?.length ? audience.countries.join(',') : 'all',
+      channels: audience?.channels?.length ? audience.channels.join(',') : 'all',
+    },
+    signal
+  );
 
 export const fetchGsc = (range, signal) =>
   request('/api/gsc', { ...range, limit: 25 }, signal);

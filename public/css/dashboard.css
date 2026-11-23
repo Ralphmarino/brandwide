@@ -251,10 +251,16 @@ button:focus-visible {
   color: var(--ink-muted);
 }
 
+/* `display` on .pill outranks the browser default for [hidden], so a pill
+   that sets the attribute would otherwise still be drawn — as an empty one. */
+.pill[hidden] { display: none; }
+
 .pill__dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
 .pill--live { color: var(--positive); background: var(--positive-soft); border-color: #bfe3d0; }
 .pill--demo { color: var(--brand-orange); background: var(--brand-orange-soft); border-color: #ffd4c6; }
 .pill--error { color: var(--negative); background: var(--negative-soft); border-color: #f5c9bf; }
+/* Neutral slate: a filter is a stated condition, not a warning or a success. */
+.pill--filter { color: #41505f; background: #eef1f5; border-color: #d4dae1; }
 
 .status-strip__note { color: var(--ink-faint); margin-left: auto; font-size: 11.5px; }
 

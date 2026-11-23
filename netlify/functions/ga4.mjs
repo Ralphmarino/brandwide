@@ -91,6 +91,76 @@ function summaryTotals(report) {
 const metrics = (names) => names.map((name) => ({ name }));
 const dimensions = (names) => names.map((name) => ({ name }));
 
+/**
+ * Audience filtering.
+ *
+ * GA4's own bot exclusion only drops traffic on the IAB/Spiders list, which
+ * misses the headless and datacentre traffic that inflated this property's
+ * user totals. Two filters narrow the report to the audience the business
+ * actually sells to:
+ *
+ *   country  — filtered on countryId (ISO 3166-1 alpha-2) rather than the
+ *              display name, because the display name is localised and would
+ *              silently stop matching.
+ *   channel  — sessionDefaultChannelGroup, for isolating a single acquisition
+ *              channel.
+ *
+ * The filter is applied to EVERY report in the batch, including the comparison
+ * period, so the headline totals and the breakdown tables cannot disagree. It
+ * is also echoed back in the payload: a filtered report that does not say it is
+ * filtered is worse than an inflated one, because the number looks clean.
+ */
+const DEFAULT_COUNTRIES = ['US', 'CA'];
+
+/** Only the codes this dashboard offers need a readable name. */
+const COUNTRY_NAMES = {
+  US: 'United States',
+  CA: 'Canada',
+  GB: 'United Kingdom',
+  AU: 'Australia',
+  IN: 'India',
+};
+
+/** Accepts "US,CA", ["US","CA"], or "all"/"" to clear the filter. */
+function parseList(value, fallback) {
+  if (value === undefined || value === null) return fallback;
+  const raw = Array.isArray(value) ? value : String(value).split(',');
+  const cleaned = raw.map((item) => String(item).trim()).filter(Boolean);
+  if (!cleaned.length) return [];
+  if (cleaned.length === 1 && /^(all|any|\*)$/i.test(cleaned[0])) return [];
+  return cleaned;
+}
+
+/** Country codes only — anything else would be rejected by the API anyway. */
+const isCountryCode = (value) => /^[A-Za-z]{2}$/.test(value);
+
+function buildAudienceFilter({ countries, channels }) {
+  const expressions = [];
+
+  if (countries.length) {
+    expressions.push({
+      filter: {
+        fieldName: 'countryId',
+        inListFilter: { values: countries.map((c) => c.toUpperCase()) },
+      },
+    });
+  }
+
+  if (channels.length) {
+    expressions.push({
+      filter: {
+        fieldName: 'sessionDefaultChannelGroup',
+        inListFilter: { values: channels, caseSensitive: false },
+      },
+    });
+  }
+
+  if (!expressions.length) return null;
+  // A single expression still has to be wrapped: andGroup with one child is
+  // valid, and keeps the shape uniform.
+  return { andGroup: { expressions } };
+}
+
 export default async (req) => {
   try {
     const params = await readParams(req);
@@ -101,6 +171,11 @@ export default async (req) => {
     const limit = safeLimit(params.limit, 10, 100);
 
     const compareRange = { startDate: compareStartDate, endDate: compareEndDate };
+
+    const countries = parseList(params.countries, DEFAULT_COUNTRIES).filter(isCountryCode);
+    const channels = parseList(params.channels, []);
+    const audienceFilter = buildAudienceFilter({ countries, channels });
+
     const settings = ga4Config();
 
     if (!settings.ready) {
@@ -109,6 +184,9 @@ export default async (req) => {
       return json({
         ...demoGa4(startDate, endDate, compareRange),
         demoReason: settings.problem,
+        // Sample data is not filtered; say so rather than letting the report
+        // claim a filter that was never applied.
+        filters: { countries: [], channels: [], applied: false, countryNames: [] },
       });
     }
     const propertyId = settings.propertyId;
@@ -182,12 +260,18 @@ export default async (req) => {
       },
     ];
 
+    // Applied uniformly: a filter on the totals but not the breakdowns would
+    // produce tables that do not add up to the headline.
+    const filteredRequests = audienceFilter
+      ? reportRequests.map((request) => ({ ...request, dimensionFilter: audienceFilter }))
+      : reportRequests;
+
     // The Data API rejects a batch of more than five reports, so send them in
     // chunks. Promise.all preserves input order, and the chunks are in order,
     // so the flattened reports line up with reportRequests exactly.
     const batches = [];
-    for (let i = 0; i < reportRequests.length; i += MAX_REPORTS_PER_BATCH) {
-      batches.push(reportRequests.slice(i, i + MAX_REPORTS_PER_BATCH));
+    for (let i = 0; i < filteredRequests.length; i += MAX_REPORTS_PER_BATCH) {
+      batches.push(filteredRequests.slice(i, i + MAX_REPORTS_PER_BATCH));
     }
 
     const responses = await Promise.all(
@@ -223,6 +307,14 @@ export default async (req) => {
       propertyId,
       range: { startDate, endDate },
       compareRange,
+      // Stated explicitly so the report can label itself. Without this a
+      // reader cannot tell a filtered figure from an unfiltered one.
+      filters: {
+        countries,
+        channels,
+        applied: Boolean(audienceFilter),
+        countryNames: countries.map((code) => COUNTRY_NAMES[code] || code),
+      },
       totals: summaryTotals(summary),
       previousTotals: summaryTotals(compareSummary),
       // Each user's first visit falls on exactly one day, so the daily new-user

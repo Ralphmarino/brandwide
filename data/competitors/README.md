@@ -52,3 +52,14 @@ Brandwide and FranchiseSoft are captured in full. FranConnect and Delightree
 are limited to non-branded keywords with volume >= 50, since their full keyword
 sets are much larger and the long tail is mostly irrelevant to this comparison.
 That limit is recorded in the file's `note` field and shown on the report.
+
+Branded terms are stripped per domain before merging. A competitor's own brand
+searches say nothing about who wins a contested commercial term, and leaving
+them in would have put "franconnect" (1,698 estimated visits) at the top of a
+head-to-head table. The patterns also cover product names that function as
+brand terms — FranConnect's "World Manager" and "Info Manager", Delightree's
+"GoAudits" — which otherwise read as generic.
+
+HolaTeams (added 2026-11-23) has no ranking organic keywords in Ahrefs, in the
+US or worldwide, so it appears in the authority comparison only. It is tracked
+because it competes commercially, not because it competes in search today.

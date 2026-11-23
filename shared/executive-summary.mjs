@@ -37,6 +37,16 @@ function plural(count, word) {
 }
 
 /**
+ * "A", "A and B", "A, B and C" — joining with " and " throughout produced
+ * "FranchiseSoft and Delightree and HolaTeams" once a fourth rival was added.
+ */
+function listOf(items) {
+  const list = items.filter(Boolean);
+  if (list.length <= 1) return list[0] || '';
+  return `${list.slice(0, -1).join(', ')} and ${list[list.length - 1]}`;
+}
+
+/**
  * @param {object} state the dashboard's loaded state
  * @param {object} helpers formatting functions from format.js
  * @returns {{headline: string, points: object[], caveats: string[]}|null}
@@ -149,7 +159,7 @@ export function buildExecutiveSummary(state, helpers) {
         text:
           `Domain authority is ${decimal(self.domainRating, 0)}, ` +
           (weaker.length
-            ? `higher than ${weaker.map((d) => d.label).join(' and ')}. ` +
+            ? `higher than ${listOf(weaker.map((d) => d.label))}. ` +
               'Where those competitors outrank us, the gap is content coverage rather than authority.'
             : `against ${rivals.map((d) => `${d.label} ${decimal(d.domainRating, 0)}`).join(', ')}.`),
       });
@@ -200,6 +210,14 @@ export function buildExecutiveSummary(state, helpers) {
 
   // Stated here rather than hidden, so a reader knows which figures are
   // partial before they quote them.
+  // A filtered figure has to carry its condition wherever it is quoted, and
+  // this summary is the part people paste into an email.
+  if (ga4?.filters?.applied && ga4.filters.countryNames?.length) {
+    caveats.push(
+      `Visitor figures cover ${listOf(ga4.filters.countryNames)} only, ` +
+        'to exclude the automated traffic inflating the account-wide totals.'
+    );
+  }
   if (!ga4) caveats.push('Google Analytics is not connected, so visitor figures are excluded.');
   if (!gsc) caveats.push('Search Console is not connected, so search figures are excluded.');
   if (!rankings) caveats.push('No ranking exports are loaded, so position figures are excluded.');

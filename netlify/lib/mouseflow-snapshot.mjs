@@ -137,15 +137,78 @@ function bucketRows(buckets, keyName, valueName = 'sessions') {
 
 /** Mouseflow's placeholder bucket labels read badly in a client report. */
 function tidyBucket(label) {
-  if (label === 'NULL' || label === '' || label === undefined || label === null) {
-    return 'Unknown';
-  }
-  if (label === 'OTHER') return 'Other';
+  // Mouseflow wraps its sentinels in double underscores (__NULL__, __OTHER__).
+  // Matching the bare words alone let "__OTHER__" through into the report.
+  const bare = String(label ?? '').replace(/^__|__$/g, '').toUpperCase();
+  if (bare === 'NULL' || bare === 'NONE' || bare === '') return 'Unknown';
+  if (bare === 'OTHER') return 'Other';
   return label;
 }
 
 function tidyRows(rows, keyName) {
   return rows.map((row) => ({ ...row, [keyName]: tidyBucket(row[keyName]) }));
+}
+
+/**
+ * Characters that cannot appear in a route this site actually serves. They
+ * reach Mouseflow when something crawls a malformed href — the site audit
+ * found hrefs holding an unresolved template placeholder, which arrive here
+ * percent-encoded as paths like "/%7b<64 hex>%7d20%7b<64 hex>%7d20...".
+ */
+const UNROUTABLE_CHARS = /[{}<>"|\\^`\s]/;
+
+/** Longer than any real route on the site; placeholder spam runs to ~300. */
+const MAX_REASONABLE_PATH = 120;
+
+/**
+ * True when a path looks like a real page rather than a crawler following a
+ * broken link.
+ *
+ * These are dropped from the client-facing table rather than from the stored
+ * history: the snapshot keeps what Mouseflow reported, and the count of what
+ * was dropped is returned so the Data sources tab can show it. Silently
+ * discarding them would hide a live SEO defect; showing them in the report
+ * puts a 300-character hash in front of a client.
+ */
+function isReportablePath(path) {
+  const value = String(path || '');
+  if (!value) return false;
+  if (value.length > MAX_REASONABLE_PATH) return false;
+  if (UNROUTABLE_CHARS.test(value)) return false;
+  // Percent escapes are decoded before testing, since the characters above
+  // arrive encoded. A malformed escape is itself a sign of a broken href.
+  let decoded;
+  try {
+    decoded = decodeURIComponent(value);
+  } catch {
+    return false;
+  }
+  return !UNROUTABLE_CHARS.test(decoded);
+}
+
+/**
+ * Splits entry-page rows into the ones worth reporting and a summary of the
+ * ones that are not.
+ */
+function partitionEntryPages(rows) {
+  const keep = [];
+  const dropped = [];
+  for (const row of rows) {
+    (isReportablePath(row.page) ? keep : dropped).push(row);
+  }
+  return {
+    entryPages: keep,
+    malformedEntryPages: {
+      paths: dropped.length,
+      sessions: dropped.reduce((total, row) => total + numberOf(row.sessions), 0),
+      // Truncated: the point is to show the shape of the defect, not to paste
+      // 300 characters of placeholder hash into a panel.
+      examples: dropped.slice(0, 5).map((row) => ({
+        page: String(row.page).slice(0, 80),
+        sessions: numberOf(row.sessions),
+      })),
+    },
+  };
 }
 
 /**
@@ -195,13 +258,18 @@ export function rollUp(snapshot, range) {
     notes.push('No synced days fall inside this range.');
   }
 
+  const { entryPages, malformedEntryPages } = partitionEntryPages(
+    tidyRows(bucketRows(current.dimensions.EntryPage, 'page'), 'page')
+  );
+
   return {
     coverage: { earliest, latest, daysCaptured: available.length, notes },
     current,
     previous,
     trend,
+    malformedEntryPages,
     devices: tidyRows(bucketRows(current.dimensions.DeviceType, 'device'), 'device'),
-    entryPages: tidyRows(bucketRows(current.dimensions.EntryPage, 'page'), 'page'),
+    entryPages,
     countries: tidyRows(bucketRows(current.dimensions.Country, 'country'), 'country'),
     referrers: tidyRows(bucketRows(current.dimensions.ReferrerType, 'referrer'), 'referrer'),
     browsers: tidyRows(bucketRows(current.dimensions.Browser, 'browser'), 'browser'),

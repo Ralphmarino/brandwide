@@ -123,6 +123,17 @@ function normaliseRecording(recording, websiteId) {
   };
 }
 
+/**
+ * Milliseconds -> whole seconds, which is what the report's duration formatter
+ * expects. Non-numeric and negative values collapse to 0 rather than rendering
+ * as "NaN" or a negative visit length.
+ */
+function msToSeconds(value) {
+  const ms = Number(value);
+  if (!Number.isFinite(ms) || ms <= 0) return 0;
+  return Math.round(ms / 1000);
+}
+
 /** Counts rows by a key, returning the largest buckets first. */
 function tally(rows, key, valueName) {
   const counts = new Map();
@@ -155,7 +166,11 @@ function fromSnapshot(snapshot, rolled, range) {
       const parsed = new Date(value);
       return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
     })(),
-    duration: Number(pick(row, ['duration', 'length'], 0)) || 0,
+    // The web-app endpoint reports duration in MILLISECONDS (it equals
+    // lastActivity - created exactly), while the report's formatter takes
+    // seconds. Leaving it unconverted rendered a 30-minute visit as "502h 25m".
+    duration: msToSeconds(pick(row, ['duration', 'length'], 0)),
+    engagementDuration: msToSeconds(pick(row, ['engagementTime', 'engagementDuration'], 0)),
     pageViews: Number(pick(row, ['pageViews', 'pages', 'pageCount'], 0)) || 0,
     frictionScore: Number(pick(row, ['frictionScore', 'friction', 'score'], 0)) || 0,
     device: pick(row, ['device', 'deviceType', 'platform'], 'Unknown'),
@@ -179,6 +194,9 @@ function fromSnapshot(snapshot, rolled, range) {
     mode: 'snapshot',
     syncedAt: snapshot.syncedAt || null,
     coverage,
+    // Internal diagnostic: entry paths excluded from the table because they
+    // are crawler hits on malformed hrefs, not pages. Shown on Data sources.
+    malformedEntryPages: rolled.malformedEntryPages,
     range: { startDate: range.startDate, endDate: range.endDate },
     compareRange: { startDate: range.compareStartDate, endDate: range.compareEndDate },
     website: {

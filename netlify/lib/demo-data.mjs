@@ -261,7 +261,7 @@ export function demoGsc(startDate, endDate, compare) {
     queries: expand(queries, 'query'),
     pages: expand(pages, 'page').map((row) => ({
       ...row,
-      page: `https://www.brandwide.com${row.page}`,
+      page: `https://www.meetbrandwide.com${row.page}`,
     })),
     devices: split(totalClicks, [
       { device: 'DESKTOP', weight: 64 },
@@ -337,8 +337,8 @@ export function demoMouseflow(startDate, endDate) {
     range: { startDate, endDate },
     website: {
       id: 'demo-website-id',
-      name: 'brandwide.com (sample data)',
-      url: 'https://www.brandwide.com',
+      name: 'meetbrandwide.com (sample data)',
+      url: 'https://www.meetbrandwide.com',
     },
     websites: [],
     totals: {

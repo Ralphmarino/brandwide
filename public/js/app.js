@@ -21,7 +21,7 @@ import {
 
 const VIEW_META = {
   overview: { title: 'Overview', subtitle: 'Traffic, search and on-site behaviour at a glance' },
-  acquisition: { title: 'Acquisition', subtitle: 'How visitors find brandwide.com' },
+  acquisition: { title: 'Acquisition', subtitle: 'How visitors find meetbrandwide.com' },
   search: { title: 'Search Console', subtitle: 'Organic visibility, queries and landing pages' },
   competitors: { title: 'Competitors', subtitle: 'Where we meet FranchiseSoft, FranConnect and Delightree in search' },
   pages: { title: 'Page analysis', subtitle: 'Which pages to improve first, and exactly what to change' },
@@ -41,11 +41,39 @@ const state = {
   mouseflow: null,
   errors: {},
   trendMetric: 'activeUsers',
+  // GA4's own bot exclusion misses the datacentre traffic that was inflating
+  // user totals, so the report defaults to the audience the business sells
+  // to. Every figure sourced from GA4 follows this, and the status strip says
+  // so, because a filtered number that does not announce itself is worse than
+  // an inflated one.
+  audience: 'us-ca',
   rankings: null,
   competitors: null,
   loading: false,
   inflight: null,
 };
+
+/** The audience presets the control offers, resolved to GA4 country codes. */
+const AUDIENCE_PRESETS = {
+  'us-ca': { label: 'US + Canada', countries: ['US', 'CA'] },
+  us: { label: 'United States', countries: ['US'] },
+  all: { label: 'All countries', countries: [] },
+};
+
+const audienceOf = (key) => AUDIENCE_PRESETS[key] || AUDIENCE_PRESETS['us-ca'];
+
+/** "Where we meet A, B and C in search", built from the loaded snapshot. */
+function competitorSubtitle() {
+  const rivals = (state.competitors?.domains || [])
+    .filter((row) => row.domain !== state.competitors?.self)
+    .map((row) => row.label);
+  if (!rivals.length) return VIEW_META.competitors.subtitle;
+  const list =
+    rivals.length === 1
+      ? rivals[0]
+      : `${rivals.slice(0, -1).join(', ')} and ${rivals[rivals.length - 1]}`;
+  return `Where we meet ${list} in search`;
+}
 
 const $ = (selector) => document.querySelector(selector);
 const $id = (id) => document.getElementById(id);
@@ -191,6 +219,24 @@ function refreshStatusStrip() {
   setPill('status-ga4', state.ga4, state.errors.ga4);
   setPill('status-gsc', state.gsc, state.errors.gsc);
   setPill('status-mouseflow', state.mouseflow, state.errors.mouseflow);
+
+  // The audience chip appears only when a filter is actually in force, and is
+  // driven by what the API reports applying rather than by the control's
+  // position — if the two ever disagree, the data wins.
+  const audienceChip = $id('status-audience');
+  if (audienceChip) {
+    const applied = state.ga4?.filters?.applied && !state.ga4?.demo;
+    audienceChip.hidden = !applied;
+    if (applied) {
+      const names = state.ga4.filters.countryNames || [];
+      audienceChip.className = 'pill pill--filter';
+      audienceChip.innerHTML =
+        `<span class="pill__dot"></span> Filtered · ${names.join(' + ') || 'custom'}`;
+      audienceChip.title =
+        'GA4 figures on every report are limited to this audience. ' +
+        'Switch to "All countries" in the Audience control to see unfiltered totals.';
+    }
+  }
 
   const note = $id('range-note');
   if (note && state.range) {
@@ -726,6 +772,14 @@ function renderBehavior() {
       { label: 'Device', render: (row) => titleCase(row.device) },
       { label: 'Pages', align: 'right', render: (row) => num(row.pageViews) },
       { label: 'Duration', align: 'right', render: (row) => duration(row.duration) },
+      // Duration runs to the last activity, so a tab left open reads as 30
+      // minutes. Engaged time is what the visitor actually spent on the page.
+      {
+        label: 'Engaged',
+        align: 'right',
+        render: (row) =>
+          row.engagementDuration === undefined ? '—' : duration(row.engagementDuration),
+      },
       { label: 'Friction', align: 'right', render: (row) => frictionCell(row.frictionScore) },
     ],
     mf.recordings || [],
@@ -1544,6 +1598,22 @@ async function renderSetup() {
          </div>`
       : '';
 
+    const malformed = state.mouseflow?.malformedEntryPages;
+    const malformedNote = malformed?.paths
+      ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
+           <strong>Mouseflow: ${num(malformed.paths)} malformed entry ${malformed.paths === 1 ? 'path' : 'paths'} excluded (${num(malformed.sessions)} ${malformed.sessions === 1 ? 'session' : 'sessions'})</strong>
+           <p style="margin:4px 0 6px;font-weight:400">Internal only — not shown on the reports.</p>
+           Something is crawling hrefs that still contain an unresolved template placeholder, so the
+           request never resolves to a page. They are kept in the stored snapshot but excluded from the
+           entry-pages table. Fixing the hrefs on the site removes them at source.
+           <ul style="margin:6px 0 0;padding-left:18px">
+             ${malformed.examples
+               .map((row) => `<li style="margin-bottom:3px"><code>${row.page}…</code> — ${num(row.sessions)}</li>`)
+               .join('')}
+           </ul>
+         </div>`
+      : '';
+
     const rankingNotes = (rankings?.warnings || []).length
       ? `<div class="error-box" style="color:#a96a00;background:#fff6e5;border:1px solid #ffe3ab">
            <strong>Ranking data notes (${rankings.warnings.length})</strong>
@@ -1600,6 +1670,7 @@ async function renderSetup() {
         ? `<p class="cell-secondary" style="margin:14px 0 0">Grant this service account read access in GA4 and Search Console: <code>${health.serviceAccountEmail}</code></p>`
         : `<p class="cell-secondary" style="margin:14px 0 0">No Google service account is configured yet.</p>`) +
       ga4Note +
+      malformedNote +
       rankingNotes;
   } catch (error) {
     panel.innerHTML = `<div class="error-box"><strong>Status check failed</strong>${error.message}</div>`;
@@ -1635,7 +1706,11 @@ function switchView(view) {
   const meta = VIEW_META[view];
   if (meta) {
     $id('view-title').textContent = meta.title;
-    $id('view-subtitle').textContent = meta.subtitle;
+    // The competitor set is defined by the committed snapshot, so name the
+    // rivals from the data rather than from a string that goes stale the next
+    // time one is added.
+    $id('view-subtitle').textContent =
+      view === 'competitors' ? competitorSubtitle() : meta.subtitle;
   }
 
   // Charts inside a hidden panel render at zero width, so draw on reveal.
@@ -1659,7 +1734,7 @@ async function loadAll() {
   refreshStatusStrip();
 
   const results = await Promise.allSettled([
-    fetchGa4(state.range, controller.signal),
+    fetchGa4(state.range, audienceOf(state.audience), controller.signal),
     fetchGsc(gscRange, controller.signal),
     fetchMouseflow(state.range, controller.signal),
     // Rank data is a build-time file, so it ignores the date range.
@@ -1882,6 +1957,7 @@ const EXPORTS = {
       { key: 'country', label: 'Country' },
       { key: 'pageViews', label: 'Page views' },
       { key: 'duration', label: 'Duration (s)' },
+      { key: 'engagementDuration', label: 'Engaged time (s)' },
       { key: 'frictionScore', label: 'Friction score' },
       { key: 'url', label: 'Playback URL' },
     ],
@@ -1912,6 +1988,15 @@ function bindEvents() {
       state.customStart = $id('custom-start').value;
       state.customEnd = $id('custom-end').value;
       if (state.customStart && state.customEnd) loadAll();
+    });
+  }
+
+  const audienceSelect = $id('audience-select');
+  if (audienceSelect) {
+    audienceSelect.value = state.audience;
+    audienceSelect.addEventListener('change', () => {
+      state.audience = audienceSelect.value;
+      loadAll();
     });
   }
 

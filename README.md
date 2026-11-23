@@ -74,8 +74,8 @@ list. Set what you have — each source works independently.
 7. **Grant Search Console access:** Search Console → Settings → Users and
    permissions → add the same email (**Full** or **Restricted**). Set
    `GSC_SITE_URL` to the property exactly as Search Console shows it:
-   - Domain property: `sc-domain:brandwide.com`
-   - URL-prefix property: `https://www.brandwide.com/`
+   - Domain property: `sc-domain:meetbrandwide.com`
+   - URL-prefix property: `https://www.meetbrandwide.com/`
 
 > **The private key is the usual snag.** Netlify's variable editor stores a
 > pasted key with literal `\n` sequences; a multi-line paste keeps real
